@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+<title>Invoice for 3T</title>
+<style type="text/css">
+html, body, table, th, td{
+	font-family:Arial;
+	font-size:12px;
+}
+hr {
+color: #000;
+background-color: #000;
+height: 2px;
+}
+
+.centerbox {
+	text-align: center;
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+.rightbox {
+	text-align: right;
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+.box {
+	border: 1px solid black;
+	min-height: 15px;
+	padding-left: 2px;
+	border-collapse: collapse;
+	
+}
+.checkbox {
+	text-align: center;
+	border: 1px solid black;
+	border-collapse: collapse;
+	height: 14px;
+	width: 14px;
+	float: left;
+}
+.label {
+	float: left;
+	margin-right: 5px;
+}
+.line {
+height:1px;
+background:#000;
+border-bottom:1px solid #000;
+border-collapse: collapse;
+margin-bottom: 10px;
+}
+
+</style>
+</head>
+
+<body>
+<table style="border-collapse: collapse;" width="700px" cellspacing="0">
+  <tr>
+    <td align="center"><img src="../media/ucsd_header.jpg" alt="Letter Header" width="700" height="102"></td>
+  </tr>
+    <tr>
+  
+  <td>
+      <div align="center"> <span style="font-size: 20px; font-weight: bold">INVOICE<br>
+              UCSD Center for Functional MRI</span><br>
+            </div>
+            
+
+    <div align="left">
+      <table style="border-collapse: collapse;" width="100%" border="0" cellspacing="1" cellpadding="5px">
+        <tr>
+          <td width="50%"><b>INVOICE NUMBER:</b></td>
+          <td width="50%"><b>DATE:</b></td>
+        </tr>
+        <tr>
+          <td><div class="box" style="width:250px;">FR00<span id="invoicenum">100</span></div></td>
+          <td><div class="box" style="width:250px;">
+            <span id="today_month">8</span>-<span id="today_day">22</span>-<span id="today_year">2002</span>
+            <div></td>
+        </tr>
+        <tr>
+          <td width="33%"><b>ACCOUNT ID:</b></td>
+          <td width="33%"><b>PO Number:</b></td>
+
+          </tr>
+        
+        <tr>
+          <td width="33%"><div class="box" style="width:250px;"><span id="AccountID">fmri0001442</span></div></td>
+          <td width="33%"><div class="box" style="width:250px;"><span id="ponumber">000001</span></div></td>
+        </tr>
+      </table>
+      <table style="border-collapse: collapse;" width="100%" border="0" cellspacing="2" cellpadding="5px">
+        <tr>
+          <td width="25%"><div class="label">STUDENT</div> <div class="checkbox">&nbsp;</div></td>
+          <td width="25%"><div class="label">EMPLOYEE</div> <div class="checkbox">&nbsp;</div></td>
+          <td width="25%"><div class="label">GOV&#39;T</div><div class="checkbox">X</div></td>
+          <td width="25%"><div class="label">PUBLIC</div><div class="checkbox">&nbsp;</div></td>
+        </tr>
+      </table>
+      <br>
+      <table style="border-collapse: collapse;" width="100%"  cellspacing="1" cellpadding="5px">
+        <tr>
+          <td rowspan="4" colspan="2"><div class="box"><span id="Billaddr1">1</span><br>
+                  <span id="Billaddr2">2</span><br>
+                  <span id="Billaddr3">3</span><br>
+                  <span id="City">San Diego</span>, <span id="State">CA</span> <span id="Zip"> 92093</span><br>
+                 Attn: <span id="Contactname">Test</span></div></td>
+          <td rowspan="4">&nbsp;</td>
+          <td width="33%">Invoice Prepared by
+            <div class="box" align="left" width="250">
+              <center>
+                <span id="Preparedby">Mary O'Malley</span>
+              </center>
+            </div></td>
+        </tr>
+        <tr>
+          <td>Preparer&#39;s Email address</font>
+            <div class="box" align="left" width="250">
+              <center>
+                <span id="PreparedbyPhone">momalley@ucsd.edu</span>
+              </center>
+            </div></td>
+        </tr>
+      </table>
+<br>
+      <div class="line"></div>
+      <table style="border-collapse: collapse;" width="100%" border="0" cellspacing="1" cellpadding="5">
+        <tr>
+          <td width="20%">DETAIL CODE:</td>
+          <td width="20%"><div class="box"><span id="detailcode">FMRIHU</span></div></td>
+          <td width="20%"></td>
+          <td width="20%"></td>
+          <td><div align="center"> <b>CHARGE AMOUNT $</b></div></td>
+        </tr>
+        <tr>
+          <td><font size="2px">DESCRIPTION:</font></td>
+          <td colspan="2"><div class="box"><span id="description">3TW MRI Scan time</span>/PI <span id="FirstName">Martin </span> <span id="LastName">Paulus</span></div></td>
+          <td rowspan="4"></td>
+        </tr>
+        <tr>
+          <td>DETAIL CODE:</td>
+          <td><div class="box">&nbsp;</div></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>DESCRIPTION:</td>
+          <td colspan="2"><div class="box">&nbsp;</div></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>DETAIL CODE:</td>
+          <td><div class="box">&nbsp;</div></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>DESCRIPTION:</td>
+          <td colspan="2"><div class="box">&nbsp;</div></td>
+          <td><div align="right"> <b>TOTAL</b></div></td>
+          <td><div class="centerbox">$<span id="Extendedcost1">900</span></div></td>
+        </tr>
+      </table>
+      <br>
+<div class="line"></div>
+      <table style="width: 100%" cellspacing="2" cellpadding="2px">
+        <tr>
+          <td valign="center"><b>IMPORTANT:</b></td>
+          <td>1. RETURN this copy of invoice with 
+            your remittance. Make checks payable to: <b>UC Regents</b><br>
+            2. PRINT the ACCOUNT ID # AND INVOICE NUMBER on your check or electronic payment transfer document.<br>
+            3. Mail to: UCSD, Central Cashier, 9500 Gilman Dr., La Jolla, CA 92093-0009.
+            </td>
+        </tr>
+
+      </table><br>
+<div class="line"></div>
+      <table style="border-collapse: collapse;" width="100%" border="1px" cellspacing="2px" cellpadding="2px">
+        <tr>
+          <td class="centerbox">DESCRIPTION</td>
+          <td class="centerbox">AMOUNT</td>
+        </tr>
+        <tr>
+          <td>
+          <table width="100%"  cellspacing="2px" cellpadding="2px">
+              <tr>
+                
+                <th valign="top" width="12%"> <div align="left">Event Date</div>
+                </th>
+                <th valign="top" width="20%"> <div align="left">Project</div>
+                </th>
+                <th valign="top"> <div align="left">Item Description</div>
+                </th>
+                <th valign="top" width="12%"> <div align="left">Quantity<br> (Hours)</div>
+                </th>
+                <th valign="top" width="12%"> <div align="left">Unit Cost<br>(Per Hour)</div>
+                </th>
+                <th valign="top" width="12%"> <div align="left">Extended<br>Cost</div>
+                </th>
+              </tr>
+              <tr id="TemplateRow">
+                
+                <td valign="top"><span id="event_month">8</span>-<span id="event_day">22</span>-<span id="event_year">2002</span></td>
+                <td valign="top"><span id="Proj_name">fMRI01</span></td>
+                <td valign="top"><span id="Descrip">Scanning for Proj01</span></td>
+                <td valign="top"><span id="Quantity">3</span> hours</td>
+                <td valign="top">$<span id="Unitcost">450</span></td>
+                <td valign="top">$<span id="Extendedcost2">900</span></td>
+              </tr>
+            </table></td>
+          <td class="centerbox">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="rightbox"><b>TOTAL</b></td>
+          <td class="centerbox">&nbsp;$<span id="Extendedcost3">900</span></td>
+        </tr>
+      </table>
+</td>
+    </tr>
+  
+</table>
+<h2 style="margin-left:200px">Thank you for your business.</h2>
+</body>
+</html>

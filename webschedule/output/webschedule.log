@@ -1,0 +1,13 @@
+2008.10.20 15:00:17: Multiserver,INFO: Starting Enhydra Multiserver
+2008.10.20 15:00:18: Multiserver,ERROR: No conf file /home/emang/websch3tw/webschedule/output/webschedule.conf
+2008.10.20 15:00:18: Multiserver,ERROR: Exiting the server.
+2008.10.20 15:00:18: Multiserver,ERROR: Error encountered while reading config file ./multiserver.conf.: No conf file /home/emang/websch3tw/webschedule/output/webschedule.conf
+2008.10.20 15:00:18: Multiserver,ERROR+ org.enhydra.servlet.ServletError: No conf file /home/emang/websch3tw/webschedule/output/webschedule.conf
+2008.10.20 15:00:18: Multiserver,ERROR+ 	at org.enhydra.servlet.ServletContainer.fatalErr(ServletContainer.java:1313)
+2008.10.20 15:00:18: Multiserver,ERROR+ 	at org.enhydra.servlet.ServletContainer.fatalErr(ServletContainer.java:1284)
+2008.10.20 15:00:18: Multiserver,ERROR+ 	at org.enhydra.servlet.ServletContainer.addEnhydraApplication(ServletContainer.java:555)
+2008.10.20 15:00:18: Multiserver,ERROR+ 	at org.enhydra.servlet.ServletContainer.addApplication(ServletContainer.java:532)
+2008.10.20 15:00:18: Multiserver,ERROR+ 	at org.enhydra.servlet.ServletContainer.readConfigFile(ServletContainer.java:451)
+2008.10.20 15:00:18: Multiserver,ERROR+ 	at org.enhydra.servlet.ServletContainer.start(ServletContainer.java:259)
+2008.10.20 15:00:18: Multiserver,ERROR+ 	at com.lutris.multiServer.MultiServer.start(MultiServer.java:159)
+2008.10.20 15:00:18: Multiserver,ERROR+ 	at com.lutris.multiServer.MultiServer.main(MultiServer.java:174)

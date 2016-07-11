@@ -1,0 +1,143 @@
+<html>
+<head>
+<title>Down Time Information</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="../media/StyleSheet.css">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+
+<table width="1011" border="0" cellpadding="0" cellspacing="0" mm:layoutgroup="true">
+  <tr> 
+    <td width="19" valign="top" rowspan="3">&nbsp;</td>
+    <td width="566" height="43" valign="top"><img src="../media/Hlogo.gif" width="213" height="43"></td>
+    <td width="214"></td>
+    <td width="212"></td>
+  </tr>
+  <tr> 
+    <td colspan="2" height="16" valign="top"><img src="../media/Hucsd.gif" width="600" height="14"></td>
+    <td></td>
+  </tr>
+  <tr> 
+    <td height="29" colspan="2" valign="top" bgcolor="#006699"> 
+      <h2 align="center">Down Time Info</h2>
+    </td>
+    <td></td>
+  </tr>
+  <tr> 
+    <td valign="top" rowspan="2">&nbsp;</td>
+    <td height="25" colspan="2" valign="top"> 
+      <p><font color=red face="" size = 4><span id="ErrorText">Optional Error Text Goes 
+        Here</span></font></p>
+    </td>
+    <td></td>
+  </tr>                                            
+  <tr> 
+    <td height="293" colspan="3" valign="top">
+      <form name="Downtime" method="post" action="Downtime.html">
+        <table width="600" border="0" cellspacing="0" cellpadding="0">
+          <tr> 
+            <td width="21" height="19">&nbsp;</td>
+            <td width = "124" valign="top">Start time:</td>
+            <td colspan="2" valign="top"> 
+              <select id = "Starth" name = "starth">
+                <option selected value = "invalidstarth"> Select Start Hour 
+                <option id = "starthtemplateOption">0 </option>
+              </select>
+            </td>
+            <td width = "20"></td>
+            <td width = "218" valign="top"> 
+              <select id = "Startm" name = "startm">
+                <option selected value = "invalidstartm"> Select Start Min 
+                <option id = "startmtemplateOption">0 </option>
+              </select>
+            </td>
+            <td width="6"></td>
+          </tr>
+          <tr> 
+            <td height="19">&nbsp;</td>
+            <td valign="top">End time:</td>
+            <td valign="top" colspan="2"> 
+              <select id = "Endh" name = "endh">
+                <option selected value = "invalidendh"> Select End Hour 
+                <option id = "endhtemplateOption">0 </option>
+              </select>
+            </td>
+            <td></td>
+            <td valign="top"> 
+              <select id = "Endm" name = "endm">
+                <option selected value = "invalidendm"> Select End Min 
+                <option id = "endmtemplateOption">0 </option>
+              </select>
+            </td>
+            <td></td>
+          </tr>
+          <tr> 
+            <td height="30" valign="top">&nbsp;</td>
+            <td valign="center" >Month</td>
+            <td width="139" valign="top" > 
+              <select id = "Month" name="selectmonth">
+                <option value="0">Jan</option>
+                <option value="1">Feb</option>
+                <option value="2">March</option>
+                <option value="3">April</option>
+                <option value="4">May</option>
+                <option value="5">June</option>
+                <option value="6">July</option>
+                <option value="7">August</option>
+                <option value="8">Sept</option>
+                <option value="9">Oct</option>
+                <option value="10">Nov</option>
+                <option value="11">Dec</option>
+              </select>
+            </td>
+            <td valign="top" colspan="3" >&nbsp;</td>
+            <td></td>
+          </tr>
+          <tr> 
+            <td valign="top" height="29">&nbsp;</td>
+            <td valign="center" >Year</td>
+            <td colspan="4" valign="top" > 
+              <select id = "Year" name="selectyear">
+                <option value="2001">2001</option>
+                <option value="2002">2002</option>
+                <option value="2003">2003</option>
+                <option value="2004">2004</option>
+                <option value="2005">2005</option>
+              </select>
+            </td>
+            <td></td>
+          </tr>
+          <tr> 
+            <td height="40"></td>
+            <td valign="top" > Description: </td>
+            <td colspan="5" valign="top" > 
+              <input name="description" id="Description" >
+            </td>
+          </tr>
+          <tr> 
+            <td height="51" valign="top">&nbsp;</td>
+            <td valign="top" > 
+			<input type="hidden" name="event" value="savedowntime" id="EventValue">
+              <input type="submit" name="Submit" value="Save Down time" >
+            </td>
+            <td colspan="4" valign="top">&nbsp;</td>
+            <td></td>
+          </tr>
+          <tr> 
+            <td height="40"></td>
+            <td ></td>
+            <td></td>
+            <td width="72"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
+      </form>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

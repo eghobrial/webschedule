@@ -1,0 +1,115 @@
+<HTML>
+<HEAD>
+<TITLE>Show Conflicts</TITLE>
+<link rel="stylesheet" href="../media/StyleSheet.css">
+</HEAD>
+<BODY >
+<table width="799" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td width="19" valign="top" rowspan="6">&nbsp;</td>
+    <td valign="top" height ="43" colspan="2"><img src="../media/Hlogo.gif" width="213" height="43"></td>
+    <td valign="top" colspan="5">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td height="16" valign="top" colspan="7" bgcolor="#000066"><img src ="../media/Hucsd.gif" width="600" height="14"></td>
+  </tr>
+  <tr> 
+    <td height="29" valign = "center" colspan="7" bgcolor="#006699"> 
+      <h1 align="center">Show Conflicted Sessions</h1>
+    </td>
+  </tr>
+  <tr> 
+    <td width="121" height="23" valign ="top" bgcolor="#0066FF"><a href="SelectDate.html"><img src="../media/select_date_button.jpg" width="121" height="23" border="0"></a></td>
+    <td valign ="top" colspan="2" bgcolor="#0066FF"><a href="../projectMgmt/ProjCatalog.html"><img src="../media/Project_cat_button.jpg" width="121" height="23" border="0"></a></td>
+    <td width="120" valign ="top"><a href="../personMgmt/Exit.html"><img src="../media/Logout_button.jpg" width="121" height="23" border="0"></a></td>
+    <td width="121" valign ="top" bgcolor="#000000"><a href="cancel_policy.html"><img src="../media/cancel_policy.jpg" width="121" height="23" border="0"></a></td>
+    <td width="121" valign ="top" bgcolor="#0066FF"><img src="../media/Help_button.jpg" width="121" height="23"></td>
+    <td width="176" valign="top" bgcolor="#0066FF">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td height="0"></td>
+    <td width="102"></td>
+    <td width="19"></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table> 
+<table width="800" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td height="75" width="24"></td>
+    <td height="75" width="776"></td>
+  </tr>
+  <tr> 
+    <td width="24">&nbsp;</td>
+    <td width="776"> 
+   <p> <span id="ErrorText"><font face="" size =4><font color="#FF0000">Optional Error Text Goes Here</font></font></span></p>
+  </tr>
+  <tr>
+  <td width="24">&nbsp;</td>
+    <td width="776"> 
+      <p> The following event(s) conflicts with other prescheduled events, </p>
+      <p> or past the project expiration date </p>
+  </tr>
+</table>
+ 
+<table width = "75%" border="1" >
+  <tr> 
+    <th valign="top" >Event Start time</th>
+    <th valign="top">Event End time</th>
+    <th valign="top">Event Date</th>
+    
+  </tr>
+  <tr id = "TemplateRow"> 
+    <td height="25" width="19"></td>
+    <td valign="top"><span id="Starttime">8:00</span></td>
+    <td valign="top"><span id="Endtime">10:00</span></td>
+    <td valign="top"><span id="Eventmonth">May</span>, <span id="Eventday">29</span>,<span id="Eventyear">2002</span></td>
+    
+  </tr>
+</table>
+ 
+<table width="823" border="0" cellpadding="0" cellspacing="0" mm:layoutgroup="true">
+  <tr> 
+    <td width="26" valign="top" rowspan="2">&nbsp;</td>
+    <td width="774" height="15"></td>
+    <td width="23"></td>
+  </tr>
+  <tr> 
+    <td valign="top" height="31"> 
+      <p> If you want to schedule just the events that do not conflict click on 
+        <font color="#0066FF"><b>Save Repeat Sessions </b></font> </p>
+    </td>
+    <td></td>
+  </tr>
+  <tr> 
+    <td valign="top" width="26" rowspan="2">&nbsp;</td>
+    <td valign="top" height="32"> 
+      <p> If you want to return to the Edit Event Page and start over click on<b><font color="#0066FF"> 
+        Cancel</font></b> </p>
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td height="10"></td>
+    <td></td>
+  </tr>
+  <tr> 
+    <td height="65" valign="top" width="26">&nbsp;</td>
+    <td valign="top"> 
+      <form name="conflictform" method="Get" action="Show_conflicts.html">
+        <input type="submit" name="Submit" value="Save Repeat Session">
+        <input type="hidden" name="event" value ="SaveRepeat" id = "EventValue">
+	</form>
+	<form name="conflictform1" method ="Get" action="EditEvent.html">	
+        <input type="submit" name="Submit" value="Cancel">
+        <input type="hidden" name="event1" value ="DonotSave" id = "EventValue1">
+      </form>
+    </td>
+    <td></td>
+  </tr>
+</table>
+</BODY>
+</HTML>
+

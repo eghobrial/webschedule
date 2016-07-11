@@ -1,0 +1,209 @@
+<html>
+<head>
+  <title>Problem Report Page for 3TW</title>
+  <link rel="stylesheet" href="../media/StyleSheet.css">
+  <link rel="stylesheet" type="text/css" href="../media/sitestyles.css">
+</head>
+<body><center>
+<table style="margin: auto;" border="0" cellpadding="0" cellspacing="0"
+ width="800">
+  <tbody>
+    <tr>
+      <td> <img src="../media/head2.jpg"
+ alt="Center for Functional MRI Webschedule"></td>
+    </tr>
+    <tr>
+      <td><img src="../media/foot.jpg" height="2" width="800"> </td>
+    </tr>
+  </tbody>
+</table>
+<table style="margin: auto;" border="0" cellpadding="0" cellspacing="0"
+ width="800">
+  <tbody>
+    <tr>
+      <td align="center">
+      <h3>Problem Report Page</h3>
+      </td>
+    </tr>
+    <tr>
+      <td><img src="../media/foot.jpg" height="2" width="800"> </td>
+    </tr>
+				    <tr>
+      <td align="center" bgcolor="#FFFFFF" height="23"> <span
+ class="nav1"> 
+<a href="../s_eventMgmt/mainmenu.html"><img src="../media/main.jpg" border="0" hspace="0"></a><a href="problemmenu.html"><img src="../media/problemreport.jpg" border="0"></a><a href="../personMgmt/Exit.html"><img src="../media/logout.jpg" border="0"></a> </span></td>
+    </tr>
+  </tbody>
+</table>
+<table style="margin: auto;" border="0" cellpadding="0" cellspacing="0"
+ width="800">
+</table>
+<table style="margin: auto;" border="0" cellpadding="2" cellspacing="2"
+ width="800">
+  <tbody>
+    <tr>
+      <td>
+      <form action="problemreport.html" method="get"> <input
+ name="event" value="report" type="hidden">
+        <table cellpadding="0" cellspacing="0" width="600">
+          <tbody>
+            <tr>
+              <td align="right" valign="top" width="220"><b>*</b></td>
+              <td width="20"><br>
+              </td>
+              <td height="41" valign="top"> <font color="#ff0000"
+ size="4"><span id="ErrorText"> Optional ErrorText Goes Here</span></font><br>
+              </td>
+            </tr>
+            <tr>
+              <td align="right" valign="top"><tt><b>name</b></tt></td>
+              <td><br>
+              </td>
+              <td height="41" valign="top"> <input name="reportername"
+ id="Reportername" size="60" type="text"><br>
+              <font size="2">Enter your full name</font> </td>
+            </tr>
+            <tr>
+              <td align="right" valign="top"><tt><b>email address</b></tt></td>
+              <td><br>
+              </td>
+              <td height="41" valign="top"> <input name="reporteremail"
+ id="Reporteremail" size="60" type="text"><br>
+              <font size="2">Enter your email address</font> </td>
+            </tr>
+            <tr>
+              <td><br>
+              </td>
+              <td><br>
+              </td>
+              <td height="10"><br>
+              </td>
+            </tr>
+            <tr>
+              <td align="right" valign="top"><tt><b>problem</b></tt></td>
+              <td><br>
+              </td>
+              <td height="41" valign="top"> <input name="describ"
+ id="Describ" size="60" type="text"><br>
+              <font size="2">Enter a brief description of the problem
+(2-8 words)</font> </td>
+            </tr>
+            <tr>
+              <td><br>
+              </td>
+              <td><br>
+              </td>
+              <td height="10"><br>
+              </td>
+            </tr>
+            <tr>
+              <td align="right" valign="top"><tt><b>problem severity</b></tt></td>
+              <td><br>
+              </td>
+              <td height="42" valign="top">
+              <select name="severitycode" id="Severitycode">
+              <option value="0">noncritical</option>
+              <option value="1">serious</option>
+              <option value="2">critical</option>
+              </select>
+              <br>
+              <font size="2">Enter the problem severity</font> </td>
+            </tr>
+            <tr>
+              <td align="right" valign="top"><tt><b>problem
+classification</b></tt></td>
+              <td><br>
+              </td>
+              <td height="42" valign="top">
+              <select name="classcode" id="Classcode">
+              <option value="1">scanner</option>
+              <option value="2">coils</option>
+              <option value="3">physiological monitoring</option>
+              <option value="4">stimulus presentation/response boxes </option>
+              <option value="5">Computer/networking</option>
+              <option value="0">other</option>
+              </select>
+              <br>
+              <font size="2">Enter the problem classification</font> </td>
+            </tr>
+            <tr>
+              <td height="10"><br>
+              </td>
+            </tr>
+            <tr>
+              <td align="right" height="20" valign="top"><tt><b>has GE
+Care been notified? </b></tt></td>
+              <td><br>
+              </td>
+              <td height="42" valign="top"> <input name="ge_not"
+ unchecked="" id="Ge_not" type="checkbox"> <font size="2">Have you
+contacted GE services?</font> </td>
+              <td><br>
+              </td>
+            </tr>
+            <tr>
+              <td align="right" valign="top"><tt><b>problem number</b></tt></td>
+              <td><br>
+              </td>
+              <td height="41" valign="top"> <input name="probnum"
+ id="Probnum" size="60" type="text"><br>
+              <font size="2">Enter problem number if GE Care has been
+contacted</font> </td>
+            </tr>
+            <tr>
+              <td><br>
+              </td>
+              <td><br>
+              </td>
+              <td height="10"><br>
+              </td>
+            </tr>
+            <tr>
+              <td align="right" valign="top" width="156"><tt><b>problem
+detail</b></tt></td>
+              <td width="1"><br>
+              </td>
+              <td height="200" valign="top"> <textarea
+ name="problemdetail" id="Problemdetail" wrap="physical" rows="15"
+ cols="45"></textarea><br>
+              <font size="2">Enter a detailed description of the problem</font>
+              </td>
+            </tr>
+            <tr>
+              <td height="20"><br>
+              </td>
+            </tr>
+            <tr>
+              <td align="right" valign="top" width="156"><tt><b>submit
+problem </b></tt></td>
+              <td width="1"><br>
+              </td>
+              <td valign="top">
+			  			   <input type="image" border="0" name="submit" src="../media/submit.jpg" alt="Submit Problem">
+			  </td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+      <br>
+      </td>
+    </tr>
+    <tr>
+      <td><img src="../media/foot.jpg" height="2" width="800"> </td>
+    </tr>
+    <tr>
+      <td><span class="footer">This program was developed by Eman Ghobrial,
+Center for Functional MRI, Radiology Department, UCSD.<br>
+Address: Center for Functional MRI, 9500 Gilman Dr. / Osler Ln., La
+Jolla, CA 92093-0677.<br>
+Phone: (858)-822-0513, FAX: (858)-822-0605.<br>
+Send accounts requests, comments, suggestions and bug report to:
+eghobrial@ucsd.edu.<br>
+Copyright &copy; 2007 Regents of the University of California.
+All rights reserved. <br>
+      <img src="../media/footer_official.gif" height="41" width="412"> </span></td>
+    </tr>
+  </tbody>
+</table>
+</center></body>
+</html>

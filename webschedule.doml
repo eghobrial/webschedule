@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doml>
+  <database database="PostgreSQL">
+    <package id="webschedule">
+      <package id="webschedule.data">
+        <table id="webschedule.data.Person">
+          <column id="login" usedForQuery="true">
+            <type dbType="VARCHAR" javaType="String"/>
+          </column>
+          <column id="password" usedForQuery="true">
+            <type dbType="VARCHAR" javaType="String"/>
+          </column>
+          <column id="lastname" usedForQuery="true">
+            <type dbType="VARCHAR" javaType="String"/>
+          </column>
+          <column id="firstname" usedForQuery="true">
+            <type dbType="VARCHAR" javaType="String"/>
+          </column>
+          <column id="office" usedForQuery="true">
+            <type dbType="VARCHAR" javaType="String"/>
+          </column>
+          <column id="phone" usedForQuery="true">
+            <type dbType="VARCHAR" javaType="String"/>
+          </column>
+          <column id="isAdmin" usedForQuery="true">
+            <type dbType="BIT" javaType="boolean"/>
+          </column>
+          <column id="isDeveloper" usedForQuery="true">
+            <type dbType="BIT" javaType="boolean"/>
+          </column>
+          <column id="email" usedForQuery="true">
+            <type dbType="VARCHAR" javaType="String"/>
+          </column>
+          <column id="isAuth">
+            <type dbType="BIT" javaType="boolean"/>
+          </column>
+        </table>
+        <table id="webschedule.data.Project">
+          <column id="proj_name" usedForQuery="true">
+            <type dbType="VARCHAR" javaType="String"/>
+          </column>
+          <column id="Description" usedForQuery="true">
+            <type dbType="VARCHAR" javaType="String"/>
+          </column>
+          <column id="indexnum" usedForQuery="true">
+            <type dbType="VARCHAR" javaType="String"/>
+          </column>
+          <column id="codeofpay" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="password" usedForQuery="true">
+            <type dbType="VARCHAR" javaType="String"/>
+          </column>
+          <column id="totalhours" usedForQuery="true">
+            <type dbType="DOUBLE" javaType="double"/>
+          </column>
+          <column id="donehours" usedForQuery="true">
+            <type canBeNull="true" dbType="DOUBLE" javaType="double"/>
+          </column>
+          <column id="owner" usedForQuery="true">
+            <referenceObject reference="webschedule.data.Person"/>
+            <type dbType="none" javaType="webschedule.data.PersonDO"/>
+          </column>
+          <column id="contactname" usedForQuery="true">
+            <type dbType="VARCHAR" javaType="String"/>
+          </column>
+          <column id="contactphone" usedForQuery="true">
+            <type dbType="VARCHAR" javaType="String"/>
+          </column>
+          <column id="billaddr1" usedForQuery="true">
+            <type dbType="VARCHAR" javaType="String"/>
+          </column>
+          <column id="billaddr2" usedForQuery="true">
+            <type dbType="VARCHAR" javaType="String"/>
+          </column>
+          <column id="billaddr3" usedForQuery="true">
+            <type dbType="VARCHAR" javaType="String"/>
+          </column>
+          <column id="city" usedForQuery="true">
+            <type dbType="VARCHAR" javaType="String"/>
+          </column>
+          <column id="state" usedForQuery="true">
+            <type dbType="VARCHAR" javaType="String"/>
+          </column>
+          <column id="zip" usedForQuery="true">
+            <type dbType="VARCHAR" javaType="String"/>
+          </column>
+          <column id="accountid" usedForQuery="true">
+            <type dbType="VARCHAR" javaType="String"/>
+          </column>
+          <column id="isoutside" usedForQuery="true">
+            <type dbType="BIT" javaType="boolean"/>
+          </column>
+          <column id="expday" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="expmonth" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="expyear" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="notifycontact">
+            <type dbType="VARCHAR" javaType="String" size="150"/>
+          </column>
+          <column id="isExp">
+            <type dbType="BIT" javaType="boolean"/>
+          </column>
+        </table>
+        <table id="webschedule.data.S_event">
+          <column id="description" usedForQuery="true">
+            <type dbType="VARCHAR" javaType="String"/>
+          </column>
+          <column id="starth" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="startm" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="endh" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="endm" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="eventday" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="eventmonth" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="eventyear" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="eventdayofw" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="owner" usedForQuery="true">
+            <referenceObject reference="webschedule.data.Person"/>
+            <type dbType="none" javaType="webschedule.data.PersonDO"/>
+          </column>
+          <column id="proj_owner" usedForQuery="true">
+            <referenceObject reference="webschedule.data.Project"/>
+            <type dbType="none" javaType="webschedule.data.ProjectDO"/>
+          </column>
+          <column id="todayday" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="todaymonth" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="todayyear" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="isDevelop" usedForQuery="true">
+            <type dbType="BIT" javaType="boolean"/>
+          </column>
+          <column id="isRepeat" usedForQuery="true">
+            <type dbType="BIT" javaType="boolean"/>
+          </column>
+          <column id="Operator">
+            <referenceObject reference="webschedule.data.Operator"/>
+            <type dbType="none" javaType="webschedule.data.OperatorDO"/>
+          </column>
+          <column id="prevowner">
+            <referenceObject reference="webschedule.data.Person"/>
+            <type dbType="none" javaType="webschedule.data.PersonDO"/>
+          </column>
+          <column id="prevproj_owner">
+            <referenceObject reference="webschedule.data.Project"/>
+            <type dbType="none" javaType="webschedule.data.ProjectDO"/>
+          </column>
+          <column id="IsGrabbable">
+            <type dbType="BIT" javaType="boolean"/>
+          </column>
+          <column id="reasondropped">
+            <type canBeNull="true" dbType="VARCHAR" javaType="String"/>
+          </column>
+          <column id="todayh">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="todaym">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+        </table>
+        <table id="webschedule.data.C_event">
+          <column id="eventday" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="eventm" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="eventy" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="starth" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="startm" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="endh" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="endm" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="todayd" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="todaym" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="owner" usedForQuery="true">
+            <referenceObject reference="webschedule.data.Person"/>
+            <type dbType="none" javaType="webschedule.data.PersonDO"/>
+          </column>
+          <column id="proj_owner" usedForQuery="true">
+            <referenceObject reference="webschedule.data.Project"/>
+            <type dbType="none" javaType="webschedule.data.ProjectDO"/>
+          </column>
+          <column id="todayy" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="cancelc" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="todayh">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="todaymin">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+        </table>
+        <table id="webschedule.data.Downtime">
+          <column id="starth" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="startm" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="endh" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="endm" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="day" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="month" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="year" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="description" usedForQuery="true">
+            <type dbType="VARCHAR" javaType="String"/>
+          </column>
+        </table>
+        <table id="webschedule.data.Reporttrack">
+          <column id="day" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="month" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="year" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="reportinfo" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="startday" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="startmonth" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="startyear" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="endday" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="endmonth" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="endyear" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="preparedby" usedForQuery="true">
+            <type dbType="VARCHAR" javaType="String"/>
+          </column>
+          <column id="invoice_num" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+        </table>
+        <table id="webschedule.data.Blocktime" dbTableName="blocktime">
+          <column id="startth" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="starttm" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="endth" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="endtm" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="month" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="year" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="flag" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="description" usedForQuery="true">
+            <type dbType="VARCHAR" javaType="String"/>
+          </column>
+          <column id="day" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+        </table>
+        <table id="webschedule.data.Operator">
+          <column id="FirstName" usedForQuery="true">
+            <type dbType="VARCHAR" javaType="String"/>
+          </column>
+          <column id="LastName" usedForQuery="true">
+            <type dbType="VARCHAR" javaType="String"/>
+          </column>
+          <column id="certday" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="certmonth" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="certyear" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="lastscanday" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="lastscanmonth" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="lastscanyear" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="email" usedForQuery="true">
+            <type dbType="VARCHAR" javaType="String"/>
+          </column>
+          <column id="recertday" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="recertmonth" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="recertyear" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="SFTTS" usedForQuery="true">
+            <type dbType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+          </column>
+          <column id="isExp" usedForQuery="true">
+            <type dbType="BIT" javaType="boolean"/>
+          </column>
+        </table>
+        <table id="webschedule.data.Operates">
+          <column id="operator" usedForQuery="true">
+            <referenceObject reference="webschedule.data.Operator"/>
+            <type dbType="none" javaType="webschedule.data.OperatorDO"/>
+          </column>
+          <column id="project" usedForQuery="true">
+            <referenceObject reference="webschedule.data.Project"/>
+            <type dbType="none" javaType="webschedule.data.ProjectDO"/>
+          </column>
+        </table>
+        <table id="webschedule.data.Problem">
+          <column id="owner" usedForQuery="true">
+            <referenceObject reference="webschedule.data.Person"/>
+            <type dbType="none" javaType="webschedule.data.PersonDO"/>
+          </column>
+          <column id="severitycode" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="classcode" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="prioritycode" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="statuscode" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="postday" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="postmonth" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="postyear" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="updateday" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="updatemonth" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="updateyear" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="closeday" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="closemonth" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="closeyear" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="reportername" usedForQuery="true">
+            <type dbType="VARCHAR" javaType="String"/>
+          </column>
+          <column id="reporteremail" usedForQuery="true">
+            <type dbType="VARCHAR" javaType="String"/>
+          </column>
+          <column id="describ">
+            <type dbType="VARCHAR" javaType="String"/>
+          </column>
+          <column id="GE_called">
+            <type dbType="BIT" javaType="boolean"/>
+          </column>
+          <column id="problemnum">
+            <type canBeNull="true" dbType="VARCHAR" javaType="String"/>
+          </column>
+          <column id="posth">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="postm">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="postpm">
+            <type dbType="VARCHAR" javaType="String"/>
+          </column>
+          <column id="problemdetail">
+            <type dbType="VARCHAR" javaType="String" size="3000"/>
+          </column>
+          <column id="fixdetail">
+            <type dbType="VARCHAR" javaType="String" size="6000"/>
+          </column>
+        </table>
+        <table id="webschedule.data.R_event">
+          <column id="starth" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="startm" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="endh" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="endm" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="eventday" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="eventmonth" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="eventyear" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="eventdayofw" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="owner" usedForQuery="true">
+            <referenceObject reference="webschedule.data.Person"/>
+            <type dbType="none" javaType="webschedule.data.PersonDO"/>
+          </column>
+          <column id="proj_owner" usedForQuery="true">
+            <referenceObject reference="webschedule.data.Project"/>
+            <type dbType="none" javaType="webschedule.data.ProjectDO"/>
+          </column>
+          <column id="cancelday" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="cancelmonth" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="cancelyear" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="cancelh" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="canelm" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="isUsed" usedForQuery="true">
+            <type dbType="INTEGER" javaType="int"/>
+          </column>
+          <column id="Operator">
+            <referenceObject reference="webschedule.data.Operator"/>
+            <type dbType="none" javaType="webschedule.data.OperatorDO"/>
+          </column>
+          <column id="isLast">
+            <type dbType="BIT" javaType="boolean"/>
+          </column>
+        </table>
+        <table id="webschedule.data.complaint">
+          <column id="owner">
+            <referenceObject reference="webschedule.data.Person"/>
+            <type dbType="none" javaType="webschedule.data.PersonDO"/>
+          </column>
+          <column id="postday">
+            <type canBeNull="true" dbType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+          </column>
+          <column id="reportername">
+            <type dbType="VARCHAR" javaType="String"/>
+          </column>
+          <column id="reporteremail">
+            <type dbType="VARCHAR" javaType="String"/>
+          </column>
+          <column id="Time_prob">
+            <type dbType="BIT" javaType="boolean"/>
+          </column>
+          <column id="Cables_prob">
+            <type dbType="BIT" javaType="boolean"/>
+          </column>
+          <column id="Mess_prob">
+            <type dbType="BIT" javaType="boolean"/>
+          </column>
+          <column id="other_prob">
+            <type dbType="BIT" javaType="boolean"/>
+          </column>
+          <column id="specify">
+            <type dbType="VARCHAR" javaType="String"/>
+          </column>
+          <column id="fault_op">
+            <referenceObject reference="webschedule.data.Operator"/>
+            <type canBeNull="true" dbType="none" javaType="webschedule.data.OperatorDO"/>
+          </column>
+          <column id="fault_pi">
+            <referenceObject reference="webschedule.data.Person"/>
+            <type canBeNull="true" dbType="none" javaType="webschedule.data.PersonDO"/>
+          </column>
+        </table>
+      </package>
+    </package>
+  </database>
+</doml>

@@ -1,0 +1,144 @@
+<html>
+<head>
+  <title>Proposal Form-Billing Information</title>
+  <link rel="stylesheet" href="../media/StyleSheet.css">
+  <link rel="stylesheet" type="text/css" href="../media/sitestyles.css">
+
+<SCRIPT LANGUAGE="JavaScript">
+setTimeout("alert('You will lose your session in 5 minutes. Please save you work now by using the Save button to ensure no work is lost.');",25*60*1000);
+// timedouturl = "";
+function Minutes(data) {
+for (var i = 0; i < data.length; i++)
+if (data.substring(i, i + 1) == ":")
+break;
+return (data.substring(0, i));
+}
+function Seconds(data) {
+for (var i = 0; i < data.length; i++)
+if (data.substring(i, i + 1) == ":")
+break;
+return (data.substring(i + 1, data.length));
+}
+function Display(min, sec) {
+var disp;
+if (min <= 9) disp = " 0";
+else disp = " ";
+disp += min + ":";
+if (sec <= 9) disp += "0" + sec;
+else disp += sec; 
+return (disp);
+}
+function Down() { 
+sec--;      
+if (sec == -1) { sec = 59; min--; }
+document.timerform.clock.value = Display(min, sec);
+window.status = "Session will time out in: " + Display(min, sec);
+if (min == 0 && sec == 0) {
+alert("Your session has timed out.");
+// window.location.href = timedouturl;
+}
+else down = setTimeout("Down()", 1000);
+}
+function timeIt() {
+min = 1 * Minutes(document.timerform.clock.value);
+sec = 0 + Seconds(document.timerform.clock.value);
+Down();
+}
+//  End -->
+</script>
+  
+  </head>
+<BODY OnLoad="timeIt()"><center>
+<table style="margin: auto;" border="0" cellpadding="0" cellspacing="0"
+ width="800">
+  <tbody>
+    <tr>
+      <td> <img src="../media/head2.jpg"
+ alt="Center for Functional MRI Webschedule"></td>
+    </tr>
+    <tr>
+      <td><img src="../media/foot.jpg" height="2" width="800"> </td>
+    </tr>
+  </tbody>
+</table>
+<table style="margin: auto;" border="0" cellpadding="0" cellspacing="0"
+ width="800">
+  <tbody>
+    <tr>
+      <td align="center">
+      <h3>Proposal Form-Billing Information</h3>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table style="margin: auto;" border="0" cellpadding="0" cellspacing="0"
+ width="800">
+  <tbody>
+    <tr>
+      <td><img src="../media/foot.jpg" height="2" width="800"> </td>
+    </tr>
+    <tr>
+      <td align="center" height="23"><span class="nav1"> 
+<a href="manageproposal.html"><img src="../media/myproposals.jpg" border="0"></a>
+<a href="../s_eventMgmt/mainmenu.html"><img src="../media/main.jpg" border="0"></a>
+<a href="information.html" target="_blank"><img src="../media/help.jpg" border="0"></a> 
+<a href="../personMgmt/Exit.html"><img src="../media/logout.jpg" border="0"></a> </span></td>
+    </tr>
+  </tbody>
+</table>
+<table style="margin: auto;" border="0" cellpadding="2" cellspacing="2"
+ width="800">
+  <tbody>
+    <tr>
+      <td><center><form name="timerform"><input type="text" name="clock" size="7" value="30:00"> <font color=red>Your session will time out in 30 minutes.</font><br></form></center><span id="ErrorText"><font face="" size="4"><font
+ color="#ff0000">Optional ErrorText Goes Here</font></font></span> <br>
+<font color=red size=2px>* Required Fields</font>  
+  <form action="" name="newproposalp3uc" method="get">
+  <input name="event" value="add" id="EventValue" type="hidden"> 
+     <table border="0" cellpadding="0" cellspacing="0" width="100%">
+          <tbody>
+
+<tr><td colspan=2>Financial Information UCSD Project</td></tr>
+<tr><td>&nbsp;&nbsp; <font color=red size=2px>*</font>UCSD Index Number</td><td><input name="indexnum" id="indexnum" type="text" size=30 ></td></tr>
+<tr><td>&nbsp;&nbsp; <font color=red size=2px>*</font>Billing Address</td><td><input name="baline1" id="baline1" type="text" size=30 ></td></tr>
+<tr><td>&nbsp;&nbsp; Billing Address 2</td><td><input name="baline2" id="baline2" type="text" size=30 ></td></tr>
+<tr><td>&nbsp;&nbsp; Billing Address 3</td><td><input name="baline3" id="baline3" type="text" size=30 ></td></tr>
+<tr><td>&nbsp;&nbsp; <font color=red size=2px>*</font>City:</td><td><input name="bacity" id="bacity" type="text" size=10 ></td></tr>
+<tr><td>&nbsp;&nbsp; <font color=red size=2px>*</font>State:</td><td><input name="bast" id="bast" type="text" size=10 ></td></tr>
+<tr><td>&nbsp;&nbsp; <font color=red size=2px>*</font>Zip:</td><td><input name="bazip" id="bazip" type="text" size=6 ></td></tr>
+<tr><td>Financial Person Contact</td><td></td></tr>
+<tr><td>&nbsp;&nbsp; <font color=red size=2px>*</font>Name</td><td><input name="fpname" id="fpname" type="text" size=30 ></td></tr>
+<tr><td>&nbsp;&nbsp; <font color=red size=2px>*</font>Phone</td><td><input name="fpphone" id="fpphone" type="text" size=30 ></td></tr>
+<tr><td>&nbsp;&nbsp; <font color=red size=2px>*</font>Email</td><td><input name="fpemail" id="fpemail" type="text" size=30 ></td></tr>
+<tr><td>&nbsp;</td><td></td></tr>
+<tr><td></td><td></td></tr>
+<tr><td></td><td></td></tr>
+
+          </tbody>
+      </table>
+
+
+
+<input type="image" border="0" name="submit" src="../media/savenext.jpg" alt="Save and go to the next page">
+</form>
+      </td>
+    </tr>
+    <tr>
+      <td><img src="../media/foot.jpg" height="2" width="800"> </td>
+    </tr>
+    <tr>
+      <td><span class="footer">This program was developed by Eman Ghobrial,
+Center for Functional MRI, Radiology Department, UCSD.<br>
+Address: Center for Functional MRI, 9500 Gilman Dr. / Osler Ln., La
+Jolla, CA 92093-0677.<br>
+Phone: (858)-822-0513, FAX: (858)-822-0605.<br>
+Send accounts requests, comments, suggestions and bug report to:
+eghobrial@ucsd.edu.<br>
+Copyright &copy; 2007 Regents of the University of California.
+All rights reserved. <br>
+      <img src="../media/footer_official.gif" height="41" width="412"> </span></td>
+    </tr>
+  </tbody>
+</table>
+</center></body>
+</html>

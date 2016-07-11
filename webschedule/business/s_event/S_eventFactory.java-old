@@ -1,0 +1,190 @@
+/**--------------------------------------------------------------
+* webschedule demo
+*
+* @class: S_eventFactoryImpl
+* @version 
+* @author  
+* @since   
+*
+*
+*
+*
+*--------------------------------------------------------------*/
+
+package webschedule.business.s_event;
+
+import webschedule.business.webscheduleBusinessException;
+import webschedule.data.*;
+import webschedule.business.person.Person;
+import webschedule.business.project.Project;
+import com.lutris.dods.builder.generator.query.*;
+import webschedule.business.person.Person;
+/*import webschedule.data.PersonDO;*/
+import com.lutris.appserver.server.sql.ObjectId;
+
+public class S_eventFactory
+{    
+    /** 
+     * The findS_eventsForPerson method performs a database query to
+     * return an array of <CODE>S_event</CODE> objects
+     * representing all the rows in the <CODE>disc</CODE> table
+     * that have and owner matching <CODE>Person owner</CODE>. 
+     *
+     * @exception DataObjectException
+     *   If an object is not found in the database.
+     */
+    public static S_event[] findS_eventsForPerson(Person owner)
+        throws webscheduleBusinessException
+    {
+	    S_event[] theS_eventArray = null;
+        
+	    try {
+            S_eventQuery query = new S_eventQuery();
+	        // To restrict the set of scheduled events returned
+	        // to the that of the specific owner set in the query
+	        query.setQueryOwner(PersonDO.createExisting(owner.getHandle()));
+            // Order by day
+            //query.addOrderByEventday();
+	        S_eventDO[] DOarray = query.getDOArray();
+	        theS_eventArray = new S_event[ DOarray.length ];
+	        for ( int i = 0; i < DOarray.length; i++ )
+	    	theS_eventArray[i] = new S_event(DOarray[i]);
+	    }catch(Exception ex) {
+            throw new webscheduleBusinessException("Exception in findS_eventsForPerson()", ex);
+        }
+        
+        return theS_eventArray;
+    }
+
+
+  public static S_event[] findS_eventsForDate (int year, int month, int day)
+  	throws webscheduleBusinessException
+    {
+	    S_event[] theS_eventArray = null;
+
+	    try {
+            S_eventQuery query = new S_eventQuery();	
+            query.setQueryEventyear(year);
+            query.setQueryEventmonth(month);
+            query.setQueryEventday(day);
+            query.addOrderByStarth();
+            S_eventDO[] DOarray = query.getDOArray();
+	        theS_eventArray = new S_event[ DOarray.length ];
+	        for ( int i = 0; i < DOarray.length; i++ )
+	    	theS_eventArray[i] = new S_event(DOarray[i]);
+	    }catch(Exception ex) {
+            throw new webscheduleBusinessException("Exception in findS_eventsForDate()", ex);
+        }
+
+        return theS_eventArray;
+    }
+
+
+    public static S_event[] findS_eventsForDatePerson (int year, int month, int day,Person owner)
+  	throws webscheduleBusinessException
+    {
+	    S_event[] theS_eventArray = null;
+
+	    try {
+            S_eventQuery query = new S_eventQuery();	
+            query.setQueryEventyear(year);
+            query.setQueryEventmonth(month);
+            query.setQueryEventday(day);
+            query.setQueryOwner(PersonDO.createExisting(owner.getHandle()));
+            query.addOrderByStarth();
+            S_eventDO[] DOarray = query.getDOArray();
+	        theS_eventArray = new S_event[ DOarray.length ];
+	        for ( int i = 0; i < DOarray.length; i++ )
+	    	theS_eventArray[i] = new S_event(DOarray[i]);
+	    }catch(Exception ex) {
+            throw new webscheduleBusinessException("Exception in findS_eventsForDate()", ex);
+        }
+
+        return theS_eventArray;
+    }
+
+
+
+    /*new query for getting event for certain month for billing purposes*/
+    public static S_event[] findS_eventsMonthlyForPerson (int year, int month,int lastday,Person owner)
+  	throws webscheduleBusinessException
+    {
+	    S_event[] theS_eventArray = null;
+
+	    try {
+            S_eventQuery query = new S_eventQuery();
+            query.setQueryOwner(PersonDO.createExisting(owner.getHandle()));	
+            query.setQueryEventyear(year);
+            query.setQueryEventmonth(month);
+
+            QueryBuilder qb = query.getQueryBuilder();
+            qb.addWhere(S_eventDO.Eventday,1,QueryBuilder.GREATER_THAN_OR_EQUAL);
+            qb.addWhere(S_eventDO.Eventday,lastday,QueryBuilder.LESS_THAN_OR_EQUAL);
+            query.addOrderByEventday();
+            qb.debug();
+
+            S_eventDO[] DOarray = query.getDOArray();
+	        theS_eventArray = new S_event[ DOarray.length ];
+	        for ( int i = 0; i < DOarray.length; i++ )
+	    	theS_eventArray[i] = new S_event(DOarray[i]);
+	    }catch(Exception ex) {
+            throw new webscheduleBusinessException("Exception in findS_eventsForDate()", ex);
+        }
+
+        return theS_eventArray;
+    }
+
+
+
+    /*new query for getting event for certain period within the same month for billing purposes*/
+  public static S_event[] findS_eventsPeriodForProject (int year, int month,int startday, int endday, Project project)
+  	throws webscheduleBusinessException
+    {
+	    S_event[] theS_eventArray = null;
+
+	    try {
+            S_eventQuery query = new S_eventQuery();
+            query.setQueryProj_owner(ProjectDO.createExisting(project.getHandle()));	
+            query.setQueryEventyear(year);
+            query.setQueryEventmonth(month);
+
+            QueryBuilder qb = query.getQueryBuilder();
+            qb.addWhere(S_eventDO.Eventday,startday,QueryBuilder.GREATER_THAN_OR_EQUAL);
+            qb.addWhere(S_eventDO.Eventday,endday,QueryBuilder.LESS_THAN_OR_EQUAL);
+            query.addOrderByEventday();
+            qb.debug();
+
+            S_eventDO[] DOarray = query.getDOArray();
+	        theS_eventArray = new S_event[ DOarray.length ];
+	        for ( int i = 0; i < DOarray.length; i++ )
+	    	theS_eventArray[i] = new S_event(DOarray[i]);
+	    }catch(Exception ex) {
+            throw new webscheduleBusinessException("Exception in findS_eventsForDate()", ex);
+        }
+
+        return theS_eventArray;
+    }
+
+
+
+    public static S_event findS_eventByID(String id)
+        throws webscheduleBusinessException
+    {
+        S_event theS_event = null;
+
+	    try {
+            S_eventQuery query = new S_eventQuery();
+	        // Require that we only find ONE disc
+            query.requireUniqueInstance();
+	        query.setQueryOId(new ObjectId(id));
+	        S_eventDO theS_eventDO = query.getNextDO();
+	    	theS_event = new S_event(theS_eventDO);
+            return theS_event;
+	    }catch(Exception ex) {
+            throw new webscheduleBusinessException("Exception in findS_eventByID()", ex);
+        }
+    }
+
+
+}
+

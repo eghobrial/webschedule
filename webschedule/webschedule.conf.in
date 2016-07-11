@@ -1,0 +1,150 @@
+# webschedule
+# Enhydra Application Configuration
+#
+
+#
+# Comma separated CLASSPATH directories and files used by this application.
+# Assumes run from the output directory for debugging.
+# If you run from the jar you must rebuild after every change to the app.
+#
+Server.ClassPath[] = @OUTPUT@/../classes
+#Server.ClassPath[] = ./lib/webschedule.jar
+
+#
+# The fully qualified name of the application class.
+#
+Server.AppClass = webschedule.Webschedule
+
+#
+# Prefix used to derive presentation object class
+# names and paths from URLs.
+# Assumes run from the output directory for debugging.
+#
+Server.PresentationPrefix = "webschedule/presentation"
+
+#
+# Flag to indicate that application classes and resources should be reloaded
+# automatically if ANY file in the CLASSPATH changes.  NOTE:  This is a
+# debugging option and may slow down the performance of your application.
+# The CLASSPATH should NOT contain any directories (or underlying directories)
+# that contain constantly changing files, i.e. a log file.  For example, do
+# NOT include the application's output directory in the CLASSPATH because it
+# contains the application log files in the underlying log directory.
+#
+Server.AutoReload = false
+
+#
+# Maximum number of minutes a user session can last.
+#
+SessionManager.Lifetime = 240
+
+#
+# Maximum number of minutes a user may be idle before being logged off.
+#
+SessionManager.MaxIdleTime = 120
+
+#
+# If the URL "/" for this application is accessed, the user will be
+# redirected to this URL. This should be a relative URL.
+#
+#Application.DefaultUrl = "Welcome.po"
+Application.DefaultUrl = "personMgmt/Login.po"
+#-----------------------------------------------------------------------------
+#                   Database Manager Configuration
+#-----------------------------------------------------------------------------
+
+#
+# The databases that are used by CSAM.  Each of these databases
+# has configuration parameters set under DatabaseManager.DB."databaseName".
+#
+DatabaseManager.Databases[] = "webschtest1"
+#
+# The default database used in this application.
+#
+
+DatabaseManager.DefaultDatabase = "webschtest1"
+
+#
+# Turn on/off debugging for transactions or queries. Valid values
+# are "true" or "false".
+#
+
+DatabaseManager.Debug = "false"
+
+#
+# The type of database. Normally this is "Standard".
+#
+
+DatabaseManager.DB.webschtest1.ClassType = "PostgreSQL"
+
+#
+# The jdbc driver to use.
+# Note that this changes to org.postgresql.Driver with PGSQL 7.0
+#
+
+DatabaseManager.DB.webschtest1.JdbcDriver = "org.postgresql.Driver"
+
+#
+# Database url.
+#
+
+DatabaseManager.DB.webschtest1.Connection.Url = "jdbc:postgresql:webschtest1"
+
+#
+# Database user name.  All connections are allocated by this user.
+#
+
+DatabaseManager.DB.webschtest1.Connection.User = "emang"
+
+#
+# Database user password.
+#
+
+#DatabaseManager.DB.webschtest1.Connection.Password = "mwq961"
+DatabaseManager.DB.webschtest1.Connection.Password = ""
+
+#
+# The maximum number of connections that a connection
+# pool will hold.  If set to zero, then connections
+# are allocated indefinitely or until the database
+# refuses to allocate any new connections.
+#
+
+DatabaseManager.DB.webschtest1.Connection.MaxPoolSize = 30
+
+#
+# Maximum amount of time that a thread will wait for
+# a connection from the connection pool before an
+# exception is thrown.  This will prevent possible dead
+# locks.  The time out is in milliseconds.  If the
+# time out is <= zero, the allocation of connections
+# will wait indefinitely.
+#
+
+DatabaseManager.DB.webschtest1.Connection.AllocationTimeout = 10000
+
+#
+ # Used to log database (SQL) activity.
+#
+
+DatabaseManager.DB.webschtest1.Connection.Logging = false
+
+#
+# The number of object identifiers that are allocated
+# as a group and held in memory.  These identifiers
+# are assigned to new data objects that are inserted
+# into the database.
+#
+
+DatabaseManager.DB.webschtest1.ObjectId.CacheSize = 20
+DatabaseManager.DB.webschtest1.ObjectId.MinValue = 1
+
+#
+# Following two lines must be added for PostgreSQL,
+# since oID can't be used for column name
+#
+
+DatabaseManager.ObjectIdColumnName = "ObjectId"
+DatabaseManager.VersionColumnName = "ObjectVersion"
+
+

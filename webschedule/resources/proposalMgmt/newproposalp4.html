@@ -1,0 +1,411 @@
+<html>
+<head>
+  <title>Proposal Form-Project Information</title>
+  <link rel="stylesheet" href="../media/StyleSheet.css">
+  <link rel="stylesheet" type="text/css" href="../media/sitestyles.css">
+
+<script id="DummyScript">
+<!--
+function doSave()
+{
+	document.newproposalp4Form.action='newproposalp4.html';
+	document.newproposalp4Form.submit();
+    
+}
+
+function doSaveforlater()
+{
+	document.newproposalp4Form.action='newproposalp4.html';
+	document.newproposalp4Form.submit();
+    
+}
+
+
+function doPreview()
+{
+	document.newproposalp4Form.action='newproposalp4.html';
+	document.newproposalp4Form.submit();
+    
+}
+//-->
+</script>
+<script>
+var workIsDone = false;
+
+window.onbeforeunload = confirmBrowseAway;
+
+function confirmBrowseAway()
+{
+  if (!workIsDone) {
+    return "If you leave this page " +
+    "now, your work will NOT be saved!";
+  }
+}
+
+function doneWithForm()
+{
+  // The user has finished their work, so we don't
+  // need a warning anymore!
+  workIsDone = true;
+}  
+  setTimeout("alert('You will lose your session in 5 minutes. Please save you work now by using the Save button to ensure no work is lost.');",25*60*1000);
+  setTimeout("alert('Your session has timed out.');",30*60*1000);
+</script>
+  
+  </head>
+<BODY><center>
+<table style="margin: auto;" border="0" cellpadding="0" cellspacing="0"
+ width="800">
+  <tbody>
+    <tr>
+      <td> <img src="../media/head2.jpg"
+ alt="Center for Functional MRI Webschedule"></td>
+    </tr>
+    <tr>
+      <td><img src="../media/foot.jpg" height="2" width="800"> </td>
+    </tr>
+  </tbody>
+</table>
+<table style="margin: auto;" border="0" cellpadding="0" cellspacing="0"
+ width="800">
+  <tbody>
+    <tr>
+      <td align="center">
+      <h3>Proposal Form-Project Information</h3>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table style="margin: auto;" border="0" cellpadding="0" cellspacing="0"
+ width="800">
+  <tbody>
+    <tr>
+      <td><img src="../media/foot.jpg" height="2" width="800"> </td>
+    </tr>
+    <tr>
+      <td align="center" height="23"><span class="nav1"> 
+<a href="manageproposal.html"><img src="../media/myproposals.jpg" border="0"></a>
+<a href="../s_eventMgmt/mainmenu.html"><img src="../media/main.jpg" border="0"></a>
+<a href="information.html" target="_blank"><img src="../media/help.jpg" border="0"></a> 
+<a href="../personMgmt/Exit.html"><img src="../media/logout.jpg" border="0"></a> </span></td>
+    </tr>
+  </tbody>
+</table>
+<table style="margin: auto;" border="0" cellpadding="2" cellspacing="2"
+ width="800">
+  <tbody>
+    <tr>
+      <td><font color=red size=2px>Note:Your session will time out after 30 minutes of in activity. Please use the Save for Later Editing Button located at the bottom of the page if you need to save your data before completion.</font><br><span id="ErrorText"><font face="" size="4"><font
+ color="#ff0000">Optional ErrorText Goes Here</font></font></span> <br>
+<font color=red size=2px>* Required Fields</font> 
+ <form action="newproposalp4.html" name="newproposalp4Form"  method="post">
+ <input name="event" value=""  type="hidden"> 
+      <table border="0" cellpadding="0" cellspacing="0" width="100%">
+          <tbody>
+
+
+<tr><td width=40%>Project Information</td><td></td></tr>
+<tr><td><font color=red size=2px>*</font>Total number of scanner hours requested</td><td><font color=blue size=2px>Please enter total number of hours in an integer format only for example 240.
+</font></td></tr>
+<tr><td></td><td><input name="thours" id="thours" type="text" size=30 ></td></tr>
+<tr><td>&nbsp;</td><td></td></tr>
+
+<tr><td><font color=red size=2px>*</font>Project Expected Start Date</td>
+  <td valign="top"  > 
+              <select id = "Startmonth" name="startmonth">
+	       <option  selected value="1">Jan</option>
+                <option value="2">Feb</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">Sept</option>
+                <option value="10">Oct</option>
+                <option value="11">Nov</option>
+                <option value="12">Dec</option>
+              </select>
+
+              <select id = "Startdate" name="startdate">
+	       <option selected value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="12">12</option>
+		<option value="13">13</option>
+		<option value="14">14</option>
+		<option value="15">15</option>
+		<option value="16">16</option>
+		<option value="17">17</option>
+		<option value="18">18</option>
+		<option value="19">19</option>
+		<option value="20">20</option>
+		<option value="21">21</option>
+		<option value="22">22</option>
+		<option value="23">23</option>
+		<option value="24">24</option>
+		<option value="25">25</option>
+		<option value="26">26</option>
+		<option value="27">27</option>
+		<option value="28">28</option>
+		<option value="29">29</option>
+		<option value="30">30</option>
+		<option value="31">31</option>
+	    </select>
+
+              <select id = "Startyear" name="startyear">
+	         <option selected value="2008">2008</option>
+                <option value="2009">2009</option>
+		<option value="2010">2010</option>
+		<option value="2011">2011</option>
+		<option value="2012">2012</option>
+		<option value="2013">2013</option>
+		<option value="2014">2014</option>
+		<option value="2015">2015</option>
+		<option value="2016">2016</option>
+		<option value="2017">2017</option>
+		<option value="2018">2018</option>
+		<option value="2019">2019</option>
+	     </select>
+            </td>
+  </tr>
+<tr><td>&nbsp;</td><td></td></tr>
+<tr><td><font color=red size=2px>*</font>Project Expected End Date</td>
+<td valign="top"  > 
+              <select id = "Endmonth" name="endmonth">
+	       <option selected value="1">Jan</option>
+                <option value="2">Feb</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">Sept</option>
+                <option value="10">Oct</option>
+                <option value="11">Nov</option>
+                <option value="12">Dec</option>
+              </select>
+
+              <select id = "Enddate" name="enddate">
+	       <option selected value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="12">12</option>
+		<option value="13">13</option>
+		<option value="14">14</option>
+		<option value="15">15</option>
+		<option value="16">16</option>
+		<option value="17">17</option>
+		<option value="18">18</option>
+		<option value="19">19</option>
+		<option value="20">20</option>
+		<option value="21">21</option>
+		<option value="22">22</option>
+		<option value="23">23</option>
+		<option value="24">24</option>
+		<option value="25">25</option>
+		<option value="26">26</option>
+		<option value="27">27</option>
+		<option value="28">28</option>
+		<option value="29">29</option>
+		<option value="30">30</option>
+		<option value="31">31</option>
+	    </select>
+
+              <select id = "Endyear" name="endyear">
+	         <option selected value="2008">2008</option>
+                <option value="2009">2009</option>
+		<option value="2010">2010</option>
+		<option value="2011">2011</option>
+		<option value="2012">2012</option>
+		<option value="2013">2013</option>
+		<option value="2014">2014</option>
+		<option value="2015">2015</option>
+		<option value="2016">2016</option>
+		<option value="2017">2017</option>
+		<option value="2018">2018</option>
+		<option value="2019">2019</option>
+	     </select>
+            </td>
+
+
+</tr>
+<tr><td></td>
+</tr>
+<tr><td>&nbsp;</td><td></td></tr>
+</table>
+
+	
+<fieldset>
+	<legend>Brief Description of the Study</legend>	
+	<ol>
+	<li><font color=red size=2px>*</font>
+<font color=blue size=2px>
+Please summarize the overall aims of your study, this should include some background on the significance or the project, the specific experiments to be performed, details of pulse sequence to be used and the expected results.
+</font><br>
+<textarea name="writeup" id="writeup" cols=80 rows=3 ></textarea>
+</li>
+	
+</fieldset>	
+	
+<br>
+<fieldset>
+	<legend>Data Analysis</legend>
+<ol><li><font color=red size=2px>*</font>
+<font color=blue size=2px>
+What is the data analysis software you are planning to use? As a rule you are responsible for your own data analysis unless special arrangements are made with fMRI center personnel.</font><br>
+<textarea name="dataanalysis" id="dataanalysis" cols=80 rows=8 ></textarea>	
+</li></ol>
+</fieldset>
+<br>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width=40% valign="top" >Please check any additional equipment required</td><td>
+
+
+<input name="ae1" id="ae1" type="checkbox" >Special RF coils *<br>
+<input name="ae2" id="ae2" type="checkbox" >Button Boxes<br>
+<input name="ae3" id="ae3" type="checkbox" >Physiological monitoring equipment *<br>
+<input name="ae4" id="ae4" type="checkbox" >Anesthetics **<br>
+<input name="ae5" id="ae5" type="checkbox" >Other ancillary equipment *<br>
+<input name="ae6" id="ae6" type="checkbox" >Stimuli *<br>
+<input name="ae7" id="ae7" type="checkbox" >Gases/Contrast **<br><br>
+
+
+<font color=blue size=2px>* May involve extra cost</font><br>
+<font color=blue size=2px>** Special gas mixtures will not be provided by the Center</font><br>
+</td></tr>
+<tr><td>&nbsp;</td><td></td></tr>
+<tr><td colspan=2 >
+UCSD - IRB approval letter must be email to cfmri@ucsd.edu.  To avoid delays in review of your proposal.
+</td></tr>
+<tr><td></td><td><input name="faxtolina" id="faxtolina" type="checkbox" >Emailed</td></tr>
+<tr><td>&nbsp;</td><td></td></tr>
+<tr><td>IRB Expiration Date</td><td><font color=blue size=2px>Please list the IRB expiration date</font></td></tr>
+<tr>
+ <td valign="top" width="419" > 
+             
+            </td>
+	    <td valign="top"  > 
+              <select id = "Icmonth" name="icmonth">
+	           <option selected value="01">Month</option>
+                <option value="1">Jan</option>
+                <option value="2">Feb</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">Sept</option>
+                <option value="10">Oct</option>
+                <option value="11">Nov</option>
+                <option value="12">Dec</option>
+              </select>
+
+              <select id = "Icdate" name="icdate">
+	        <option selected value="01">Day</option>
+		 <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="12">12</option>
+		<option value="13">13</option>
+		<option value="14">14</option>
+		<option value="15">15</option>
+		<option value="16">16</option>
+		<option value="17">17</option>
+		<option value="18">18</option>
+		<option value="19">19</option>
+		<option value="20">20</option>
+		<option value="21">21</option>
+		<option value="22">22</option>
+		<option value="23">23</option>
+		<option value="24">24</option>
+		<option value="25">25</option>
+		<option value="26">26</option>
+		<option value="27">27</option>
+		<option value="28">28</option>
+		<option value="29">29</option>
+		<option value="30">30</option>
+		<option value="31">31</option>
+	    </select>
+
+              <select id = "Icyear" name="icyear">
+	           <option selected value="1900">Year</option>
+                <option value="2008">2008</option>
+                <option value="2009">2009</option>
+		<option value="2010">2010</option>
+		<option value="2011">2011</option>
+		<option value="2012">2012</option>
+		<option value="2013">2013</option>
+		<option value="2014">2014</option>
+		<option value="2015">2015</option>
+		<option value="2016">2016</option>
+		<option value="2017">2017</option>
+		<option value="2018">2018</option>
+		<option value="2019">2019</option>
+              </select>
+            </td>
+</tr>
+
+
+          </tbody>
+      </table>
+<table align="center">
+          <tbody>
+            <tr>
+              <td>
+<input type="image" onclick="doneWithForm();doSave();" border="0" name="submit" src="../media/savenext.jpg" alt="Save and go to the next page">
+</td>
+<td><input src="../media/saveforlater.jpg" onclick="doneWithForm();doSaveforlater();" value="Save for later." name="submit2" type="image">
+</td>
+<td>
+<input src="../media/preview.jpg" onclick="doneWithForm();doPreview();" value="Preview." name="submit3" type="image">
+</td>
+            </tr>
+          </tbody>
+        </table>
+
+<font color=red size=2px>Note: Please do not use the Back button on your browser.</font></form>
+      </td>
+    </tr>
+    <tr>
+      <td><img src="../media/foot.jpg" height="2" width="800"> </td>
+    </tr>
+    <tr>
+      <td><span class="footer">This program was developed by Eman Ghobrial,
+Center for Functional MRI, Radiology Department, UCSD.<br>
+Address: Center for Functional MRI, 9500 Gilman Dr. / Osler Ln., La
+Jolla, CA 92093-0677.<br>
+Phone: (858)-822-0513, FAX: (858)-822-0605.<br>
+Send accounts requests, comments, suggestions and bug report to:
+eghobrial@ucsd.edu.<br>
+Copyright &copy; 2007 Regents of the University of California.
+All rights reserved. <br>
+      <img src="../media/footer_official.gif" height="41" width="412"> </span></td>
+    </tr>
+  </tbody>
+</table>
+</center></body>
+</html>

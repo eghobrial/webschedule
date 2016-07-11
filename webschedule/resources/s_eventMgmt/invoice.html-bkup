@@ -1,0 +1,281 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<meta name="generator" content="Adobe GoLive 6">
+		<title>Invoice for 3T</title>
+		
+	</head>
+
+	<body bgcolor="#ffffff">
+		
+		<div align="left">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td rowspan="2" colspan="2">
+						<div align="center">
+							<h3><b><font size="2">INVOICE</font></b></h3>
+							<h2><font size="2">University of California, San Diego</font></h2>
+						</div>
+					</td>
+					<td>
+						<div align="right">
+							<b><font size="2">INVOICE NUMBER</font></b></div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div align="right">
+							<font size="2">____FR00<span id="invoicenum">100</span>___</font></div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		
+		<div align="left">
+			<table width="100%" border="0" cellspacing="1" cellpadding="0">
+				<tr>
+					<td width="33%"><font size="2">ACCOUNT ID</font></td>
+					<td width="33%"><font size="2">ACCOUNT PHONE NUMBER</font></td>
+					<td width="33%">  <font size="2">DATE</font></td>
+				</tr>
+				<tr>
+					<td width="33%">
+					 <table border="2">
+					 <tr>
+					   <td>
+					     <p><span id="AccountID"><font size="2">fmri0001442</font></span></p>
+					   </td>
+					</tr>
+					</table>	
+					</td>
+					<td width="33%">
+					   <table border="2">
+					     <tr>
+					     <td>
+					        <span id="AccountPhone"><font size="2">858-822-0563</font></span><font size="2">
+							</font>
+						</td>
+					  </tr>
+					  </table >
+					</td >
+					<td width="33%">
+						<table border="2">
+					     <tr>
+					     <td>
+					       <span id="today_month"><font size="2">8</font></span><font size="2">-<span id="today_day">22</span>-<span id="today_year">2002</span>
+							</font>
+						</td>
+					  </tr>
+					  </table >
+					</td>
+				</tr>
+			</table>
+			
+			<table width="100%" border="0" cellspacing="2" cellpadding="0">
+				<tr>
+					<td width="12.5%"><font size="2">STUDENT</font></td>
+					<td width="12.5%"><table border="2"><tr><td width="10" height="10"></td></tr></table></td>
+					<td width="12.5%"><font size="2">EMPLOYEE</font></td>
+					<td width="12.5%"><table border="2"><tr><td width="10" height="10"></td></tr></table></td>
+					<td width="12.5%"><font size="2">GOV'T</font></td>
+					<td width="12.5%"><table border="2"><tr><td width="10" height="10">
+						<font size="2">X</font></td></tr></table></td>	
+					<td width="12.5%"><font size="2">PUBLIC</font></td>
+					<td width="12.5%"><table border="2"><tr><td width="10" height="10"></td></tr></table></td>
+				</tr>
+			</table>
+			<p></p>
+			<p></p>
+			<table width="100%" border="0" cellspacing="1" cellpadding="0">
+				<tr>
+					<td rowspan="4" colspan="2"><table width="100%" border="2" cellspacing="2" cellpadding="4">
+						<tr>
+							<td width="100%">
+								<p><span id="Billaddr1"><font size="2">1</font></span></p>
+      								<p><span id="Billaddr2"><font size="2">2</font></span></p>
+								<p><span id="Billaddr3"><font size="2">3</font></span></p>
+								<p><span id="City"><font size="2">San Diego</font></span><font size="2">, <span id="State">CA</span> 
+								</font> <span id="Zip"><font size="2">92093</font></span></p>
+								<p><font size="2">Attn: </font> <span id="Contactname">
+								<font size="2">Test</font></span></p>
+							</td>
+						</tr>
+						</table></td>
+					<td rowspan="4" ></td>
+					<td width="33%"><font size="2">Invoice Prepared by</font></td>
+				</tr>
+				<tr>
+					<td><table border="2"><tr><td width="250" height ="20" >
+									<div align="left">
+										<p><span id="Preparedby"><font size="2">Marianne Clark&nbsp;</font></span></p>
+									</div>
+								</td></tr></table></td>
+				</tr>
+				<tr>
+					<td><font size="2">Preparer's email address</font></td>
+				</tr>
+				<tr>
+					<td><table border="2"><tr><td width="250" height ="20"> <p><span id="PreparedbyPhone">
+						<font size="2">&nbsp;mkclark@ucsd.edu</font></span></p>
+</td></tr></table></td>
+				</tr>
+			</table>
+			<hr>
+			<p></p>
+			<table width="100%" border="0" cellspacing="1" cellpadding="0">
+				<tr>
+					<td width="20%"><font size="2">DETAIL CODE:</font></td>
+					<td width="20%"><table border="2">
+					     <tr>
+					     <td width="250" height="15">
+					        <span id="detailcode"> <font size="2">FMRIHU</font></span><font size="2">
+							</font>
+						</td>
+					  </tr>
+					  </table ></td>
+					<td width="20%"></td>
+					<td width="20%"></td>
+					<td>
+						<div align="center">
+							<b>
+							<font size="2">CHARGE AMOUNT</font></b></div>
+					</td>
+				</tr>
+				<tr>
+					<td><font size="2">DESCRIP:</font></td>
+					<td colspan="2"><table border="2">
+					   <tr>
+					   	<td width="500" height="15"><span id="description">
+						<font size="2">MRI Scan time</font></span><font size="2">/PI <span id="FirstName"> Martin </span>
+						</font><span id="LastName"><font size="2">Paulus</font></span></td>
+					   </tr>
+					</table>     
+					</td>
+					<td rowspan="4"></td>
+				</tr>
+				<tr>
+					<td><font size="2">DETAIL CODE</font></td>
+					<td><table border="2">
+					   <tr>
+					      <td width="250" height="15">
+					      </td>
+					   </tr>
+					 </table></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><font size="2">DESCRIP:</font></td>
+					<td colspan="2"><table border="2">
+					   <tr>
+					      <td width="500" height="15">
+					      </td>
+					   </tr>
+					 </table></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><font size="2">DETAIL CODE</font></td>
+					<td><table border="2">
+					   <tr>
+					      <td width="250" height="15">
+					      </td>
+					   </tr>
+					 </table></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><font size="2">DESCRIP:</font></td>
+					<td colspan="2"><table border="2">
+					   <tr>
+					      <td width="500" height="15">
+					      </td>
+					   </tr>
+					 </table></td>
+					<td>
+						<div align="right">
+							<b><font size="2">TOTAL</font></b></div>
+					</td>
+					<td><table border="2">
+					   <tr>
+					      <td width="250" height="15"><font size="2">$</font><span id="Extendedcost1"><font size="2">900</font></span></td>
+					   </tr>
+					 </table></td>
+				</tr>
+			</table>
+			<hr>
+<p><b><font size="2">IMPORTANT:  RETURN this copy of invoice with your remittance. To ensure accurate posting;</font></b></p>
+<p><b><font size="2"> Make checks payable to:  UC Regents.  Present or mail to:</font></b></p>
+			<p><font size="2">UCSD, Central Cashier, 9500 Gilman Dr., La Jolla, CA 92093-0009.</font></p>
+			<hr>
+			<table width="100%" border="3" cellspacing="2" cellpadding="0">
+				<tr>
+					<td colspan="2">
+						<div align="center">
+							<font size="2">DESCRIPTION</font></div>
+					</td>
+					<td>
+						<div align="center">
+							<font size="2">AMOUNT</font></div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+					<table width="100%" border="0" cellspacing="2" cellpadding="0">
+					<tr> 
+    					<th height="25" width="4%"></th>
+					    <th valign="top" width="16%">
+              <div align="left"><font size="2">Event Date</font></div>
+            </th>
+					    <th valign="top" width="16%">
+              <div align="left"><font size="2">Project</font></div>
+            </th>
+					    <th valign="top" width="16%">
+              <div align="left"><font size="2">Item Description</font></div>
+            </th>
+					    <th valign="top" width="16%">
+              <div align="left"><font size="2">Quantity</font></div>
+            </th>
+					    <th valign="top" width="16%">
+              <div align="left"><font size="2">Unit Cost</font></div>
+            </th>
+					    <th valign="top" width="16%">
+              <div align="left"><font size="2">Extended Cost</font></div>
+            </th>
+					</tr>
+					<tr id = "TemplateRow"> 
+					    <td height="30" width="4%"></td>
+					    <td valign ="top" width="16%"><span id="event_month">
+						<font size="2">8</font></span><font size="2">-<span id="event_day">22</span>-</font><span id="event_year"><font size="2">2002</font></span></td>
+					    <td valign="top" width="16%"><span id ="Proj_name">
+						<font size="2">fMRI01</font></span></td>
+					    <td valign="top" width="16%"><span id="Descrip">
+						<font size="2">Scanning for Proj01</font></span></td>
+						<td valign="top" width="16%"><span id="Quantity">
+						<font size="2">3</font></span><font size="2"> hours</font></td>
+					    <td valign="top" width="16%"><font size="2">$</font><span id="Unitcost"><font size="2">450</font></span></td>
+					    <td valign="top" width="16%"><font size="2">$</font><span id="Extendedcost2"><font size="2">900</font></span></td>
+					</tr>
+			</table>
+			</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<div align="right">
+							<b>
+							<font size="2">TOTAL</font></b></div>
+					</td>
+					<td><font size="2">$</font><span id="Extendedcost3"><font size="2">900</font></span></td>
+				</tr>
+			</table>
+			<p></p>
+			<p></p>
+		</div>	
+	</body>
+
+</html>

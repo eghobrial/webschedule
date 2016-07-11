@@ -1,0 +1,171 @@
+package webschedule.presentation.s_eventMgmt;
+
+import webschedule.business.person.*;
+import webschedule.business.project.*;
+import webschedule.presentation.BasePO;
+import com.lutris.appserver.server.httpPresentation.*;
+import com.lutris.appserver.server.session.*;
+import com.lutris.util.*;
+import com.lutris.xml.xmlc.*;
+import com.lutris.xml.xmlc.html.*;
+import org.w3c.dom.*;
+import org.w3c.dom.html.*;
+import webschedule.business.webscheduleBusinessException;
+import webschedule.presentation.webschedulePresentationException;
+
+/**
+ * Login.java handles the login functionality of the webschedule app.
+ *
+ */
+public class SelectDate extends BasePO
+{    
+    /**
+     * Constants
+     */
+
+    private static String ERROR_NAME = "ERROR_NAME";
+
+     private static String PROJ_NAME = "proj_name";
+    private static String DISCRIB = "discrib";
+    private static String THOURS = "thours";
+    private static String DHOURS = "dhours";
+    private static String INDEXNUM = "indexnum";
+    private static String PROJ_ID = "projID";
+    private static String INVALID_ID = "invalidID";
+	
+    /**
+     * Superclass method override
+     */
+    public boolean loggedInUserRequired()
+    {
+        return true;
+    }
+    
+    /** 
+     *  Default event. Just show the page.
+     */
+    public String handleDefault() 
+        throws HttpPresentationException 
+    {
+	    return showPage(null);
+    }
+        
+
+
+    
+    public String handleThrowException()
+        throws Exception
+    {
+        throw new Exception("This is a test exception thrown from Login.java handleThrowException()");    
+    }
+    
+    /**
+     * 
+     */
+    public String showPage(String errorMsg)
+    throws HttpPresentationException, webschedulePresentationException
+    {
+        SelectDateHTML page = new SelectDateHTML();
+        String projectname ;
+        Project project = null;
+
+        //First priority: try to use the passed-in error message
+        // Second priority: try to use the session data's error message
+        // If there are no error messages then clear the prototype error text
+        if(null != errorMsg || 
+           null != (errorMsg = this.getSessionData().getAndClearUserMessage())) {       
+            page.setTextErrorText(errorMsg);
+        } else {
+            page.getElementErrorText().getParentNode().removeChild(page.getElementErrorText());
+        }
+        try
+        {
+        project = this.getProject();
+        projectname = project.getProj_name();
+	page.setTextProjectID ("Select Date for " + projectname);
+
+        } catch (webscheduleBusinessException ex) {
+         throw new webschedulePresentationException("Error getting project name", ex);
+         }
+
+
+       HTMLOptionElement daytemplateOption = page.getElementDaytemplateOption();
+       HTMLOptionElement monthtemplateOption = page.getElementTemplateOption();
+
+      Node daySelect = daytemplateOption.getParentNode();
+      Node monthSelect = monthtemplateOption.getParentNode();
+
+      String monthnames[] = {"Jan","Feb","March","April","May","June","July","August","September","October ","November","December"};
+
+      daytemplateOption.removeAttribute("id");
+      monthtemplateOption.removeAttribute("id");
+
+      // Remove the dummy storyboard text from the prototype HTML
+        // (e.g., "Van Halen One") from this option
+        daytemplateOption.removeChild(daytemplateOption.getFirstChild());
+        monthtemplateOption.removeChild(monthtemplateOption.getFirstChild());
+
+       for (int day = 1; day < 32 ; day ++)
+        {
+          HTMLOptionElement clonedOption = (HTMLOptionElement) daytemplateOption.cloneNode(true);
+                clonedOption.setValue(Integer.toString(day));
+                Node optionTextNode = clonedOption.getOwnerDocument().
+                        createTextNode(Integer.toString(day));
+                clonedOption.appendChild(optionTextNode);
+                // Do only a shallow copy of the option as we don't want the text child
+                // of the node option
+                daySelect.appendChild(clonedOption);
+         }
+
+        for (int month = 1; month < 13 ; month ++)
+        {
+          HTMLOptionElement clonedOption = (HTMLOptionElement) monthtemplateOption.cloneNode(true);
+                clonedOption.setValue(Integer.toString(month));
+                Node optionTextNode = clonedOption.getOwnerDocument().
+                        createTextNode(monthnames[month-1]);
+                clonedOption.appendChild(optionTextNode);
+                // Do only a shallow copy of the option as we don't want the text child
+                // of the node option
+                monthSelect.appendChild(clonedOption);
+         }
+
+    daytemplateOption.getParentNode().removeChild(daytemplateOption);
+    monthtemplateOption.getParentNode().removeChild(monthtemplateOption);
+
+
+	
+	    return page.toDocument();
+    }
+
+
+     public String handleSelectdate()
+        throws HttpPresentationException
+    {
+
+        String proj_id = this.getComms().request.getParameter(PROJ_ID);
+	Project project = null;
+
+      try {
+            project = ProjectFactory.findProjectByID(proj_id);
+            if(null == project) {
+            	this.getSessionData().setUserMessage("Please choose a valid project ");
+                 throw new ClientPageRedirectException(PROJECT_CATALOG_PAGE);
+                 // Show error message that project not found
+            } else {
+            	this.setProject(project);
+                //String projectname = project.getProj_name();
+                /*this.getSessionData().setUserMessage("This project = " + proj_id+ "jkjk");
+                  throw new ClientPageRedirectException(PROJECT_CATALOG_PAGE);*/
+                throw new ClientPageRedirectException(SELECT_DATE_PAGE);
+            }
+        } catch(webscheduleBusinessException ex) {
+            this.writeDebugMsg("System error finding PROJECT: " + ex.getMessage());
+            throw new webschedulePresentationException("System error finding PROJECT", ex);
+        }
+    }
+
+
+
+}
+
+

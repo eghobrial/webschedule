@@ -1,0 +1,171 @@
+<HTML>
+<HEAD>
+<TITLE>Problem Edit Page 3TW</TITLE>
+</HEAD>
+<BODY>
+
+<h2>Problem Edit Page<h2>
+
+<form action="problemedit.html" method="GET">
+    <input type="HIDDEN" name="event" value="update" id="EventValue">
+
+<table width="601" border="1" cellspacing="2" cellpadding="0">
+ <tr>
+ <td>                                      
+   <div align="left">
+      <table cellpadding="0" cellspacing="0" width="595" >
+		<tr>
+	 <td width="10"></td>
+	<td width="584">
+	<table cellpadding="0" cellspacing="0" width="584" >
+	</tr>
+	<tr>
+	<td></td>
+	<td></td>
+	<td height="30">  <span id="ErrorText"><font face="" size = 4><font color="#FF0000">Optional ErrorText Goes Here</font></font></span> <br>
+	</td>
+	</tr>
+	<tr>
+	<td valign=top align=right><tt><b>name</b></td>
+ 	<td></td>	
+  	<td valign=top height="41"><input type="text"  id="Reportername" size="40"><br>
+	<font size="2">Enter your full name</font>
+	</td>
+	</tr>
+	<tr>
+	<td valign=top align=right><tt><b>email address</b></td>
+	<td></td>
+	<td valign=top height="41"><input type="text" id="Reporteremail" size="40"><br>
+	<font size="2">Enter your email address</font>
+	</td>
+	</tr>
+	<tr>
+     	<td></td>
+	<td></td>
+	<td height="10"></td>
+	</tr>
+	<tr>
+	<td valign=top align=right><tt><b>problem </b></td>
+	<td></td>
+	<td valign=top height="41"><input type="text" id="Describ" size="40"><br>
+	<font size="2">Enter a brief description of the problem</font> (2-8 words)</td>
+	</tr>
+	<tr>
+			<td valign=top align=right><tt><b>problem severity</b></td>
+			<td></td>
+			<td valign=top height="42">
+			  <select name="severitycode" id ="Severitycode">
+			   <option value ="0">noncritical</option>
+		           <option value ="1">serious</option>
+			   <option value ="2">critical</option>
+			  </select>
+			<br>
+		<font size="2">Enter the problem severity</font>
+		</td>
+		</tr>
+	<tr>
+	<td valign=top align=right><tt><b>problem classification</b></td>
+	<td></td>
+	<td valign=top height="42">
+	  <select  id ="Classcode" name="classscode">
+	   <option value ="1">scanner related</option>
+	   <option value ="2">peripherals related</option>
+	   <option value ="0">other</option>
+	  </select>
+	  <br>
+	  <font size="2">Enter the problem classification</font>
+	</td>
+	</tr>
+	<tr>
+	<td height="10"></td>
+	</tr>
+	<tr> 
+         <td height="20" valign="top"  align="right"><tt><b> has GE Care been notified? </b></td>
+            <td></td>
+	    <td valign="top" height="42"> 
+              <input type="checkbox" name="ge_not" UNCHECKED id="Ge_not">
+	      <font size="2">Have you contacted GE services?</font>
+            </td>
+            <td></td>
+          </tr>
+	   <tr>
+	   <td valign=top align=right><tt><b>problem number</b></td>
+	   <td></td>
+	<td valign=top height="41"><input type="text" name="probnum" id="Probnum" size="40"><br>
+<font size="2">Enter problem number if GE Care has been contacted</font>
+				</td>
+				</tr>
+	<tr>
+	<td></td>
+	<td></td>
+	<td height="10"></td>
+	</tr>
+	<tr>
+	<td valign=top align=right><tt><b>problem status</b></td>
+	<td></td>
+	<td valign=top height="42">
+	  <select name="statuscode" id ="Statuscode">
+	   <option value ="0">closed</option>
+	   <option value ="1">open</option>
+	   <option value ="2">in progress</option>
+	  </select>
+	</td>
+	</tr>
+	<tr>
+	<td valign=top align=right width="156"><tt><b>problem detail</b></td>
+	<td width="1"></td>
+	<td valign=top height="200">
+	<textarea  id="Problemdetail" wrap="physical" rows="15" cols="40" >Problem  detai</textarea><br>
+	<font size="2">Enter a detailed description of the problem</font>
+	</td>
+	</tr>
+	<tr>
+        <td height="20"></td>
+	</tr>
+	
+
+       
+	<tr>
+	<td valign=top align=right width="156"><tt><b>fix details</b></td>
+	<td width="1"></td>
+	<td valign=top height="200">
+	<textarea name="fixdetail"  id="Fixdetail" wrap="physical" rows="10" cols="40" ></textarea><br>
+	<font size="2">Enter a detailed description of the problem fix</font>
+	</td>
+	</tr>
+	
+	</form>
+	<tr>
+	<td height="11"></td>
+	</tr>
+	<tr>
+	<td valign=top align=right width="156"><tt>
+	<b>update problem report<font color="#0000FF"> </font> </b></td>
+	<td width="1"></td>
+	<td valign=top height="38">
+	<input type="submit" value="Update Problem" name="submit">
+	</td>
+	</tr>
+	<tr>
+	<td height="114"></td>
+	</tr>
+</table>
+</td>
+</tr>
+</table>
+<tr><td height="77" width="584"><a href="problemmenu.html"><img src="../media/back_prob_menu.jpg"></a></td></tr>
+</td>
+</tr>
+<tr>
+<td>
+<form name="LogoutForm" action="../personMgmt/Exit.html" method="GET">
+   <input type="HIDDEN" name="event2" value="logout">
+   <input type="image" src = "../media/Logout_button.jpg" value="Logout" name="submit">
+ </form>
+ </td>
+</tr>
+</table>
+
+
+</BODY>
+</HTML>

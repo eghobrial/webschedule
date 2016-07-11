@@ -1,0 +1,1619 @@
+/**--------------------------------------------------------------
+* Webschedule
+*
+* @class: EditEvent
+* @version
+* @author: Eman Ghobrial
+* @since:
+*
+*--------------------------------------------------------------*/
+
+package webschedule.presentation.s_eventMgmt;
+
+import webschedule.SendMail;
+import webschedule.business.person.*;
+import webschedule.business.project.*;
+import webschedule.business.s_event.*;
+import webschedule.business.blocktime.*;
+import webschedule.presentation.BasePO;
+import com.lutris.appserver.server.httpPresentation.*;
+import com.lutris.appserver.server.session.*;
+import com.lutris.util.*;
+import com.lutris.xml.xmlc.*;
+import com.lutris.xml.xmlc.html.*;
+import org.w3c.dom.*;
+import org.w3c.dom.html.*;
+import webschedule.business.webscheduleBusinessException;
+import webschedule.presentation.webschedulePresentationException;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.LinkedList;
+import java.lang.String;
+
+//import webschedule.collections.*;
+//import webschedule.collections.impl.LList;
+import java.util.Enumeration;
+
+
+/**
+ * EditEvent.java handles the login functionality of the webschedule app.
+ *
+ */
+public class EditEvent extends BasePO
+{    
+    /**
+     * Constants
+     */
+
+    private static String ERROR_NAME = "ERROR_NAME";
+
+     private static String DATE = "Date";
+    private static String MONTH = "month";
+    private static String YEAR = "year";
+    private static String STARTH ="starth";
+    private static String STARTM ="startm";
+    private static String ENDH ="endh";
+    private static String ENDM ="endm";
+    private static String DESCRIPTION = "description";
+    private static String REPEATMENU = "repeatmenu";
+    private static String TIMES = "times";
+
+
+//    private static String INVALID_DAY = "invalidday";
+//    private static String INVALID_MONTH = "invalidmonth";		
+    /**
+     * Superclass method override
+     */
+    public boolean loggedInUserRequired()
+    {
+        return true;
+    }
+    
+    /** 
+     *  Default event. Just show the page.
+     */
+    public String handleDefault() 
+        throws HttpPresentationException 
+    {
+	    return showPage(null);
+    }
+        
+
+
+    
+    public String handleThrowException()
+        throws Exception
+    {
+        throw new Exception("This is a test exception thrown from Login.java handleThrowException()");    
+    }
+
+    /*
+     * Adds an event
+     *
+     */
+    public String handleAdd()
+        throws HttpPresentationException, webschedulePresentationException
+    {          //function
+       String repeatinfo = this.getComms().request.getParameter(REPEATMENU);
+        System.out.println("Repeat Information = "+repeatinfo);
+        String times = this.getComms().request.getParameter(TIMES);
+        //String test = null;
+         System.out.println("Num of times = "+times);
+                   int numoftimes =  Integer.parseInt(times);
+                   S_event s_event = null;
+        try {           //begin try --1
+    		if (repeatinfo.equals("Never"))
+    		{       //begin if never
+    		 try {             //begin try 2
+		 System.out.println("Never executed");    		
+    		   s_event = new S_event();
+    		    } //end try 2
+    		    catch(Exception ex) {//begin catch
+                    return showPage("Cannot create a new event");
+                 }  //end catch
+    		 if (check_conflict()==1) return   showPage("You entered the date that conflict check calendar and try again");
+    		else if (check_conflict_blocktime()==1) return showPage ("You entered the date that conflict check calendar and try again");
+    		 else if  (check_time()==1) return showPage("You entered a wrong time end time must be after start time");
+    		 else if (check_date()==1) return showPage("Yon can not schedule for a previous date or time");
+    		 else if (check_proj_hours(numoftimes)==1) return showPage("You have acquired all project hours,check with the committee");
+    		 else {        //begin else
+    		 saveS_event (s_event);
+    		 send_notification(0);
+    		 update_projhours(0);
+    		 throw new ClientPageRedirectException(SELECT_DATE_PAGE);
+    		      }          //end else
+    		} //end if never
+    		else {  //begin else repeat
+    		
+    		  if  (check_time()==1) return showPage("You entered a wrong time end time must be after start time");
+    		  else if (check_date()==1) return showPage("Yon can not schedule for a previous date or time");
+    		 else if (check_proj_hours(numoftimes)==1) return showPage("You have acquired all project hours, check with the committee");
+    		 else if (check_multi_conflict()==2) return   showPage("All the dates that you entered have conflicts check calendar and try again");
+    		 else  if (check_multi_conflict()==1)  throw new ClientPageRedirectException(SHOW_CONFLICTS_PAGE)  ;
+    		 else {      //begin else
+    		 saveMultiS_event ();
+    		 send_notification(numoftimes);
+    		 update_projhours(numoftimes);
+    		 throw new ClientPageRedirectException(SELECT_DATE_PAGE);
+    		     }        //end else
+    		}      //end else repeat
+    		
+	 } catch(Exception ex) {
+                    return showPage("Cannot add a new event fill in all fields");
+
+        }
+   // return test;	
+    }         //function
+
+
+   public int check_date()
+   throws HttpPresentationException, webschedulePresentationException
+   {
+      int eventyear = this.getYear();
+        int eventmonth = this.getMonth();
+        int eventday = this.getDay();
+
+        String starth = this.getComms().request.getParameter(STARTH);
+        System.out.println("Starth selected on check time method = "+starth);
+    	String startm = this.getComms().request.getParameter(STARTM);
+    	System.out.println("Startm selected = "+startm);
+    	
+    	
+        int starthi =  Integer.parseInt(starth);
+	int startmi = Integer.parseInt(startm);
+
+        //calculation for the time right now
+    	Calendar cancelinfo = Calendar.getInstance();
+    	int todaydate = cancelinfo.get(cancelinfo.DAY_OF_MONTH);
+    	int todaymonth = cancelinfo.get(cancelinfo.MONTH);
+    	int todayyear = cancelinfo.get(cancelinfo.YEAR);
+    	Date cancelinfodate =  cancelinfo.getTime();
+    	long cancelinfoms = cancelinfodate.getTime();
+    	   	
+    	//calculation for the event info
+    	Calendar eventinfo = Calendar.getInstance();
+    	eventinfo.set(eventyear, eventmonth, eventday, starthi, startmi);
+    	Date eventinfodate =   eventinfo.getTime();
+    	long eventinfoms = eventinfodate.getTime();
+	long difference = eventinfoms - cancelinfoms;
+	long numofhours = difference/3600000;
+    	
+	if (numofhours < 0)
+		return 1;
+	else 	
+        	return 0;
+	}
+	
+
+    public int check_conflict()
+     throws HttpPresentationException, webschedulePresentationException
+    {
+    	String starth = this.getComms().request.getParameter(STARTH);
+        System.out.println("Starth selected on check time method = "+starth);
+    	String startm = this.getComms().request.getParameter(STARTM);
+    	System.out.println("Startm selected = "+startm);
+    	String endh = this.getComms().request.getParameter(ENDH);
+    	System.out.println("endh selected = "+endh);
+    	String endm = this.getComms().request.getParameter(ENDM);
+    	System.out.println("endm selected = "+endm);
+    	
+        int event_starthi =  Integer.parseInt(starth);
+	int event_endhi = Integer.parseInt(endh);
+	int event_startmi = Integer.parseInt(startm);
+    	int event_endmi = Integer.parseInt(endm);
+    	
+    	
+	    	
+      	int year = this.getYear();
+        int month = this.getMonth();
+        int day = this.getDay();
+        int conflict = 0;
+        int conflict_has_been_set = 0;
+
+          try {
+
+          	S_event[] EventList = S_eventFactory.findS_eventsForDate(year,month,day);
+          	
+	         // Get collection of events and loop through collection
+	        for(int numEvents = 0; numEvents < EventList.length; numEvents++) {	
+                	S_event currentS_event = EventList[numEvents];
+	        	// set text of new cells to values from string array
+	        	int starthi = currentS_event.getStarth();
+	        	int startmi = currentS_event.getStartm();
+	        	int endhi = currentS_event.getEndh();
+	        	int endmi = currentS_event.getEndm();
+	        	/*int conflict = check_for(starthi,startmi,endhi,endmi,event_starthi,event_startmi,event_endhi,event_endmi);*/
+	        	
+	        	if (event_starthi < starthi)
+	        		{
+	        		  if (event_endhi > starthi)
+	        		  	{
+	        		  	  conflict = 1;
+	        		  	  System.out.println("System conflict flag  "+Integer.toString(conflict));
+	        		  	  conflict_has_been_set = 1;
+	        		  	  //return conflict;
+	        		  	   break;
+	        		  	}
+	        		  else if (event_endhi == starthi)
+	        		  	{
+	        		  	  if (event_endmi > startmi)
+	        		  	  {
+	        		  	  conflict = 1;
+	        		  	  System.out.println("System conflict flag  "+Integer.toString(conflict));
+	        		  	  conflict_has_been_set = 1;
+	        		  	   break;
+	        		  	   }
+	        		  	  }
+	        		
+	        		 }
+	        		
+	        	// 1. if it is equal check min and end time	
+	        	else if (event_starthi == starthi)
+	        		{
+	        		 if (event_startmi >= startmi)
+	        		   {  	//if
+	        		   conflict = 1;
+	        		   System.out.println("System conflict flag  "+Integer.toString(conflict));
+	        		    conflict_has_been_set = 1;
+	        		   //return conflict;
+	        		   break;
+	        		   }        //if
+	        		   else {//else 1
+	        		
+	        			if (event_endhi > starthi)
+	        		  	{
+	        		  	  conflict = 1;
+	        		  	  System.out.println("System conflict flag  "+Integer.toString(conflict));
+	        		  	  conflict_has_been_set = 1;
+	        		  	  //return conflict;
+	        		  	   break;
+	        		  	}
+	        		  else if (event_endhi == starthi)
+	        		  	{
+	        		  	  if (event_endmi > startmi)
+	        		  	  {
+	        		  	  conflict = 1;
+	        		  	  System.out.println("System conflict flag  "+Integer.toString(conflict));
+	        		  	  conflict_has_been_set = 1;
+	        		  	   break;
+	        		  	   }
+	        		  	  }
+	        		   }  //else 1
+	        		 }
+	        		
+	        	
+                       //1.    if it is greater than the booked on make sure it is not in the middle
+                       else if (event_starthi > starthi)
+                       		{
+                       		if (event_starthi < endhi)
+                       		 {
+                       		   conflict = 1;
+                       		   System.out.println("System conflict flag  "+Integer.toString(conflict));
+                       		   conflict_has_been_set = 1;
+                       		   break;
+                       		 }
+                       		else if (event_starthi == endhi)
+                       		    {
+                       		      if (event_startmi < endmi)
+                       		      {
+                       		
+                       		      	conflict = 1;
+                       		      	 System.out.println("System conflict flag  "+Integer.toString(conflict));
+                       		      	  conflict_has_been_set = 1;
+                       		      	 //return conflict;
+                       		      	 break;
+                       		      	  }
+                       		    }
+                       		
+                       		}
+	             	        	
+                      } // for loop
+
+                     } catch(Exception ex) {
+	        this.writeDebugMsg("Error populating Event table: " + ex);
+            throw new webschedulePresentationException("Error getting Events for date: ", ex);
+	    }
+	
+	System.out.println("System conflict flag  "+Integer.toString(conflict));
+	if ( conflict_has_been_set == 1)
+	        return 1;
+	else return 0;
+ 	 	
+  } //end procedure	
+
+
+
+  public int check_conflict_blocktime()
+     throws HttpPresentationException, webschedulePresentationException
+    {	
+     String starth = this.getComms().request.getParameter(STARTH);
+     String startm = this.getComms().request.getParameter(STARTM);
+     String endh = this.getComms().request.getParameter(ENDH);
+     String endm = this.getComms().request.getParameter(ENDM);
+
+     int event_starthi =  Integer.parseInt(starth);
+     int event_startmi =  Integer.parseInt(startm);
+     int event_endhi =     Integer.parseInt(endh);
+     int event_endmi =   Integer.parseInt(endm);
+
+     int yeari = this.getYear();
+     int monthi = this.getMonth();
+     int dayi = this.getDay();
+     int conflict = 0;
+     int conflict_has_been_set = 0;
+
+
+       try {
+
+          	Blocktimec[] EventList = BlocktimeFactory.findBlocktimeForDate(yeari,monthi,dayi);
+          	
+	         // Get collection of events and loop through collection
+	        for(int numEvents = 0; numEvents < EventList.length; numEvents++) {	//begin for loop
+                	Blocktimec currentBlocktimec = EventList[numEvents];
+	        	// set text of new cells to values from string array
+	        	int starthi = currentBlocktimec.getStarth();
+	        	int startmi = currentBlocktimec.getStartm();
+	        	int endhi = currentBlocktimec.getEndh();
+	        	int endmi = currentBlocktimec.getEndm();
+	        	/*int conflict = check_for(starthi,startmi,endhi,endmi,event_starthi,event_startmi,event_endhi,event_endmi);*/
+	        	
+	        	if (event_starthi < starthi)
+	        		{      //begin if --1
+	        		  if (event_endhi > starthi)
+	        		  	{
+	        		  	  conflict = 1;
+	        		  	  System.out.println("System conflict flag  "+Integer.toString(conflict));
+	        		  	  conflict_has_been_set = 1;
+	        		  	  //return conflict;
+	        		  	   break;
+	        		  	}
+	        		  else if (event_endhi == starthi)
+	        		  	{
+	        		  	  if (event_endmi > startmi)
+	        		  	  {
+	        		  	  conflict = 1;
+	        		  	  System.out.println("System conflict flag  "+Integer.toString(conflict));
+	        		  	  conflict_has_been_set = 1;
+	        		  	   break;
+	        		  	   }
+	        		  	  }
+	        		
+	        		 }       //end if --1
+	        		
+	        	// 1. if it is equal check min and end time	
+	        	else if (event_starthi == starthi)
+	        		{
+	        		 if (event_startmi >= startmi)
+	        		   {  	//if
+	        		   conflict = 1;
+	        		   System.out.println("System conflict flag  "+Integer.toString(conflict));
+	        		    conflict_has_been_set = 1;
+	        		   //return conflict;
+	        		   break;
+	        		   }        //if
+	        		   else {//else 1
+	        		
+	        			if (event_endhi > starthi)
+	        		  	{
+	        		  	  conflict = 1;
+	        		  	  System.out.println("System conflict flag  "+Integer.toString(conflict));
+	        		  	  conflict_has_been_set = 1;
+	        		  	  //return conflict;
+	        		  	   break;
+	        		  	}
+	        		  else if (event_endhi == starthi)
+	        		  	{
+	        		  	  if (event_endmi > startmi)
+	        		  	  {
+	        		  	  conflict = 1;
+	        		  	  System.out.println("System conflict flag  "+Integer.toString(conflict));
+	        		  	  conflict_has_been_set = 1;
+	        		  	   break;
+	        		  	   }
+	        		  	  }
+	        		   }  //else 1
+	        		 }
+	        		
+	        	
+                       //1.    if it is greater than the booked on make sure it is not in the middle
+                       else if (event_starthi > starthi)
+                       		{
+                       		if (event_starthi < endhi)
+                       		 {
+                       		   conflict = 1;
+                       		   System.out.println("System conflict flag  "+Integer.toString(conflict));
+                       		   conflict_has_been_set = 1;
+                       		   break;
+                       		 }
+                       		else if (event_starthi == endhi)
+                       		    {
+                       		      if (event_startmi < endmi)
+                       		      {
+                       		
+                       		      	conflict = 1;
+                       		      	 System.out.println("System conflict flag  "+Integer.toString(conflict));
+                       		      	  conflict_has_been_set = 1;
+                       		      	 //return conflict;
+                       		      	 break;
+                       		      	  }
+                       		    }
+                       		
+                       		}
+	             	        	
+                      } // for loop
+
+                     } catch(Exception ex) {
+	        this.writeDebugMsg("Error populating Event table: " + ex);
+            throw new webschedulePresentationException("Error getting Events for date: ", ex);
+	    }
+	
+	System.out.println("System conflict flag  "+Integer.toString(conflict));
+	if ( conflict_has_been_set == 1)
+	        return 1;
+	else return 0;
+ 	 	
+  } //end procedure	
+
+                		
+
+
+   public int check_multi_conflict()
+     throws HttpPresentationException, webschedulePresentationException
+    {
+    	String starth = this.getComms().request.getParameter(STARTH);
+        System.out.println("Starth selected on check time method = "+starth);
+    	String startm = this.getComms().request.getParameter(STARTM);
+    	System.out.println("Startm selected = "+startm);
+    	String endh = this.getComms().request.getParameter(ENDH);
+    	System.out.println("endh selected = "+endh);
+    	String endm = this.getComms().request.getParameter(ENDM);
+    	System.out.println("endm selected = "+endm);
+    	String description = this.getComms().request.getParameter(DESCRIPTION);
+    	
+        int event_starthi =  Integer.parseInt(starth);
+	int event_endhi = Integer.parseInt(endh);
+	int event_startmi = Integer.parseInt(startm);
+    	int event_endmi = Integer.parseInt(endm);
+    	
+    	String repeatinfo = this.getComms().request.getParameter(REPEATMENU);
+        String times = this.getComms().request.getParameter(TIMES);
+        int numoftimes =  Integer.parseInt(times);
+	    	
+      	int year = this.getYear();
+        int month = this.getMonth();
+        int day = this.getDay();
+        int event_conflict = 0;
+        int dow, nexteventday, nexteventmonth, nexteventyear;
+        int incrementvalue = 0;
+
+        LinkedList conflict_list = new LinkedList();
+    	LinkedList good_list = new LinkedList();
+    	
+    	int conflictvalue = 0;
+   	
+
+        if  (repeatinfo.equals("week"))
+          incrementvalue = 7;
+        else incrementvalue = 14;
+
+        Calendar eventinfo = Calendar.getInstance();    //initialize
+        eventinfo.set(year, month, day); //first event
+        dow =  eventinfo.get(eventinfo.DAY_OF_WEEK);
+        //check the conflict for the first event
+        event_conflict = checkeventconflict(year,month,day, event_starthi, event_endhi, event_startmi,event_endmi);
+        if (event_conflict == 1)
+          conflict_list.add(new temp_hold(description, event_starthi, event_startmi, event_endhi, event_endmi, day, month,year,dow));
+	else
+       	  good_list.add(new temp_hold(description, event_starthi, event_startmi, event_endhi, event_endmi, day, month,year,dow));
+        for (int t=2; t<=numoftimes; t++)
+        { //for loop
+         eventinfo.add(eventinfo.DAY_OF_MONTH, incrementvalue);
+         nexteventday = eventinfo.get(eventinfo.DAY_OF_MONTH);
+         System.out.println("Next Event Day  "+Integer.toString(nexteventday));
+         nexteventmonth = eventinfo.get(eventinfo.MONTH);
+         System.out.println("Next Event Month  "+Integer.toString(nexteventmonth));
+         nexteventyear = eventinfo.get(eventinfo.YEAR);
+         System.out.println("Next Event Year  "+Integer.toString(nexteventyear));
+         dow =  eventinfo.get(eventinfo.DAY_OF_WEEK);
+         event_conflict = checkeventconflict(nexteventyear,nexteventmonth,nexteventday, event_starthi, event_endhi, event_startmi,event_endmi);
+         if (event_conflict == 1)
+           conflict_list.add(new temp_hold(description, event_starthi, event_startmi, event_endhi, event_endmi, nexteventday, nexteventmonth,nexteventyear,dow));
+	 else
+       	   good_list.add(new temp_hold(description, event_starthi, event_startmi, event_endhi, event_endmi, nexteventday, nexteventmonth,nexteventyear,dow));
+         }//for loop
+
+         System.out.println("Conflict list Size  "+Integer.toString(conflict_list.size()));
+          System.out.println("Good list Size  "+Integer.toString(good_list.size()));
+         if (conflict_list.size() == 0)
+         //there are  conflicts
+         {
+         this.setGoodlist(good_list);
+         conflictvalue=0;
+         }
+         else if (conflict_list.size() > 0) //there is some conflicts
+           {
+           if (good_list.size() == 0)
+            conflictvalue = 2; //there is no good events
+           else
+           {
+           this.setConflictlist(conflict_list);
+           this.setGoodlist(good_list);
+           conflictvalue = 1; //there are some good and conflict events
+           }
+           }
+         return conflictvalue;
+    }
+
+
+    public int checkeventconflict (int year, int month, int day, int event_starthi, int event_endhi, int event_startmi, int event_endmi)
+      throws HttpPresentationException, webschedulePresentationException
+    {
+
+    int conflict = 0;
+        int conflict_has_been_set = 0;
+
+          try {
+
+          	S_event[] EventList = S_eventFactory.findS_eventsForDate(year,month,day);
+          	
+	         // Get collection of events and loop through collection
+	        for(int numEvents = 0; numEvents < EventList.length; numEvents++) {	
+                	S_event currentS_event = EventList[numEvents];
+	        	// set text of new cells to values from string array
+	        	int starthi = currentS_event.getStarth();
+	        	int startmi = currentS_event.getStartm();
+	        	int endhi = currentS_event.getEndh();
+	        	int endmi = currentS_event.getEndm();
+	        	/*int conflict = check_for(starthi,startmi,endhi,endmi,event_starthi,event_startmi,event_endhi,event_endmi);*/
+	        	
+	        	if (event_starthi < starthi)
+	        		{
+	        		  if (event_endhi > starthi)
+	        		  	{
+	        		  	  conflict = 1;
+	        		  	  System.out.println("System conflict flag  "+Integer.toString(conflict));
+	        		  	  conflict_has_been_set = 1;
+	        		  	  //return conflict;
+	        		  	   break;
+	        		  	}
+	        		  else if (event_endhi == starthi)
+	        		  	{
+	        		  	  if (event_endmi > startmi)
+	        		  	  {
+	        		  	  conflict = 1;
+	        		  	  System.out.println("System conflict flag  "+Integer.toString(conflict));
+	        		  	  conflict_has_been_set = 1;
+	        		  	   break;
+	        		  	   }
+	        		  	  }
+	        		
+	        		 }
+	        		
+	        	// 1. if it is equal check min and end time	
+	        	else if (event_starthi == starthi)
+	        		{
+	        		 if (event_startmi >= startmi)
+	        		   {  	//if
+	        		   conflict = 1;
+	        		   System.out.println("System conflict flag  "+Integer.toString(conflict));
+	        		    conflict_has_been_set = 1;
+	        		   //return conflict;
+	        		   break;
+	        		   }        //if
+	        		   else {//else 1
+	        		
+	        			if (event_endhi > starthi)
+	        		  	{
+	        		  	  conflict = 1;
+	        		  	  System.out.println("System conflict flag  "+Integer.toString(conflict));
+	        		  	  conflict_has_been_set = 1;
+	        		  	  //return conflict;
+	        		  	   break;
+	        		  	}
+	        		  else if (event_endhi == starthi)
+	        		  	{
+	        		  	  if (event_endmi > startmi)
+	        		  	  {
+	        		  	  conflict = 1;
+	        		  	  System.out.println("System conflict flag  "+Integer.toString(conflict));
+	        		  	  conflict_has_been_set = 1;
+	        		  	   break;
+	        		  	   }
+	        		  	  }
+	        		   }  //else 1
+	        		 }
+	        		
+	        	
+                       //1.    if it is greater than the booked on make sure it is not in the middle
+                       else if (event_starthi > starthi)
+                       		{
+                       		if (event_starthi < endhi)
+                       		 {
+                       		   conflict = 1;
+                       		   System.out.println("System conflict flag  "+Integer.toString(conflict));
+                       		   conflict_has_been_set = 1;
+                       		   break;
+                       		 }
+                       		else if (event_starthi == endhi)
+                       		    {
+                       		      if (event_startmi < endmi)
+                       		      {
+                       		
+                       		      	conflict = 1;
+                       		      	 System.out.println("System conflict flag  "+Integer.toString(conflict));
+                       		      	  conflict_has_been_set = 1;
+                       		      	 //return conflict;
+                       		      	 break;
+                       		      	  }
+                       		    }
+                       		
+                       		}
+	             	        	
+                      } // for loop
+
+                     } catch(Exception ex) {
+	        this.writeDebugMsg("Error populating Event table: " + ex);
+            throw new webschedulePresentationException("Error getting Events for date: ", ex);
+	    }
+	
+	System.out.println("System conflict flag  "+Integer.toString(conflict));
+	if ( conflict_has_been_set == 1)
+	        return 1;
+	else return 0;
+ 	 	
+  } //end procedure	
+
+                       		
+    public int check_time()
+    throws HttpPresentationException, webschedulePresentationException
+    {
+    	String starth = this.getComms().request.getParameter(STARTH);
+        System.out.println("Starth selected on check time method = "+starth);
+    	String startm = this.getComms().request.getParameter(STARTM);
+    	System.out.println("Startm selected = "+startm);
+    	String endh = this.getComms().request.getParameter(ENDH);
+    	System.out.println("endh selected = "+endh);
+    	String endm = this.getComms().request.getParameter(ENDM);
+    	System.out.println("endm selected = "+endm);
+    	
+
+	int starthi =  Integer.parseInt(starth);
+	int endhi = Integer.parseInt(endh);
+	int startmi = Integer.parseInt(startm);
+    	int endmi = Integer.parseInt(endm);		
+	    			    			
+	
+/*	Calendar eventinfo = Calendar.getInstance();
+    	int todayday = eventinfo.get(eventinfo.DAY_OF_MONTH);
+    	int todaymonth = eventinfo.get(eventinfo.MONTH);
+    	int todayyear = eventinfo.get(eventinfo.YEAR);
+ 	eventinfo.set(this.getYear(),this.getMonth(),this.getDay(),starthi-1,endhi-1);    			*/
+ 	
+ 	if ((endhi < starthi) || ((endhi == starthi) && (endmi < startmi)))
+ 	{
+ 	  return 1;
+ 	}     else return  0;
+} 	
+
+
+ protected int check_proj_hours(int numoftimes)
+   throws HttpPresentationException
+   {
+   	double starttime;
+   	double endtime;
+   	double donehours;
+   	double totalhours;
+   	double eventhours;
+       	String starth = this.getComms().request.getParameter(STARTH);
+        System.out.println("Starth selected = "+starth);
+    	String startm = this.getComms().request.getParameter(STARTM);
+    	System.out.println("Startm selected = "+startm);
+    	String endh = this.getComms().request.getParameter(ENDH);
+    	System.out.println("endh selected = "+endh);
+    	String endm = this.getComms().request.getParameter(ENDM);
+    	System.out.println("endm selected = "+endm);
+    	
+    	int starthi =  Integer.parseInt(starth);
+	int endhi = Integer.parseInt(endh);
+	int startmi = Integer.parseInt(startm);
+    	int endmi = Integer.parseInt(endm);
+    	
+    	if (startmi == 30)
+    		{
+    		double startt = (double) starthi;
+    		starttime =    startt + 0.5;
+    		}
+    	else starttime = (double) starthi;
+    	
+    	if (endmi == 30)
+    		endtime =     endhi + 0.5;
+    	else endtime = (double) endhi;	
+    	eventhours = endtime - starttime;
+    	
+    	Project theProject = this.getProject();
+    	
+    	try
+    	{
+    	donehours = theProject.getDonehours();
+	System.out.println("done hours = "+donehours);
+	
+    	totalhours = theProject.getTotalhours();
+	System.out.println("total hours"+total hours);
+	
+    	} catch  (Exception ex) {
+            throw new webschedulePresentationException("Error getting project information", ex);
+        }
+        if (numoftimes == 0)
+        {
+        if ((totalhours-donehours) >= eventhours)
+ 	{
+ 	  return 0;
+ 	}     else return  1;
+ 	} else {
+ 	if ((totalhours-donehours) >= eventhours*numoftimes)
+ 	{
+ 	  return 0;
+ 	}     else return  1;
+ 	}
+ 	
+
+   }
+    
+    /**
+     * 
+     */
+    public String showPage(String errorMsg)
+    throws HttpPresentationException, webschedulePresentationException
+    {
+    	String temptext = null;
+	String mytext = null;
+	int flagid = 0;
+	String Proj_text = null;
+    	int temphour;
+    	String starth = this.getComms().request.getParameter(STARTH);
+    	String startm = this.getComms().request.getParameter(STARTM);
+    	String endh = this.getComms().request.getParameter(ENDH);
+    	String endm = this.getComms().request.getParameter(ENDM);
+    	String description = this.getComms().request.getParameter(DESCRIPTION);
+    	String repeatinfo = this.getComms().request.getParameter(REPEATMENU);
+        System.out.println("Repeat Information = "+repeatinfo);
+        /*String times = this.getComms().request.getParameter(TIMES);
+         System.out.println("Num of times = "+times);*/
+        EditEventHTML page = new EditEventHTML();
+	Blocktimec[] BlockList = null;
+	int nofbe;
+	String project_name = null;
+
+
+         int year = this.getYear();
+        int month = this.getMonth();
+        int day = this.getDay();
+         String projectname = null;
+
+       String eventdatestring = Integer.toString(month+1)+"/"+Integer.toString(day)+"/"+Integer.toString(year);
+            try
+            {
+       		 projectname = this.getProject().getProj_name();
+          } catch (webscheduleBusinessException ex) {
+         throw new webschedulePresentationException("Error getting project name", ex);
+         }
+
+        page.setTextDateID ("Scheduling for date : " + eventdatestring);
+        page.setTextProject_name(projectname);
+
+        HTMLTableRowElement templateRow = page.getElementTemplateRow();
+        Node EventTable = templateRow.getParentNode();
+
+         templateRow.removeAttribute("id");
+
+         try {
+	        S_event[] EventList = S_eventFactory.findS_eventsForDate(year,month,day);
+	
+	        BlockList = BlocktimeFactory.findBlocktimeForDate (year,month,day);
+                nofbe = BlockList.length;
+                System.out.println(" ***Number of Block events ***" + Integer.toString(nofbe));
+	
+
+               if (EventList.length==0)
+         {      //begin else if no events
+          for (int numBlockE = 0; numBlockE < nofbe; numBlockE ++)   {// begin Block event for loop
+	        Blocktimec BlockE = BlockList[numBlockE];
+	        int starthb = BlockE.getStarth();
+	        int startmb = BlockE.getStartm();
+		int endhb = BlockE.getEndh();
+	        int endmb = BlockE.getEndm();		        	
+	                String ampm = null;
+	               	if (starthb < 12) ampm = "am";
+      			else if (starthb == 12) ampm = "Noon";
+			else if (starthb == 24) { //begin else if
+      				starthb = starthb-12;
+				ampm = "Mid.";
+      				}          //end else if
+			else {     //begin else
+      				starthb = starthb -12;
+				ampm = "pm";
+		        	}		       //end else
+	        	String starttime = Integer.toString(starthb)+":"+Integer.toString(startmb)+" "+ampm;
+	        	 if (endhb < 12) ampm = "am";
+      			else if (endhb == 12) ampm = "Noon";
+			else if (endhb == 24) {       //begin else if
+      			endhb = endhb-12;
+			ampm = "Mid.";
+      				}         //end else if
+		      		else {                 //begin else
+      					endhb = endhb -12;
+		      			ampm = "pm";
+		      	     	}		//end else
+	        	        String endtime =   Integer.toString(endhb)+":"+Integer.toString(endmb)+" "+ampm;
+	        	        mytext ="Blocktime";
+	        	
+	        	    	page.setTextStart_time(starttime);
+	        		page.setTextEnd_time (endtime);
+	        		
+	        		page.setTextOwner(mytext);
+				flagid = BlockE.getFlag();
+				if (flagid == 1)
+					Proj_text = "Development";
+				else if (flagid == 2)
+					Proj_text = "Clinical";
+				else Proj_text = "Maintenance/Setup";		
+				
+          		page.setTextProj_name(Proj_text);
+	        	page.setTextDescrip(BlockE.getDescription());
+	        	
+
+	        // Add a deep clone of the row to the DOM
+                Node clonedNode = templateRow.cloneNode(true);
+                EventTable.appendChild(clonedNode);
+	        	
+		} //end for loop
+         }    // end else if no events
+
+
+
+         else if  ((nofbe > 0)   && ( EventList.length > 0))
+         {                       //begin num of block event if
+         	int Blockindex = 0;
+         	
+
+         	
+         	for(int numEvents = 0; numEvents < EventList.length; numEvents++) {	// begin for loop for events
+                	S_event currentS_event = EventList[numEvents];
+	        	// set text of new cells to values from string array
+	        	int starthi = currentS_event.getStarth();
+	        	System.out.println(" ***Start time for event ***" + Integer.toString(starthi));
+	        	int startmi = currentS_event.getStartm();
+	        	int event_dow = currentS_event.getEventdayofw();
+	        	//determine link color blue for prime time, purple for development and green otherwise.
+	        	
+	        	for (int numBlockE = Blockindex; numBlockE < nofbe; numBlockE ++)   {// begin Block event for loop
+	        	     Blocktimec BlockE = BlockList[numBlockE];
+	        	     int starthb = BlockE.getStarth();
+	        	     System.out.println(" ***Start time for Block event ***" + Integer.toString(starthb));
+	        	     int startmb = BlockE.getStartm();
+			     int endhb = BlockE.getEndh();
+	        	     int endmb = BlockE.getEndm();		        	
+	        	     if (starthb < starthi)
+	        	     {                //begin if 1
+	        	        String ampm = null;
+	        	       	if (starthb < 12) ampm = "am";
+      				else if (starthb == 12) ampm = "Noon";
+		      		else if (starthb == 24) { //begin else if
+      					starthb = starthb-12;
+		      			ampm = "Mid.";
+      					}          //end else if
+		      		else {     //begin else
+      					starthb = starthb -12;
+		      			ampm = "pm";
+		      	     	}		       //end else
+	        		String starttime = Integer.toString(starthb)+":"+Integer.toString(startmb)+" "+ampm;
+	        		 if (endhb < 12) ampm = "am";
+      				else if (endhb == 12) ampm = "Noon";
+		      		else if (endhb == 24) {       //begin else if
+      					endhb = endhb-12;
+		      			ampm = "Mid.";
+      				}         //end else if
+		      		else {                 //begin else
+      					endhb = endhb -12;
+		      			ampm = "pm";
+		      	     	}		//end else
+				String endtime =   Integer.toString(endhb)+":"+Integer.toString(endmb)+" "+ampm;
+	        	        Blockindex = Blockindex + 1;
+	        	
+			mytext ="Blocktime";
+	        	
+	        	    	page.setTextStart_time(starttime);
+	        		page.setTextEnd_time (endtime);
+	        		
+	        		page.setTextOwner(mytext);
+				flagid = BlockE.getFlag();
+				if (flagid == 1)
+					Proj_text = "Development";
+				else if (flagid == 2)
+					Proj_text = "Clinical";
+				else Proj_text = "Maintenance/Setup";		
+				
+          		page.setTextProj_name(Proj_text);
+	        	page.setTextDescrip(BlockE.getDescription());
+			
+			// Add a deep clone of the row to the DOM
+                	Node clonedNode = templateRow.cloneNode(true);
+                	EventTable.appendChild(clonedNode);
+				
+			     } //end if 1
+			     else if (starthb == starthi) { //begin elseif
+			       if (startmb < startmi)
+			     	 {          //begin if
+			     	  String ampm = null;
+	        	  	  if (starthb < 12) ampm = "am";
+      				  else if (starthb == 12) ampm = "Noon";
+		      		  else if (starthb == 24) {  //begin else if
+      				  starthb = starthb-12;
+		      		   ampm = "Mid.";
+      				     }     //end else if
+		      		   else {               //begin else
+      				     starthb = starthb -12;
+		      		     ampm = "pm";
+		      	     	      }		//end else
+	        		     String starttime = Integer.toString(starthb)+":"+Integer.toString(startmb)+" "+ampm;
+	        		     if (endhb < 12) ampm = "am";
+      				     else if (endhb == 12) ampm = "Noon";
+		      		     else if (endhb == 24) { //begin else if
+      				     endhb = endhb-12;
+		      		     ampm = "Mid.";
+      				      }          		//begin else if
+		      		     else { //begin else
+      				     endhb = endhb -12;
+		      		     ampm = "pm";
+		      		     }             //end else
+		      	
+	        	        String endtime =   Integer.toString(endhb)+":"+Integer.toString(endmb)+" "+ampm;
+	        	        
+				
+				
+			     	 	}		      //end if
+			     	} //end else if
+			     	else {          //begin else
+			     	 String ampm = null;
+	        	  	  if (starthb < 12) ampm = "am";
+      				  else if (starthb == 12) ampm = "Noon";
+		      		  else if (starthb == 24) {        //begin else if
+      				  starthb = starthb-12;
+		      		   ampm = "Mid.";
+      				     }   //end else if
+		      		   else {             //begin else
+      				     starthb = starthb -12;
+		      		     ampm = "pm";
+		      	     	      }		      //end else
+	        		     String starttime = Integer.toString(starthb)+":"+Integer.toString(startmb)+" "+ampm;
+	        		     if (endhb < 12) ampm = "am";
+      				     else if (endhb == 12) ampm = "Noon";
+		      		     else if (endhb == 24) {    //begin else if
+      				     endhb = endhb-12;
+		      		     ampm = "Mid.";
+      				      }  			//end else if
+		      		     else {                     // begin else
+      				     endhb = endhb -12;
+		      		     ampm = "pm";
+		      	     	}		                //end else
+	        	        String endtime =   Integer.toString(endhb)+":"+Integer.toString(endmb)+" "+ampm;
+	        	        
+				mytext ="Blocktime";
+	        	
+	        	    	page.setTextStart_time(starttime);
+	        		page.setTextEnd_time (endtime);
+	        		
+	        		page.setTextOwner(mytext);
+				flagid = BlockE.getFlag();
+				if (flagid == 1)
+					Proj_text = "Development";
+				else if (flagid == 2)
+					Proj_text = "Clinical";
+				else Proj_text = "Maintenance/Setup";		
+				
+          		page.setTextProj_name(Proj_text);
+	        	page.setTextDescrip(BlockE.getDescription());
+			Blockindex = Blockindex + 1;
+			
+			// Add a deep clone of the row to the DOM
+                Node clonedNode = templateRow.cloneNode(true);
+                EventTable.appendChild(clonedNode);
+	
+				
+			   }		//end else  		
+			     		        	      	
+	        }//end Block event for loop
+	        	
+	        	
+	        	
+	        	String ampm = null;
+	        	
+	        	if (starthi < 12) ampm = "am";
+      			else if (starthi == 12) ampm = "Noon";
+		      	else if (starthi == 24) {
+      				starthi = starthi-12;
+		      		ampm = "Mid.";
+      				}
+		      	else {
+      				starthi = starthi -12;
+		      		ampm = "pm";
+		      	     }		
+	        	String starttime = Integer.toString(starthi)+":"+Integer.toString(startmi)+" "+ampm;
+	        		   	
+	        	int endhi = currentS_event.getEndh();
+	        	int endmi = currentS_event.getEndm();
+	        	
+	        	if (endhi < 12) ampm = "am";
+      			else if (endhi == 12) ampm = "Noon";
+		      	else if (endhi == 24) {
+      				endhi = endhi-12;
+		      		ampm = "Mid.";
+      				}
+		      	else {
+      				endhi = endhi -12;
+		      		ampm = "pm";
+		      	     }		
+	        	
+	        	String endtime =   Integer.toString(endhi)+":"+Integer.toString(endmi)+" "+ampm;
+	        	String ownername = currentS_event.getOwnerLastname();	        	
+	        	String projowner =  currentS_event.getProj_owner_name() ;
+	        	if  (currentS_event.isDevelop())
+	        	  {
+	        	        if (this.getUser().isDeveloper())
+	        		mytext = ownername;
+	        		else
+	        		mytext = "Development time";
+	        	  }	
+	        	else
+	        		mytext = "Development time";
+	        	
+			page.setTextOwner(mytext);	
+			
+			
+			project_name = currentS_event.getProj_owner_name();
+			
+			if  (currentS_event.isDevelop())
+	        	  {
+	        	        if (this.getUser().isDeveloper())
+	        		mytext = project_name;
+	        		else
+	        		mytext = "Development time";
+	        	  }	
+	        	else
+	        		mytext = project_name;
+			
+			
+          		page.setTextProj_name(mytext);
+	        	page.setTextDescrip(currentS_event.getDescription());
+	        	
+			
+			
+	        		}   // end for loop for events
+ 	
+         	// Add a deep clone of the row to the DOM
+                Node clonedNode = templateRow.cloneNode(true);
+                EventTable.appendChild(clonedNode);
+
+                      	
+
+         }	//end num of block events if stat
+
+         else
+         {	// no block time available for this date
+                 // Get collection of Projs and loop through collection
+	        // to add each Proj as a row in the table.
+	        for(int numEvents = 0; numEvents < EventList.length; numEvents++) {	
+                S_event currentS_event = EventList[numEvents];
+	        	// set text of new cells to values from string array
+	        	int starthi = currentS_event.getStarth();
+	        	int startmi = currentS_event.getStartm();
+	        	String ampm = null;
+	        	
+	        	if (starthi < 12) ampm = "am";
+      			else if (starthi == 12) ampm = "Noon";
+		      	else if (starthi == 24) {
+      				starthi = starthi-12;
+		      		ampm = "Mid.";
+      				}
+		      	else {
+      				starthi = starthi -12;
+		      		ampm = "pm";
+		      	     }		
+	        	String starttime = Integer.toString(starthi)+":"+Integer.toString(startmi)+" "+ampm;
+	        		   	
+	        	int endhi = currentS_event.getEndh();
+	        	int endmi = currentS_event.getEndm();
+	        	
+	        	if (endhi < 12) ampm = "am";
+      			else if (endhi == 12) ampm = "Noon";
+		      	else if (endhi == 24) {
+      				endhi = endhi-12;
+		      		ampm = "Mid.";
+      				}
+		      	else {
+      				endhi = endhi -12;
+		      		ampm = "pm";
+		      	     }		
+	        	
+	        	
+	        	String endtime =   Integer.toString(endhi)+":"+Integer.toString(endmi)+" "+ampm;
+	        	page.setTextStart_time(starttime);
+	        	page.setTextEnd_time (endtime);
+	        	      	
+	        	String ownername = currentS_event.getOwnerFirstname()+" "+currentS_event.getOwnerLastname();
+	        	
+	        	
+	        	if  (currentS_event.isDevelop())
+	        	  {
+	        	        if (this.getUser().isDeveloper())
+	        		mytext = ownername;
+	        		else
+	        		mytext = "Development time";
+	        	  }	
+	        	else
+	        		mytext = ownername;
+				
+	        	page.setTextOwner(mytext);	
+			
+			
+			project_name = currentS_event.getProj_owner_name();
+			
+			if  (currentS_event.isDevelop())
+	        	  {
+	        	        if (this.getUser().isDeveloper())
+	        		mytext = project_name;
+	        		else
+	        		mytext = "Development time";
+	        	  }	
+	        	else
+	        		mytext = project_name;
+			
+			
+          		page.setTextProj_name(mytext);
+	        	page.setTextDescrip(currentS_event.getDescription());
+	        	
+
+	        // Add a deep clone of the row to the DOM
+                Node clonedNode = templateRow.cloneNode(true);
+                EventTable.appendChild(clonedNode);
+
+                 }
+
+            }
+	    } catch(Exception ex) {
+	        this.writeDebugMsg("Error populating Event table: " + ex);
+            throw new webschedulePresentationException("Error getting Events for date: ", ex);
+	    }
+
+	 templateRow.getParentNode().removeChild(templateRow);
+	
+/*       HTMLOptionElement starthtemplateOption = page.getElementStarthtemplateOption();
+       HTMLOptionElement startmtemplateOption = page.getElementStartmtemplateOption();
+       HTMLOptionElement endhtemplateOption = page.getElementEndhtemplateOption();
+       HTMLOptionElement endmtemplateOption = page.getElementEndmtemplateOption();
+
+      Node starthSelect = starthtemplateOption.getParentNode();
+      Node startmSelect = startmtemplateOption.getParentNode();
+      Node endhSelect = endhtemplateOption.getParentNode();
+      Node endmSelect = endmtemplateOption.getParentNode();
+
+      starthtemplateOption.removeAttribute("id");
+      startmtemplateOption.removeAttribute("id");
+      endhtemplateOption.removeAttribute("id");
+      endmtemplateOption.removeAttribute("id");
+
+      starthtemplateOption.removeChild(starthtemplateOption.getFirstChild());
+      startmtemplateOption.removeChild(startmtemplateOption.getFirstChild());
+      endhtemplateOption.removeChild(endhtemplateOption.getFirstChild());
+      endmtemplateOption.removeChild(endmtemplateOption.getFirstChild());
+	
+
+      for (int hour = 0; hour < 25; hour ++)
+      {
+      	if (hour < 12) temptext = Integer.toString(hour)+"am";
+      	else if (hour == 12) temptext = Integer.toString(hour)+"Noon";
+      	else if (hour == 24) {
+      		temphour = hour-12;
+      		temptext = Integer.toString(temphour)+"Mid.";
+      		}
+      	else {
+      		temphour = hour -12;
+      		temptext = Integer.toString(temphour)+"pm";
+      	     }		
+
+      HTMLOptionElement clonedOption = (HTMLOptionElement) starthtemplateOption.cloneNode(true);
+                clonedOption.setValue(Integer.toString(hour));
+                Node optionTextNode = clonedOption.getOwnerDocument().
+                        createTextNode(temptext);
+                clonedOption.appendChild(optionTextNode);
+                // Do only a shallow copy of the option as we don't want the text child
+                // of the node option
+                starthSelect.appendChild(clonedOption);
+         }
+
+      for (int min = 0; min < 60; min+=30)
+      {
+
+      HTMLOptionElement clonedOption = (HTMLOptionElement) startmtemplateOption.cloneNode(true);
+                clonedOption.setValue(Integer.toString(min));
+                Node optionTextNode = clonedOption.getOwnerDocument().
+                        createTextNode(Integer.toString(min));
+                clonedOption.appendChild(optionTextNode);
+                // Do only a shallow copy of the option as we don't want the text child
+                // of the node option
+                startmSelect.appendChild(clonedOption);
+         }
+
+
+         for (int min = 0; min < 60; min+=30)
+      {
+
+      HTMLOptionElement clonedOption = (HTMLOptionElement) endmtemplateOption.cloneNode(true);
+                clonedOption.setValue(Integer.toString(min));
+                Node optionTextNode = clonedOption.getOwnerDocument().
+                        createTextNode(Integer.toString(min));
+                clonedOption.appendChild(optionTextNode);
+                // Do only a shallow copy of the option as we don't want the text child
+                // of the node option
+                endmSelect.appendChild(clonedOption);
+         }
+
+     for (int hour = 0; hour < 25; hour ++)
+      {
+      if (hour < 12) temptext = Integer.toString(hour)+"am";
+      	else if (hour == 12) temptext = Integer.toString(hour)+"Noon";
+      	else if (hour == 24) {
+      		temphour = hour-12;
+      		temptext = Integer.toString(temphour)+"Mid.";
+      		}
+      	else {
+      		temphour = hour -12;
+      		temptext = Integer.toString(temphour)+"pm";
+      	     }		
+
+      HTMLOptionElement clonedOption = (HTMLOptionElement) endhtemplateOption.cloneNode(true);
+                clonedOption.setValue(Integer.toString(hour));
+                Node optionTextNode = clonedOption.getOwnerDocument().
+                        createTextNode(temptext);
+                clonedOption.appendChild(optionTextNode);
+                // Do only a shallow copy of the option as we don't want the text child
+                // of the node option
+                endhSelect.appendChild(clonedOption);
+         }
+
+
+        starthtemplateOption.getParentNode().removeChild(starthtemplateOption);
+        startmtemplateOption.getParentNode().removeChild(startmtemplateOption);
+        endhtemplateOption.getParentNode().removeChild(endhtemplateOption);
+        endmtemplateOption.getParentNode().removeChild(endmtemplateOption);*/
+
+
+        //First priority: try to use the passed-in error message
+        // Second priority: try to use the session data's error message
+        // If there are no error messages then clear the prototype error text
+        if(null != errorMsg || 
+           null != (errorMsg = this.getSessionData().getAndClearUserMessage())) {       
+            page.setTextErrorText(errorMsg);
+        } else {
+            page.getElementErrorText().getParentNode().removeChild(page.getElementErrorText());
+        }
+
+
+        if(null != this.getComms().request.getParameter(DESCRIPTION)) {
+            page.getElementDescription().setValue(this.getComms().request.getParameter(DESCRIPTION));
+        }
+
+        if(null != this.getComms().request.getParameter(REPEATMENU)) {
+            page.getElementDescription().setValue(this.getComms().request.getParameter(REPEATMENU));
+        }
+
+      /*  if(null != this.getComms().request.getParameter(TIMES)) {
+            page.getElementDescription().setValue(this.getComms().request.getParameter(TIMES));
+        }*/
+
+	    return page.toDocument();
+    }
+
+
+     public String handleEditEvent()
+        throws HttpPresentationException
+    {
+
+       String day = this.getComms().request.getParameter(DATE);
+       System.out.println("date selected = "+day);
+        String month = this.getComms().request.getParameter(MONTH);
+	System.out.println("month selected = "+month);
+        String year = this.getComms().request.getParameter(YEAR);
+	System.out.println("year selected = "+year);
+	
+            if ((null == day)||(null == month)||(null == year)) {
+            	this.getSessionData().setUserMessage("Please choose a valid date ");
+                 throw new ClientPageRedirectException(SELECT_DATE_PAGE);
+                 // Show error message that project not found
+            } else {
+            	this.setYear(Integer.parseInt(year));
+            	this.setMonth(Integer.parseInt(month));
+            	this.setDay(Integer.parseInt(day));
+                throw new ClientPageRedirectException(EDIT_EVENT_PAGE);
+           }
+      }
+
+  protected void update_projhours(int numoftimes)
+   throws HttpPresentationException
+   {
+   	double starttime;
+   	double endtime;
+   	double donehours;
+   	double totalhours;
+   	double eventhours;
+       	String starth = this.getComms().request.getParameter(STARTH);
+        System.out.println("Starth selected = "+starth);
+    	String startm = this.getComms().request.getParameter(STARTM);
+    	System.out.println("Startm selected = "+startm);
+    	String endh = this.getComms().request.getParameter(ENDH);
+    	System.out.println("endh selected = "+endh);
+    	String endm = this.getComms().request.getParameter(ENDM);
+    	System.out.println("endm selected = "+endm);
+    	
+    	int starthi =  Integer.parseInt(starth);
+	int endhi = Integer.parseInt(endh);
+	int startmi = Integer.parseInt(startm);
+    	int endmi = Integer.parseInt(endm);
+    	
+    	if (startmi == 30)
+    		{
+    		double startt = (double) starthi;
+    		starttime =    startt + 0.5;
+    		}
+    	else starttime = (double) starthi;
+    	
+    	if (endmi == 30)
+    		endtime =     endhi + 0.5;
+    	else endtime = (double) endhi;	
+    	
+    	if (numoftimes == 0)
+    	eventhours = endtime - starttime;
+    	else eventhours =  (endtime - starttime) * numoftimes;
+    	
+    	Project theProject = this.getProject();
+    	
+    	try
+    	{    	
+    	donehours = theProject.getDonehours() + eventhours;
+    	totalhours = theProject.getTotalhours() - eventhours;
+    	} catch  (Exception ex) {
+            throw new webschedulePresentationException("Error getting project information", ex);
+        }
+
+    try {
+            theProject.setProj_name(theProject.getProj_name());
+            theProject.setPassword(theProject.getPassword());
+	    theProject.setDescription(theProject.getDescription());
+	    theProject.setIndexnum(theProject.getIndexnum());
+	    theProject.setTotalhours(totalhours);
+	    theProject.setDonehours(donehours);
+            theProject.setCodeofpay(theProject.getCodeofpay());
+
+	        theProject.setOwner(this.getUser());
+	        theProject.save();	
+	    } catch(Exception ex) {
+            throw new webschedulePresentationException("Error adding project", ex);
+        }
+
+    }
+
+
+
+
+
+  protected void  send_notification(int numoftimes)
+   throws HttpPresentationException
+   {
+   	double starttime;
+   	double endtime;
+   	double donehours;
+   	double totalhours;
+   	double eventhours;
+   	String user_email = null;
+   	String [] message = null;
+       	String starth = this.getComms().request.getParameter(STARTH);
+        System.out.println("Starth selected = "+starth);
+    	String startm = this.getComms().request.getParameter(STARTM);
+    	System.out.println("Startm selected = "+startm);
+    	String endh = this.getComms().request.getParameter(ENDH);
+    	System.out.println("endh selected = "+endh);
+    	String endm = this.getComms().request.getParameter(ENDM);
+    	System.out.println("endm selected = "+endm);
+    	
+    	int year = this.getYear();
+        int month = this.getMonth();
+        int day = this.getDay();
+
+       String eventdatestring = Integer.toString(month+1)+"/"+Integer.toString(day)+"/"+Integer.toString(year);
+    	
+    	int starthi =  Integer.parseInt(starth);
+	int endhi = Integer.parseInt(endh);
+	int startmi = Integer.parseInt(startm);
+    	int endmi = Integer.parseInt(endm);
+    	
+    	if (startmi == 30)
+    		{
+    		double startt = (double) starthi;
+    		starttime =    startt + 0.5;
+    		}
+    	else starttime = (double) starthi;
+    	
+    	if (endmi == 30)
+    		endtime =     endhi + 0.5;
+    	else endtime = (double) endhi;	
+    	eventhours = endtime - starttime;
+    	
+    	Project theProject = this.getProject();
+    	
+    	try
+    	{    	
+    	donehours = theProject.getDonehours() + eventhours;
+    	totalhours = theProject.getTotalhours() - eventhours;
+    	} catch  (Exception ex) {
+            throw new webschedulePresentationException("Error getting project information", ex);
+        }
+
+        Person theUser = this.getUser();
+    	
+    	try
+    	{    	
+    	user_email = theUser.getEmail();
+    	} catch  (Exception ex) {
+            throw new webschedulePresentationException("Error getting user's email", ex);
+        }
+
+    try {
+    	    SendMail sch_not;	
+    	    String from = "emang";
+    	    String to = user_email;
+    	    String subject = "A slot has been schedule for the 3T magnet";
+    	    if (numoftimes == 0)
+    	    {
+    	    String[] message1 = {"This message is to confirm that you scheduled "+eventhours+" hours for "+ theProject.getProj_name(),
+    	    			"Date:             "+eventdatestring,
+    	    			"Starting time is: "+starth+":"+startm,
+    	    			"End time is: "+endh+":"+endm,
+    	    			" "}  ;
+    	   message = message1;
+    	   } 			
+    	   else
+    	   {
+    	    String[] messagem = {"This message is to confirm that you scheduled "+eventhours+" hours for "+ theProject.getProj_name(),
+    	    			"Date:             "+eventdatestring,
+    	    			"Starting time is: "+starth+":"+startm,
+    	    			"End time is: "+endh+":"+endm,
+    	    			"This event is a repeat event for "+numoftimes+" times",
+    	    			" "}  ; 			
+    	    message = messagem;
+    	    }			
+           sch_not = new SendMail (from,to,subject,message);
+
+	    } catch(Exception ex) {
+            throw new webschedulePresentationException("Error sending an email", ex);
+        }
+
+    }
+
+
+
+
+
+
+    /**
+     * Method to save a new or existing event to the database
+     */
+ protected void saveS_event(S_event theS_event)
+          throws HttpPresentationException, webschedulePresentationException
+    {
+        String starth = this.getComms().request.getParameter(STARTH);
+        System.out.println("Starth selected = "+starth);
+    	String startm = this.getComms().request.getParameter(STARTM);
+    	System.out.println("Startm selected = "+startm);
+    	String endh = this.getComms().request.getParameter(ENDH);
+    	System.out.println("endh selected = "+endh);
+    	String endm = this.getComms().request.getParameter(ENDM);
+    	System.out.println("endm selected = "+endm);
+    	String description = this.getComms().request.getParameter(DESCRIPTION);
+    	System.out.println("decription = "+description);
+    	Calendar eventinfo = Calendar.getInstance();
+    	int todayday = eventinfo.get(eventinfo.DAY_OF_MONTH);
+    	int todaymonth = eventinfo.get(eventinfo.MONTH);
+    	int todayyear = eventinfo.get(eventinfo.YEAR);
+    	eventinfo.set(this.getYear(),this.getMonth(),this.getDay());
+    	int dow = eventinfo.get(eventinfo.DAY_OF_WEEK);
+    	System.out.println("day of the week = "+Integer.toString(dow));
+    	
+    	try {
+    		System.out.println("about to save one ");
+    		theS_event.setDescription(description);
+    		theS_event.setStarth(Integer.parseInt(starth));
+    		theS_event.setStartm(Integer.parseInt(startm));
+    		theS_event.setEndh(Integer.parseInt(endh));
+    		theS_event.setEndm(Integer.parseInt(endm));
+    		theS_event.setEventday(this.getDay());
+    		theS_event.setEventmonth(this.getMonth());
+    		theS_event.setEventyear(this.getYear());
+    		theS_event.setEventdayofw(dow);
+    		theS_event.setTodayday(todayday);
+    		theS_event.setTodaymonth(todaymonth);
+    		theS_event.setTodayyear(todayyear);
+    		theS_event.setOwner(this.getUser());
+    		theS_event.setProj_owner(this.getProject());
+    		theS_event.setDevelop(this.getUser().isDeveloper());
+    		theS_event.setRepeat(false);
+    		System.out.println("about to save two ");
+    		theS_event.save();
+    		System.out.println("AN EVENT HAS BEEN SAVED ");
+    		
+    	 } catch(Exception ex) {
+    throw new webschedulePresentationException("Error adding an event, make sure all fields are filled", ex);
+     }
+      }  	
+
+       /**
+     * Method to save a multiple event to the database
+     */
+ protected void saveMultiS_event()
+          throws HttpPresentationException, webschedulePresentationException
+    {
+
+    LinkedList mygood_list = new LinkedList();
+
+    temp_hold good_event = null;
+    mygood_list = this.getGoodlist();
+
+
+
+    Calendar eventinfo = Calendar.getInstance();
+    int todayday = eventinfo.get(eventinfo.DAY_OF_MONTH);
+    int todaymonth = eventinfo.get(eventinfo.MONTH);
+    int todayyear = eventinfo.get(eventinfo.YEAR);
+
+    for (int c = 0; c <  mygood_list.size(); c++)
+    	     {
+    	  Object list_evento = mygood_list.get(c);
+    	  good_event = (temp_hold) list_evento;
+    	     System.out.println("Good Event Description "+good_event.getcdescription());
+    	
+    	  try {
+    	  	 S_event theS_event = new S_event();
+    		System.out.println("about to save one Multi Events");
+    		theS_event.setDescription(good_event.getcdescription());
+    		String tempdes = theS_event.getDescription();
+    		System.out.println("Temp Description = "+tempdes);
+    		theS_event.setStarth(good_event.getcstarth());
+    		theS_event.setStartm(good_event.getcstartm());
+    		theS_event.setEndh(good_event.getcendh());
+    		theS_event.setEndm(good_event.getcendm());
+    		theS_event.setEventday(good_event.getceventday());
+    		theS_event.setEventmonth(good_event.getceventmonth());
+    		theS_event.setEventyear(good_event.getceventyear());
+    		theS_event.setEventdayofw(good_event.getceventdayofw());
+    		theS_event.setTodayday(todayday);
+    		theS_event.setTodaymonth(todaymonth);
+    		theS_event.setTodayyear(todayyear);
+    		theS_event.setOwner(this.getUser());
+    		theS_event.setProj_owner(this.getProject());
+    		theS_event.setDevelop(this.getUser().isDeveloper());
+    		theS_event.setRepeat(true);
+    		System.out.println("about to save two ");
+    		theS_event.save();
+    		System.out.println("AN EVENT HAS BEEN SAVED ");
+    		
+    	 	} catch(Exception ex) {
+          	throw new webschedulePresentationException("Error adding an event", ex);
+    		 }
+      	     }  	
+    	
+      }
+
+
+}
+
+

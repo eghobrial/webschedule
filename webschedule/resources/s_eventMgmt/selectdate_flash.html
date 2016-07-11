@@ -1,0 +1,526 @@
+
+<HTML>
+<HEAD>
+<TITLE>Select a Date</TITLE>
+
+
+
+</HEAD>
+<link rel="stylesheet" href="../media/StyleSheet.css">
+<table width="975" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td width="19" valign="top" rowspan="6">&nbsp;</td>
+    <td valign="top" height="43" width="241"><img src="../media/Hlogo.gif" width="213" height="43"></td>
+    <td valign="top" colspan="2">&nbsp;</td>
+    <td valign="top" colspan="2"> 
+      <div align="center"></div>
+    </td>
+    <td width="19" rowspan="7" valign="top">&nbsp;</td>
+    <td width="2"></td>
+  </tr>
+  <tr> 
+    <td height="16" valign="top" colspan="5" bgcolor="#000066"><font color=red face=""><span id="ProjectID"><img src="../media/Hucsd.gif" width="600" height="14"></span></font></td>
+    <td></td>
+  </tr>
+  <tr> 
+    <td height="48" valign="top" colspan="2" bgcolor="#006699" > 
+      <form name="Prevform" method="get" action="SelectDate.html">
+        <input type="image" border="0" name="Submit" src="../media/prev_month.jpg" width="105" height="25" alt="Prev Month">
+        <input type ="hidden" name = "event2" value = "PrevMonth">
+      </form>
+    </td>
+    <td valign="center" colspan="2" bgcolor="#006699" > 
+      <h1 align ="center"><span id ="month">month </span> <span id="year" >year 
+        </span> </h1>
+    </td>
+    <td valign="top" width="264" bgcolor="#006699"> 
+      <form name="Nextform" action ="SelectDate.html" method = "Get">
+        <input type ="hidden" name = "event3" value = "NextMonth">
+        <input type="image" border="0" name="Submit" src="../media/next_month.jpg" width="105" height="25" alt="Next Month">
+      </form>
+    </td>
+    <td></td>
+  </tr>
+  <tr> 
+    <td colspan="5" height="22" valign="top" bgcolor="#9999FF" ><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=4,0,2,0" width="100" height="22">
+        <param name=movie value="proj_cat.swf">
+        <param name=quality value=high>
+        <param name="BASE" value=".">
+        <param name="BGCOLOR" value="">
+        <embed src="proj_cat.swf" base="."  quality=high pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="100" height="22" bgcolor="">
+        </embed> 
+      </object><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=4,0,2,0" width="100" height="22">
+        <param name=movie value="logout.swf">
+        <param name=quality value=high>
+        <param name="BASE" value=".">
+        <param name="BGCOLOR" value="">
+        <embed src="logout.swf" base="."  quality=high pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="100" height="22" bgcolor="">
+        </embed> 
+      </object> <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=4,0,2,0" width="100" height="22">
+        <param name=movie value="cancel.swf">
+        <param name=quality value=high>
+        <param name="BGCOLOR" value="">
+        <embed src="cancel.swf" quality=high pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="100" height="22" bgcolor="">
+        </embed> 
+      </object><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=4,0,2,0" width="100" height="22">
+        <param name=movie value="help.swf">
+        <param name=quality value=high>
+        <param name="BGCOLOR" value="">
+        <embed src="help.swf" quality=high pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="100" height="22" bgcolor="">
+        </embed> 
+      </object> 
+    <td></td>
+  </tr>
+  <tr> 
+    <td height="19" colspan="5" valign="top" > 
+      <p><font color=red face=""><span id="ProjectID">Project ID Goes Here</span></font></p>
+    <td></td>
+  </tr>
+  <tr> 
+    <td height="19" colspan="5" valign="top" > 
+      <p><span id="ErrorText"><font face=""><font color="#FF0000">Optional Error 
+        Text Goes Here</font></font></span> </p>
+    <td></td>
+  </tr>
+  <tr> 
+    <td height="19"></td>
+    <td > 
+    <td width="33" > 
+    <td width="55" >
+    <td width="342" >
+    <td >
+    <td></td>
+  </tr>
+</table>
+
+
+<table border="1" width = "98%" height = "98%" cellspacing="0" cellpadding="2">
+        <tr>
+          <th width = "14%"> Sunday</th>
+          <th width = "14%">Monday</th>
+          <th width = "14%">Tuesday</th>
+          <th width = "14%">Wednesday</th>
+	  <th width = "14%">Thursday</th>
+	  <th width = "14%">Friday</th>
+	  <th width = "14%">Saturday</th>
+        </tr>
+
+        <tr>
+          <td height = "14%" align = "left" valign = "top" >
+	  	<table>
+	   	<tr>
+		<td><a id= "C1"  class = "nodec" href= "This will be replaced">-</a>
+	   	</tr>
+	    	<tr id ="S1templateRow">
+          	<td><a id= "S1" class = "nodec" href= "This will be replaced"  >-</a>
+           	</tr>
+          	</table>
+          </td>
+          <td height = "14%" align = "left" valign = "top">
+          	<table>
+          	<tr>
+              	<td><a id= "C2" class = "nodec" href= "This will be replaced">-</a>
+	         </tr>
+	         <tr id ="S2templateRow">
+          	<td><a id= "S2"  class = "nodec" href= "This will be replaced"  >-</a>  
+           	</tr>
+          	</table>
+          </td>
+          <td height = "14%" align = "left" valign = "top">
+          	<table>
+          	<tr>
+            	<td><a id= "C3" class = "nodec" href= "This will be replaced">-</a>
+          	</tr>
+	        <tr id ="S3templateRow">
+          	<td><a id= "S3"  class = "nodec" href= "This will be replaced"  >-</a>
+           	</tr>
+          	</table>
+          </td>
+          <td height = "14%" align = "left" valign = "top">
+          	<table>
+          	<tr>
+            	<td><a id= "C4" class = "nodec" href= "This will be replaced">-</a>
+          	</tr>
+	        <tr id ="S4templateRow">
+          	<td><a id= "S4"  class = "nodec" href= "This will be replaced"  >-</a>
+           	</tr>
+          	</table>
+          </td>
+	  <td height = "14%" align = "left" valign = "top">
+	  	<table>
+	  	<tr>
+	    	<td><a id= "C5" class = "nodec" href= "This will be replaced">-</a>
+	   	</tr>
+	         <tr id ="S5templateRow">
+          	<td><a id= "S5"  class = "nodec" href= "This will be replaced"  >-</a>
+           	</tr>
+          	</table>
+	  </td>
+	  <td height = "14%" align = "left" valign = "top">
+	  	<table>
+	  	<tr>
+	     	<td><a id= "C6" class = "nodec" href= "This will be replaced">-</a>
+	   	</tr>
+	        <tr id ="S6templateRow">
+          	<td><a id= "S6"  class = "nodec" href= "This will be replaced"  >-</a>
+	        </tr>
+          	</table>
+          </td>	
+	  <td height = "14%" align = "left" valign = "top">
+	  	<table>
+	  	<tr>
+	  	<td><a id= "C7" class = "nodec" href= "This will be replaced">-</a>
+	  	</tr>
+	        <tr id ="S7templateRow">
+          	<td><a id= "S7"  class = "nodec" href= "This will be replaced"  >-</a>
+           	</tr>
+          	</table>
+	  </td>	
+        </tr>
+
+
+        <tr>
+          <td height = "14%" align = "left" valign = "top" >
+	  	<table>
+	   	<tr>
+	    	<td><a id= "C8"  class = "nodec" href= "This will be replaced">1</a>
+	   	</tr>
+	        <tr id ="S8templateRow">
+          	<td><a id= "S8" class = "nodec" href= "This will be replaced"  >8:30-11:30 Eman Ghobrial</a> 
+           	</tr>
+          	</table>
+          </td>
+          <td height = "14%" align = "left" valign = "top">
+          	<table>
+          	<tr>
+              	<td><a id= "C9" class = "nodec" href= "This will be replaced">2</a>
+          	</tr>
+	        <tr id ="S9templateRow">
+          	<td><a id= "S9"  class = "nodec" href= "This will be replaced"  >8:30-11:30 Eman Ghobrial</a> 
+           	</tr>
+          	</table>
+         </td>
+          <td height = "14%" align = "left" valign = "top">
+         	 <table>
+          	<tr>
+            	<td><a id= "C10" class = "nodec" href= "This will be replaced">3</a>
+          	</tr>
+	        <tr id ="S10templateRow">
+          	<td><a id= "S10"  class = "nodec" href= "This will be replaced"  >8:30-11:30 Eman Ghobrial</a>
+           	</tr>
+          	</table>
+          </td>
+          <td height = "14%" align = "left" valign = "top">
+         	<table>
+          	<tr>
+            	<td><a id= "C11" class = "nodec" href= "This will be replaced">4</a>
+          	</tr>
+	        <tr id ="S11templateRow">
+          	<td><a id= "S11"  class = "nodec" href= "This will be replaced"  >8:30-11:30 Eman Ghobrial</a>
+           	</tr>
+          	</table>
+          </td>
+	  <td height = "14%" align = "left" valign = "top">
+	  	<table>
+	  	<tr>
+	    	<td><a id= "C12" class = "nodec" href= "This will be replaced">5</a>
+	   	</tr>
+	        <tr id ="S12templateRow">
+          	<td><a id= "S12"  class = "nodec" href= "This will be replaced"  >8:30-11:30 Eman Ghobrial</a>
+           	</tr>
+          	</table>
+	  </td>
+	  <td height = "14%" align = "left" valign = "top">
+	  	<table>
+	  	<tr>
+	     	<td><a id= "C13" class = "nodec" href= "This will be replaced">6</a>
+	   	</tr>
+	        <tr id ="S13templateRow">
+          	<td><a id= "S13"  class = "nodec" href= "This will be replaced"  >8:30-11:30 Eman Ghobrial</a>
+           	</tr>
+          	</table>
+          </td>	
+	  <td height = "14%" align = "left" valign = "top">
+	  	<table>
+	  	<tr>
+	  	<td><a id= "C14" class = "nodec" href= "This will be replaced">7</a>
+	  	</tr>
+	        <tr id ="S14templateRow">
+          	<td><a id= "S14"  class = "nodec" href= "This will be replaced"  >8:30-11:30 Eman Ghobrial</a>
+           	</tr>
+          	</table>
+	  </td>	
+        </tr>
+
+
+        <tr>
+          <td height = "14%" align = "left" valign = "top" >
+	  	<table>
+	   	<tr>
+	    	<td><a id= "C15"  class = "nodec" href= "This will be replaced">1</a>
+	   	</tr>
+	        <tr id ="S15templateRow">
+          	<td><a id= "S15" class = "nodec" href= "This will be replaced"  >8:30-11:30 Eman Ghobrial</a> 
+           	</tr>
+          	</table>
+          </td>
+          <td height = "14%" align = "left" valign = "top">
+          	<table>
+          	<tr>
+              	<td><a id= "C16" class = "nodec" href= "This will be replaced">2</a>
+          	</tr>
+	        <tr id ="S16templateRow">
+          	<td><a id= "S16"  class = "nodec" href= "This will be replaced"  >8:30-11:30 Eman Ghobrial</a> 
+           	</tr>
+          	</table>
+          </td>
+          <td height = "14%" align = "left" valign = "top">
+          	<table>
+          	<tr>
+            	<td><a id= "C17" class = "nodec" href= "This will be replaced">3</a>
+          	</tr>
+	     	<tr id ="S17templateRow">
+          	<td><a id= "S17"  class = "nodec" href= "This will be replaced"  >8:30-11:30 Eman Ghobrial</a>
+           	</tr>
+          	</table>
+          </td>
+          <td height = "14%" align = "left" valign = "top">
+          	<table>
+          	<tr>
+            	<td><a id= "C18" class = "nodec" href= "This will be replaced">4</a>
+          	</tr>
+	        <tr id ="S18templateRow">
+          	<td><a id= "S18"  class = "nodec" href= "This will be replaced"  >8:30-11:30 Eman Ghobrial</a>
+           	</tr>
+          	</table>
+         </td>
+	 <td height = "14%" align = "left" valign = "top">
+	 	<table>
+	  	<tr>
+	    	<td><a id= "C19" class = "nodec" href= "This will be replaced">5</a>
+	   	</tr>
+	        <tr id ="S19templateRow">
+          	<td><a id= "S19"  class = "nodec" href= "This will be replaced"  >8:30-11:30 Eman Ghobrial</a>
+           	</tr>
+          	</table>
+	  </td>
+	  <td height = "14%" align = "left" valign = "top">
+	  	<table>
+	  	<tr>
+	     	<td><a id= "C20" class = "nodec" href= "This will be replaced">6</a>
+	   	</tr>
+	        <tr id ="S20templateRow">
+          	<td><a id= "S20"  class = "nodec" href= "This will be replaced"  >8:30-11:30 Eman Ghobrial</a>
+           	</tr>
+          	</table>
+          </td>	
+	  <td height = "14%" align = "left" valign = "top">
+	  	<table>
+	  	<tr>
+	  	<td><a id= "C21" class = "nodec" href= "This will be replaced">7</a>
+	  	</tr>
+	   	<tr id ="S21templateRow">
+          	<td><a id= "S21"  class = "nodec" href= "This will be replaced"  >8:30-11:30 Eman Ghobrial</a>
+           	</tr>
+          	</table>
+	  </td>	
+        </tr>
+
+
+        <tr>
+          <td height = "14%" align = "left" valign = "top" >
+	  	<table>
+	   	<tr>
+	    	<td><a id= "C22"  class = "nodec" href= "This will be replaced">1</a>
+	   	</tr>
+	        <tr id ="S22templateRow">
+          	<td><a id= "S22" class = "nodec" href= "This will be replaced"  >8:30-11:30 Eman Ghobrial</a> 
+           	</tr>
+          	</table>
+          </td>
+          <td height = "14%" align = "left" valign = "top">
+          	<table>
+          	<tr>
+              	<td><a id= "C23" class = "nodec" href= "This will be replaced">2</a>
+          	</tr>
+	        <tr id ="S23templateRow">
+          	<td><a id= "S23"  class = "nodec" href= "This will be replaced"  >8:30-11:30 Eman Ghobrial</a> 
+           	</tr>
+          	</table>
+          </td>
+          <td height = "14%" align = "left" valign = "top">
+          	<table>
+          	<tr>
+            	<td><a id= "C24" class = "nodec" href= "This will be replaced">3</a>
+          	</tr>
+	      	<tr id ="S24templateRow">
+          	<td><a id= "S24"  class = "nodec" href= "This will be replaced"  >8:30-11:30 Eman Ghobrial</a>
+           	</tr>
+          	</table>
+          </td>
+          <td height = "14%" align = "left" valign = "top">
+          	<table>
+          	<tr>
+            	<td><a id= "C25" class = "nodec" href= "This will be replaced">4</a>
+          	</tr>
+	      	<tr id ="S25templateRow">
+          	<td><a id= "S25"  class = "nodec" href= "This will be replaced"  >8:30-11:30 Eman Ghobrial</a>
+           	</tr>
+          	</table>
+          </td>
+	  <td height = "14%" align = "left" valign = "top">
+	  	<table>
+	  	<tr>
+	    	<td><a id= "C26" class = "nodec" href= "This will be replaced">5</a>
+	   	</tr>
+	        <tr id ="S26templateRow">
+          	<td><a id= "S26"  class = "nodec" href= "This will be replaced"  >8:30-11:30 Eman Ghobrial</a>
+           	</tr>
+         	 </table>
+	  </td>
+	  <td height = "14%" align = "left" valign = "top">
+	  	<table>
+	  	<tr>
+	     	<td><a id= "C27" class = "nodec" href= "This will be replaced">6</a>
+	   	</tr>
+	        <tr id ="S27templateRow">
+          	<td><a id= "S27"  class = "nodec" href= "This will be replaced"  >8:30-11:30 Eman Ghobrial</a>
+          	</tr>
+          	</table>
+          </td>	
+	  <td height = "14%" align = "left" valign = "top">
+	  	<table>
+	  	<tr>
+	  	<td><a id= "C28" class = "nodec" href= "This will be replaced">7</a>
+	  	</tr>
+	        <tr id ="S28templateRow">
+          	<td><a id= "S28"  class = "nodec" href= "This will be replaced"  >8:30-11:30 Eman Ghobrial</a>
+           	</tr>
+          	</table>
+	  </td>	
+        </tr>
+
+       <tr>
+          <td height = "14%" align = "left" valign = "top" >
+	  	<table>
+	   	<tr>
+	    	<td><a id= "C29"  class = "nodec" href= "This will be replaced">29</a>
+	   	</tr>
+	        <tr id ="S29templateRow">
+          	<td><a id= "S29" class = "nodec" href= "This will be replaced"  >8:30-11:30 Eman Ghobrial</a> 
+           	</tr>
+          	</table>
+          </td>
+          <td height = "14%" align = "left" valign = "top">
+          	<table>
+          	<tr>
+              	<td><a id= "C30" class = "nodec" href= "This will be replaced">30</a>
+          	</tr>
+	        <tr id ="S30templateRow">
+          	<td><a id= "S30"  class = "nodec" href= "This will be replaced"  >8:30-11:30 Eman Ghobrial</a> 
+           	</tr>
+          	</table>
+          </td>
+          <td height = "14%" align = "left" valign = "top">
+          	<table>
+          	<tr>
+            	<td><a id= "C31" class = "nodec" href= "This will be replaced">31</a>
+          	</tr>
+	        <tr id ="S31templateRow">
+          	<td><a id= "S31"  class = "nodec" href= "This will be replaced"  >8:30-11:30 Eman Ghobrial</a>
+           	</tr>
+          	</table>
+          </td>
+          <td height = "14%" align = "left" valign = "top">
+          	<table>
+          	<tr>
+            	<td><a id= "C32" class = "nodec" href= "This will be replaced">-</a>
+          	</tr>
+	        <tr id ="S32templateRow">
+          	<td><a id= "S32"  class = "nodec" href= "This will be replaced"  >8:30-11:30 Eman Ghobrial</a>
+           	</tr>
+          	</table>
+          </td>
+	  <td height = "14%" align = "left" valign = "top">
+	  	<table>
+	  	<tr>
+	    	<td><a id= "C33" class = "nodec" href= "This will be replaced">-</a>
+	   	</tr>
+	        <tr id ="S33templateRow">
+          	<td><a id= "S33"  class = "nodec" href= "This will be replaced"  >8:30-11:30 Eman Ghobrial</a>
+           	</tr>
+          	</table>
+	  </td>
+	  <td height = "14%" align = "left" valign = "top">
+	  	<table>
+	  	<tr>
+	     	<td><a id= "C34" class = "nodec" href= "This will be replaced">-</a>
+	   	</tr>
+	        <tr id ="S34templateRow">
+          	<td><a id= "S34"  class = "nodec" href= "This will be replaced"  >8:30-11:30 Eman Ghobrial</a>
+           	</tr>
+          	</table>
+          </td>	
+	  <td height = "14%" align = "left" valign = "top">
+	  	<table>
+	  	<tr>
+	  	<td><a id= "C35" class = "nodec" href= "This will be replaced">-</a>
+	  	</tr>
+	       	<tr id ="S35templateRow">
+          	<td><a id= "S35"  class = "nodec" href= "This will be replaced"  >8:30-11:30 Eman Ghobrial</a>
+           	</tr>
+          	</table>
+	  </td>	
+        </tr>
+
+
+        <tr>
+          <td height = "14%" align = "left" valign = "top" >
+	  	<table>
+	   	<tr>
+	    	<td><a id= "C36"  class = "nodec" href= "This will be replaced">-</a>
+	   	</tr>
+	        <tr id ="S36templateRow">
+          	<td><a id= "S36" class = "nodec" href= "This will be replaced"  >8:30-11:30 Eman Ghobrial</a> 
+           	</tr>
+          	</table>
+          </td>
+          <td height = "14%" align = "left" valign = "top">
+          	<table>
+          	<tr>
+              	<td><a id= "C37" class = "nodec" href= "This will be replaced">-</a>
+          	</tr>
+	        <tr id ="S37templateRow">
+          	<td><a id= "S37"  class = "nodec" href= "This will be replaced"  >8:30-11:30 Eman Ghobrial</a> 
+           	</tr>
+          	</table>
+          </td>
+          <td height = "14%" align = "left" valign = "top">
+          	<table>
+          	<tr>
+            	<td><a id= "C38" class = "nodec" href= "This will be replaced">-</a>
+          	</tr>
+	        <tr id ="S38templateRow">
+          	<td><a id= "S38"  class = "nodec" href= "This will be replaced"  >8:30-11:30 Eman Ghobrial</a>
+           	</tr>
+          	</table>
+          </td>
+          <td height = "14%" align = "left" valign = "top">
+
+          </td>
+	  <td height = "14%" align = "left" valign = "top">
+	
+	  </td>
+	  <td height = "14%" align = "left" valign = "top">
+	
+	  </td>
+	  <td height = "14%" align = "left" valign = "top">
+	
+	  </td>	
+        </tr>
+
+   </table>
+
+  </BODY>
+</HTML>
+

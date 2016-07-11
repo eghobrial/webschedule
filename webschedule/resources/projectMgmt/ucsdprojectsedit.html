@@ -1,0 +1,327 @@
+<html>
+<head>
+<title>Edit A UCSD Project</title>
+<link rel="stylesheet" href="../media/StyleSheet.css">
+<link rel="stylesheet" type="text/css" href="../media/sitestyles.css">
+<link rel="stylesheet" type="text/css"
+ href="../chrometheme/chromestyle.css">
+</head>
+<body bgcolor="#FFFFFF">
+<center>
+  <table border="0" cellpadding="0" cellspacing="0"
+ width="800">
+    <tbody>
+      <tr>
+        <td><img src="../media/head2.jpg"
+ alt="Center for Functional MRI Webschedule"></td>
+      </tr>
+      <tr>
+        <td><img src="../media/foot.jpg" height="2" width="800"> </td>
+      </tr>
+    </tbody>
+  </table>
+  <table border="0" cellpadding="0" cellspacing="0"
+ width="800">
+    <tbody>
+      <tr>
+        <td align="center"><h3>Edit A UCSD Project</h3></td>
+      </tr>
+    </tbody>
+  </table>
+  <table border="0" cellpadding="0" cellspacing="0"
+ width="800">
+    <tbody>
+      <tr>
+        <td><img src="../media/foot.jpg" height="2" width="800"> </td>
+      </tr>
+      <tr>
+        <td align="center" height="23"><span class="nav1"> 
+	<a href="projadminfunc.html"><img src="../media/projectadminfuntions.jpg" border="0"></a>
+	<a href="../personMgmt/Admin.html"><img src="../media/adminmainmenu.jpg" border="0"></a>
+	<a href="../personMgmt/Exit.html"><img src="../media/logout.jpg" border="0"></a> </span></td>
+      </tr>
+    </tbody>
+  </table>
+  <table border="0" cellpadding="2" cellspacing="2"
+ width="800">
+    <tbody>
+      <tr>
+        <td><p><font color=red face="" size=4><span id="ErrorText">Optional Error Text Goes Here</span></font></p>
+          <form action="ucsdprojectsedit.html" name="ucsdprojectsedit" method="GET">
+            <input type="hidden" name="event" value="edit" id="EventValue">
+            <input type="hidden" name="projID" value="invalidID" id="ProjID">
+            <fieldset>
+            <legend>Project Info</legend>
+            <table width=100% height="206" border="0">
+              <tr>
+                <td width="241">PI Name:</td>
+                <td width="547"><span name ="piname" id="piname" >Tom Liu</span></td>
+              </tr>
+              <tr>
+                <td>PI email: </td>
+                <td><span id="email" >ttliu@ucsd.edu</span></td>
+              </tr>
+              <tr>
+                <td>Project Name: </td>
+                <td><input name="proj_name" id="Proj_name" size="60" ></td>
+              </tr>
+              <tr>
+                <td>Description: </td>
+                <td><input name="discrib" id="Discrib" size="60" ></td>
+              </tr>
+              <tr>
+                <td>Project Total Hours: </td>
+                <td><input name="thours" id="Thours" size="60" ></td>
+              </tr>
+              <tr>
+                <td>Project Completed Hours: </td>
+                <td><span name="dhour" id="dhour">10</span></td>
+              </tr>
+              <tr>
+                <td>Notify email for scheduling: </td>
+                <td><input name="notifycontact" id="Notifycontact" size="60" ></td>
+              </tr>
+            </table>
+            </fieldset>
+            <fieldset>
+            <legend>Billing Info - UCSD</legend>
+            <table width=100% border="0">
+              <tr>
+                <td width="26%">Code of Pay</td>
+                <td width="74%"><table width=100% border="0">
+                    <tr>
+                      <td><input name="codeofpay" id="Codeofpay" size="20" ></td>
+                      <td>&nbsp;<a href="paycodes.html" target="_blank">Link to Pay Codes</a></td>
+                    </tr>
+                  </table></td>
+              </tr>
+              <tr>
+                <td>Financial Contact Name</td>
+                <td><input name="contactname" id="Contactname" size="80" ></td>
+              </tr>
+              <tr>
+                <td>Financial Contact Phone</td>
+                <td><input name="contactphone" id="Contactphone" size="20" ></td>
+              </tr>
+              <tr>
+                <td>Financial email</td>
+                <td><input name="contactemail" id="Contactemail" size="80" ></td>
+              </tr>
+              <tr>
+                <td>Billing Address Line 1</td>
+                <td><input name="billaddr1" id="Billaddr1" size="80" ></td>
+              </tr>
+              <tr>
+	        <td>Billing Address Line 2</td>
+                <td><input name="billaddr3" id="Billaddr3" size="80" ></td>
+              </tr>
+              <tr>
+                <td>City</td>
+                <td><input name="city" id="City" size="80" ></td>
+              </tr>
+              <tr>
+                <td>State</td>
+                <td><input name="state" id="State" size="80" ></td>
+              </tr>
+              <tr>
+                <td>Zip</td>
+                <td><input name="zip" id="Zip" size="20" ></td>
+              </tr>
+              <tr>
+                <td>Index Number</td>
+                <td><input name="indexnum" id="Indexnum" size="20" ></td>
+              </tr>
+              <tr>
+                <td>Project Exp. Date</td>
+ <td><label>
+ <select name="expmonth" id="Expmonth" title="Month">
+                    <option value="1" selected>Jan</option>
+                    <option value="2">Feb</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">Sept</option>
+                    <option value="10">Oct</option>
+                    <option value="11">Nov</option>
+                    <option value="12">Dec</option>
+                  </select>
+               
+                  <select name="expday" id="Expday" title="Day">
+                    <option value="1" selected>1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+                  </select>
+                 
+                  <select name="expyear" id="Expyear" title="Year">
+		    <option value="2017">2017</option>
+		    <option value="2016">2016</option>
+		    <option value="2015">2015</option>
+		    <option value="2014">2014</option>
+                    <option value="2013" selected>2013</option>
+                    <option value="2012">2012</option>
+                    <option value="2011">2011</option>
+                    <option value="2010">2010</option>
+                    <option value="2009" >2009</option>
+                    <option value="2008">2008</option>
+                    
+                  </select>
+                  </label></td>
+              </tr>
+            </table>
+            </fieldset>
+            <fieldset>
+            <legend>IRB/IACUC Num and Expiration Date</legend>
+            <table width=100% border="0">
+	     <tr>
+                <td>IRB/IACUC Number</td>
+                <td><input name="irbnum" id="Irbnum" size="20" ></td>
+              </tr>
+              <tr>
+ 
+               <td>Expire Date:</td>
+ <td>
+<select name="iexpmonth" id="Iexpmonth" title="Month">
+
+ <option value="1" selected>Jan</option>
+                    <option value="2">Feb</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">Sept</option>
+                    <option value="10">Oct</option>
+                    <option value="11">Nov</option>
+                    <option value="12">Dec</option>
+
+                   
+                  </select>
+                <select name="iexpday" id="Iexpday" title="Day">
+                    <option value="1" selected>1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+                  </select>
+                 
+                  <select name="iexpyear" id="Iexpyear" title="Year">
+		    <option value="2017">2017</option>
+		    <option value="2016">2016</option>
+		    <option value="2015">2015</option>
+		    <option value="2014">2014</option>
+                    <option value="2013" selected>2013</option>
+                    <option value="2012">2012</option>
+                    <option value="2011">2011</option>
+                    <option value="2010">2010</option>
+                    <option value="2009" >2009</option>
+                    <option value="2008">2008</option>
+                    
+                    
+                  </select>
+                </td>
+              </tr>
+            </table>
+            </fieldset>
+            <fieldset>
+            <legend>Modifed By</legend>
+            <table width=100% border="0">
+              <tr>
+                <td width="26%">Name</td>
+                <td width="74%"><table width=100% border="0">
+                    <tr>
+                      <td><span name ="modby" id="Modby" >Marianne Clark</span></td>
+                      <td><a href="modlog.html" target="_blank">Modification Log</a></td>
+                    </tr>
+                  </table></td>
+              </tr>
+              <tr>
+                <td>Date</td>
+                <td><span name ="moddate" id="Moddate" >05-29-08</span></td>
+              </tr>
+              <tr>
+                <td>Notes</td>
+                <td><textarea name="notes" id="notes" cols="80" rows="3"></textarea></td>
+              </tr>
+            </table>
+            </fieldset>
+            <br>
+            <input type="submit" value="Save This Project Info" name="submit">
+          </form></td>
+      <tr>
+        <td><img src="../media/foot.jpg" height="2" width="800"> </td>
+      </tr>
+      <tr>
+        <td><span class="footer">This program was developed by Eman Ghobrial,
+          Center for Functional MRI, Radiology Department, UCSD.<br>
+          Address: Center for Functional MRI, 9500 Gilman Dr. / Osler Ln., La
+          Jolla, CA 92093-0677.<br>
+          Phone: (858)-822-0513, FAX: (858)-822-0605.<br>
+          Send accounts requests, comments, suggestions and bug report to:
+          eghobrial@ucsd.edu.<br>
+          Copyright &copy; 2007 Regents of the University of California.
+          All rights reserved. <br>
+          <img src="../media/footer_official.gif" height="41" width="412"> </span></td>
+      </tr>
+    </tbody>
+  </table>
+</center>
+</body>
+</html>

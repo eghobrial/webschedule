@@ -1,0 +1,649 @@
+<html>
+<head>
+  <title>Select a Date for 3TW</title>
+  <link rel="stylesheet" href="../media/StyleSheet.css">
+  <link rel="stylesheet" type="text/css" href="../media/sitestyles.css">
+</head>
+<body><center>
+<table style="margin: auto;" border="0" cellpadding="0" cellspacing="0"
+ width="800">
+  <tbody>
+    <tr>
+      <td> <img src="../media/head2.jpg"
+ alt="Center for Functional MRI Webschedule"></td>
+    </tr>
+    <tr>
+      <td><img src="../media/foot.jpg" height="2" width="800"> </td>
+    </tr>
+  </tbody>
+</table>
+<table style="margin: auto;" border="0" cellpadding="0" cellspacing="0"
+ width="800" >
+  <tbody>
+    <tr>
+      <td valign="middle" align="right" width="30%" height="30">
+      <form name="Prevform" method="get" action="SelectDate.html">
+<input name="event"
+ value="PrevMonth" type="hidden"><input type="image" border="0" name="Submit" src="../media/prevmonth.jpg" alt="Prev Month" style="padding-top: 5px;">
+</form>
+      </td>
+      <td valign="middle" align="center" height="30">
+      <h3><span id="month">month </span> <span id="year">year </span></h3>
+      </td>
+      <td valign="middle" align="left" width="30%" height="30">
+      <form name="Nextform" action="SelectDate.html" method="get">
+<input type="image" border="0" name="Submit" src="../media/nextmonth.jpg" alt="Next Month" style="padding-top: 5px;">
+<input name="event"
+ value="NextMonth" type="hidden"> </form>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table style="margin: auto;" border="0" cellpadding="0" cellspacing="0"
+ width="770">
+  <tbody>
+    <tr>
+      <td><img src="../media/foot.jpg" height="2" width="800"> </td>
+    </tr>
+    <tr>
+      <td align="center" bgcolor="#FFFFFF" height="23"> <span
+ class="nav1"> 
+<a href="mainmenu.html"><img src="../media/main.jpg" border="0" hspace="0"></a><a href="../projectMgmt/ProjCatalog.html"><img src="../media/projectcatalog.jpg" border="0"></a><a href="dummy.html"><img src="../media/myevents.jpg" border="0"></a><a href="dummy1.html"><img src="../media/allevents.jpg" border="0"></a><a href="Cancel_policy.html"><img src="../media/cancelpolicy.jpg" border="0"></a><a href="Selectdate_help.html"><img src="../media/help.jpg" border="0"></a><a href="../personMgmt/Exit.html"><img src="../media/logout.jpg" border="0"></a> </span></td>
+    </tr>
+  </tbody>
+</table>
+<table style="margin: auto;" border="0" cellpadding="2" cellspacing="2"
+ width="800">
+  <tbody>
+    <tr>
+      <td><font color="red" face="" size="4"><span id="ProjectID">Project
+ID Goes Here</span></font>
+      <p><span id="ErrorText"><font face="" size="4"><font
+ color="#ff0000">Optional Error Text Goes Here</font></font></span> </p>
+      <table style="margin: auto;" border="1" cellpadding="2"
+ cellspacing="0" width="98%">
+        <tbody>
+          <tr>
+            <th width="14%">Sunday</th>
+            <th width="14%">Monday</th>
+            <th width="14%">Tuesday</th>
+            <th width="14%">Wednesday</th>
+            <th width="14%">Thursday</th>
+            <th width="14%">Friday</th>
+            <th width="14%">Saturday</th>
+          </tr>
+          <tr>
+            <td align="left" height="14%" valign="top">
+            <table>
+              <tbody>
+                <tr>
+                  <td> <a id="C1" class="nodec"
+ href="This%20will%20be%20replaced"> -</a> </td>
+                </tr>
+                <tr id="S1templateRow">
+                  <td> <a id="S1" class="nodec"
+ href="This%20will%20be%20replaced"> -</a> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+            <td align="left" height="14%" valign="top">
+            <table>
+              <tbody>
+                <tr>
+                  <td> <a id="C2" class="nodec"
+ href="This%20will%20be%20replaced"> -</a> </td>
+                </tr>
+                <tr id="S2templateRow">
+                  <td> <a id="S2" class="nodec"
+ href="This%20will%20be%20replaced"> -</a> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+            <td align="left" height="14%" valign="top">
+            <table>
+              <tbody>
+                <tr>
+                  <td> <a id="C3" class="nodec"
+ href="This%20will%20be%20replaced"> -</a> </td>
+                </tr>
+                <tr id="S3templateRow">
+                  <td> <a id="S3" class="nodec"
+ href="This%20will%20be%20replaced"> -</a> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+            <td align="left" height="14%" valign="top">
+            <table>
+              <tbody>
+                <tr>
+                  <td> <a id="C4" class="nodec"
+ href="This%20will%20be%20replaced"> -</a> </td>
+                </tr>
+                <tr id="S4templateRow">
+                  <td> <a id="S4" class="nodec"
+ href="This%20will%20be%20replaced"> -</a> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+            <td align="left" height="14%" valign="top">
+            <table>
+              <tbody>
+                <tr>
+                  <td> <a id="C5" class="nodec"
+ href="This%20will%20be%20replaced"> -</a> </td>
+                </tr>
+                <tr id="S5templateRow">
+                  <td> <a id="S5" class="nodec"
+ href="This%20will%20be%20replaced"> -</a> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+            <td align="left" height="14%" valign="top">
+            <table>
+              <tbody>
+                <tr>
+                  <td> <a id="C6" class="nodec"
+ href="This%20will%20be%20replaced"> -</a> </td>
+                </tr>
+                <tr id="S6templateRow">
+                  <td> <a id="S6" class="nodec"
+ href="This%20will%20be%20replaced"> -</a> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+            <td align="left" height="14%" valign="top">
+            <table>
+              <tbody>
+                <tr>
+                  <td> <a id="C7" class="nodec"
+ href="This%20will%20be%20replaced"> -</a> </td>
+                </tr>
+                <tr id="S7templateRow">
+                  <td> <a id="S7" class="nodec"
+ href="This%20will%20be%20replaced"> -</a> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+          </tr>
+          <tr>
+            <td align="left" height="14%" valign="top">
+            <table>
+              <tbody>
+                <tr>
+                  <td> <a id="C8" class="nodec"
+ href="This%20will%20be%20replaced"> 1</a> </td>
+                </tr>
+                <tr id="S8templateRow">
+                  <td> <a id="S8" class="nodec"
+ href="This%20will%20be%20replaced"> 8:30-11:30 -</a> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+            <td align="left" height="14%" valign="top">
+            <table>
+              <tbody>
+                <tr>
+                  <td> <a id="C9" class="nodec"
+ href="This%20will%20be%20replaced"> 2</a> </td>
+                </tr>
+                <tr id="S9templateRow">
+                  <td> <a id="S9" class="nodec"
+ href="This%20will%20be%20replaced"> 8:30-11:30 -</a> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+            <td align="left" height="14%" valign="top">
+            <table>
+              <tbody>
+                <tr>
+                  <td> <a id="C10" class="nodec"
+ href="This%20will%20be%20replaced"> 3</a> </td>
+                </tr>
+                <tr id="S10templateRow">
+                  <td> <a id="S10" class="nodec"
+ href="This%20will%20be%20replaced"> 8:30-11:30 -</a> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+            <td align="left" height="14%" valign="top">
+            <table>
+              <tbody>
+                <tr>
+                  <td> <a id="C11" class="nodec"
+ href="This%20will%20be%20replaced"> 4</a> </td>
+                </tr>
+                <tr id="S11templateRow">
+                  <td> <a id="S11" class="nodec"
+ href="This%20will%20be%20replaced"> 8:30-11:30 -</a> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+            <td align="left" height="14%" valign="top">
+            <table>
+              <tbody>
+                <tr>
+                  <td> <a id="C12" class="nodec"
+ href="This%20will%20be%20replaced"> 5</a> </td>
+                </tr>
+                <tr id="S12templateRow">
+                  <td> <a id="S12" class="nodec"
+ href="This%20will%20be%20replaced"> 8:30-11:30 -</a> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+            <td align="left" height="14%" valign="top">
+            <table>
+              <tbody>
+                <tr>
+                  <td> <a id="C13" class="nodec"
+ href="This%20will%20be%20replaced"> 6</a> </td>
+                </tr>
+                <tr id="S13templateRow">
+                  <td> <a id="S13" class="nodec"
+ href="This%20will%20be%20replaced"> 8:30-11:30 -</a> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+            <td align="left" height="14%" valign="top">
+            <table>
+              <tbody>
+                <tr>
+                  <td> <a id="C14" class="nodec"
+ href="This%20will%20be%20replaced"> 7</a> </td>
+                </tr>
+                <tr id="S14templateRow">
+                  <td> <a id="S14" class="nodec"
+ href="This%20will%20be%20replaced"> 8:30-11:30 -</a> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+          </tr>
+          <tr>
+            <td align="left" height="14%" valign="top">
+            <table>
+              <tbody>
+                <tr>
+                  <td> <a id="C15" class="nodec"
+ href="This%20will%20be%20replaced"> 1</a> </td>
+                </tr>
+                <tr id="S15templateRow">
+                  <td> <a id="S15" class="nodec"
+ href="This%20will%20be%20replaced"> 8:30-11:30 -</a> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+            <td align="left" height="14%" valign="top">
+            <table>
+              <tbody>
+                <tr>
+                  <td> <a id="C16" class="nodec"
+ href="This%20will%20be%20replaced"> 2</a> </td>
+                </tr>
+                <tr id="S16templateRow">
+                  <td> <a id="S16" class="nodec"
+ href="This%20will%20be%20replaced"> 8:30-11:30 -</a> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+            <td align="left" height="14%" valign="top">
+            <table>
+              <tbody>
+                <tr>
+                  <td> <a id="C17" class="nodec"
+ href="This%20will%20be%20replaced"> 3</a> </td>
+                </tr>
+                <tr id="S17templateRow">
+                  <td> <a id="S17" class="nodec"
+ href="This%20will%20be%20replaced"> 8:30-11:30 -</a> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+            <td align="left" height="14%" valign="top">
+            <table>
+              <tbody>
+                <tr>
+                  <td> <a id="C18" class="nodec"
+ href="This%20will%20be%20replaced"> 4</a> </td>
+                </tr>
+                <tr id="S18templateRow">
+                  <td> <a id="S18" class="nodec"
+ href="This%20will%20be%20replaced"> 8:30-11:30 -</a> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+            <td align="left" height="14%" valign="top">
+            <table>
+              <tbody>
+                <tr>
+                  <td> <a id="C19" class="nodec"
+ href="This%20will%20be%20replaced"> 5</a> </td>
+                </tr>
+                <tr id="S19templateRow">
+                  <td> <a id="S19" class="nodec"
+ href="This%20will%20be%20replaced"> 8:30-11:30 -</a> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+            <td align="left" height="14%" valign="top">
+            <table>
+              <tbody>
+                <tr>
+                  <td> <a id="C20" class="nodec"
+ href="This%20will%20be%20replaced"> 6</a> </td>
+                </tr>
+                <tr id="S20templateRow">
+                  <td> <a id="S20" class="nodec"
+ href="This%20will%20be%20replaced"> 8:30-11:30 -</a> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+            <td align="left" height="14%" valign="top">
+            <table>
+              <tbody>
+                <tr>
+                  <td> <a id="C21" class="nodec"
+ href="This%20will%20be%20replaced"> 7</a> </td>
+                </tr>
+                <tr id="S21templateRow">
+                  <td> <a id="S21" class="nodec"
+ href="This%20will%20be%20replaced"> 8:30-11:30 -</a> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+          </tr>
+          <tr>
+            <td align="left" height="14%" valign="top">
+            <table>
+              <tbody>
+                <tr>
+                  <td> <a id="C22" class="nodec"
+ href="This%20will%20be%20replaced"> 1</a> </td>
+                </tr>
+                <tr id="S22templateRow">
+                  <td> <a id="S22" class="nodec"
+ href="This%20will%20be%20replaced"> 8:30-11:30 -</a> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+            <td align="left" height="14%" valign="top">
+            <table>
+              <tbody>
+                <tr>
+                  <td> <a id="C23" class="nodec"
+ href="This%20will%20be%20replaced"> 2</a> </td>
+                </tr>
+                <tr id="S23templateRow">
+                  <td> <a id="S23" class="nodec"
+ href="This%20will%20be%20replaced"> 8:30-11:30 -</a> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+            <td align="left" height="14%" valign="top">
+            <table>
+              <tbody>
+                <tr>
+                  <td> <a id="C24" class="nodec"
+ href="This%20will%20be%20replaced"> 3</a> </td>
+                </tr>
+                <tr id="S24templateRow">
+                  <td> <a id="S24" class="nodec"
+ href="This%20will%20be%20replaced"> 8:30-11:30 -</a> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+            <td align="left" height="14%" valign="top">
+            <table>
+              <tbody>
+                <tr>
+                  <td> <a id="C25" class="nodec"
+ href="This%20will%20be%20replaced"> 4</a> </td>
+                </tr>
+                <tr id="S25templateRow">
+                  <td> <a id="S25" class="nodec"
+ href="This%20will%20be%20replaced"> 8:30-11:30 -</a> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+            <td align="left" height="14%" valign="top">
+            <table>
+              <tbody>
+                <tr>
+                  <td> <a id="C26" class="nodec"
+ href="This%20will%20be%20replaced"> 5</a> </td>
+                </tr>
+                <tr id="S26templateRow">
+                  <td> <a id="S26" class="nodec"
+ href="This%20will%20be%20replaced"> 8:30-11:30 -</a> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+            <td align="left" height="14%" valign="top">
+            <table>
+              <tbody>
+                <tr>
+                  <td> <a id="C27" class="nodec"
+ href="This%20will%20be%20replaced"> 6</a> </td>
+                </tr>
+                <tr id="S27templateRow">
+                  <td> <a id="S27" class="nodec"
+ href="This%20will%20be%20replaced"> 8:30-11:30 -</a> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+            <td align="left" height="14%" valign="top">
+            <table>
+              <tbody>
+                <tr>
+                  <td> <a id="C28" class="nodec"
+ href="This%20will%20be%20replaced"> 7</a> </td>
+                </tr>
+                <tr id="S28templateRow">
+                  <td> <a id="S28" class="nodec"
+ href="This%20will%20be%20replaced"> 8:30-11:30 -</a> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+          </tr>
+          <tr>
+            <td align="left" height="14%" valign="top">
+            <table>
+              <tbody>
+                <tr>
+                  <td> <a id="C29" class="nodec"
+ href="This%20will%20be%20replaced"> 29</a> </td>
+                </tr>
+                <tr id="S29templateRow">
+                  <td> <a id="S29" class="nodec"
+ href="This%20will%20be%20replaced"> 8:30-11:30 -</a> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+            <td align="left" height="14%" valign="top">
+            <table>
+              <tbody>
+                <tr>
+                  <td> <a id="C30" class="nodec"
+ href="This%20will%20be%20replaced"> 30</a> </td>
+                </tr>
+                <tr id="S30templateRow">
+                  <td> <a id="S30" class="nodec"
+ href="This%20will%20be%20replaced"> 8:30-11:30 -</a> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+            <td align="left" height="14%" valign="top">
+            <table>
+              <tbody>
+                <tr>
+                  <td> <a id="C31" class="nodec"
+ href="This%20will%20be%20replaced"> 31</a> </td>
+                </tr>
+                <tr id="S31templateRow">
+                  <td> <a id="S31" class="nodec"
+ href="This%20will%20be%20replaced"> 8:30-11:30 -</a> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+            <td align="left" height="14%" valign="top">
+            <table>
+              <tbody>
+                <tr>
+                  <td> <a id="C32" class="nodec"
+ href="This%20will%20be%20replaced"> -</a> </td>
+                </tr>
+                <tr id="S32templateRow">
+                  <td> <a id="S32" class="nodec"
+ href="This%20will%20be%20replaced"> 8:30-11:30 -</a> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+            <td align="left" height="14%" valign="top">
+            <table>
+              <tbody>
+                <tr>
+                  <td> <a id="C33" class="nodec"
+ href="This%20will%20be%20replaced"> -</a> </td>
+                </tr>
+                <tr id="S33templateRow">
+                  <td> <a id="S33" class="nodec"
+ href="This%20will%20be%20replaced"> 8:30-11:30 -</a> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+            <td align="left" height="14%" valign="top">
+            <table>
+              <tbody>
+                <tr>
+                  <td> <a id="C34" class="nodec"
+ href="This%20will%20be%20replaced"> -</a> </td>
+                </tr>
+                <tr id="S34templateRow">
+                  <td> <a id="S34" class="nodec"
+ href="This%20will%20be%20replaced"> 8:30-11:30 -</a> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+            <td align="left" height="14%" valign="top">
+            <table>
+              <tbody>
+                <tr>
+                  <td> <a id="C35" class="nodec"
+ href="This%20will%20be%20replaced"> -</a> </td>
+                </tr>
+                <tr id="S35templateRow">
+                  <td> <a id="S35" class="nodec"
+ href="This%20will%20be%20replaced"> 8:30-11:30 -</a> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+          </tr>
+          <tr>
+            <td align="left" height="14%" valign="top">
+            <table>
+              <tbody>
+                <tr>
+                  <td> <a id="C36" class="nodec"
+ href="This%20will%20be%20replaced"> -</a> </td>
+                </tr>
+                <tr id="S36templateRow">
+                  <td> <a id="S36" class="nodec"
+ href="This%20will%20be%20replaced"> 8:30-11:30 -</a> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+            <td align="left" height="14%" valign="top">
+            <table>
+              <tbody>
+                <tr>
+                  <td> <a id="C37" class="nodec"
+ href="This%20will%20be%20replaced"> -</a> </td>
+                </tr>
+                <tr id="S37templateRow">
+                  <td> <a id="S37" class="nodec"
+ href="This%20will%20be%20replaced"> 8:30-11:30 -</a> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+            <td align="left" height="14%" valign="top">
+            <table>
+              <tbody>
+                <tr>
+                  <td> <a id="C38" class="nodec"
+ href="This%20will%20be%20replaced"> -</a> </td>
+                </tr>
+                <tr id="S38templateRow">
+                  <td> <a id="S38" class="nodec"
+ href="This%20will%20be%20replaced"> 8:30-11:30 -</a> </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+            <td align="left" height="14%" valign="top"><br>
+            </td>
+            <td align="left" height="14%" valign="top"><br>
+            </td>
+            <td align="left" height="14%" valign="top"><br>
+            </td>
+            <td align="left" height="14%" valign="top"><br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+    </tr>
+    <tr>
+      <td><img src="../media/foot.jpg" height="2" width="800"> </td>
+    </tr>
+    <tr>
+      <td><span class="footer">This program was developed by Eman Ghobrial,
+Center for Functional MRI, Radiology Department, UCSD.<br>
+Address: Center for Functional MRI, 9500 Gilman Dr. / Osler Ln., La
+Jolla, CA 92093-0677.<br>
+Phone: (858)-822-0513, FAX: (858)-822-0605.<br>
+Send accounts requests, comments, suggestions and bug report to:
+eghobrial@ucsd.edu.<br>
+Copyright &copy; 2007 Regents of the University of California.
+All rights reserved. <br>
+      <img src="../media/footer_official.gif" height="41" width="412"> </span></td>
+    </tr>
+  </tbody>
+</table>
+</center></body>
+</html>

@@ -1,0 +1,4 @@
+-urlmapping 'complaintreport.html' 'complaintreport.po'
+-urlmapping '../personMgmt/Exit.html' '../personMgmt/Login.po?event=logout'
+-urlmapping '../s_eventMgmt/change.html' '../s_eventMgmt/change.po'
+-urlmapping '../s_eventMgmt/ChangeEvent.html' '../s_eventMgmt/ChangeEvent.po'

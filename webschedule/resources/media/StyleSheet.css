@@ -1,0 +1,215 @@
+body{
+;  font-family:"Arial", "Helvetica", "Geneva", "Swiss", "SunSans-Regular";
+;  font-size:16px;
+;  font-style:normal;
+  font: 12px/15px Verdana, Arial, Helvetica, sans-serif;
+  color:black;
+  margin-top: 0px; 
+  margin-left: 0px
+; background-color: #FFFFFF}
+code{
+  font-family:monospace;
+  font-size:11px;
+}
+pre{
+  font-family:monospace;
+  font-size:11px;
+}
+h1{
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size:24px;
+  font-weight:bold;
+}
+h2{
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:24px;
+  font-weight:bold;
+  color:#000099;
+}
+h3{
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:20px;
+  font-style:normal;
+  font-weight:normal;
+  }
+h4{
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:18px;
+  font-style:normal;
+  font-weight:bold;
+  }
+h5{
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:16px;
+  font-style:italic;
+  font-weight:normal;
+}
+h6{
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:15px;
+  font-style:normal;
+  font-weight:normal;
+  color:black;
+}
+li{
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:14px;
+  font-style:normal;
+  color:black;
+}
+ol{
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:14px;
+  font-style:normal;
+  color:black;
+  }
+p{
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:16px;
+  font-style:normal;
+  color:black;
+}
+td{
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:16px;
+  font-style:normal;
+  color:black;
+}
+ul{
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:14px;
+  font-style:normal;
+  color:black;
+}
+/*class nodec */
+a.nodec {
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:10px;
+  text-decoration:none;
+ }
+a.nodec:hover { text-decoration: underline;
+  color: red;
+  background-color: #CCFFCC
+ }
+a.nodec2 {
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:8px;
+  text-decoration:none;
+ }
+a.nodec2:hover { text-decoration: underline;
+  color: red;
+  background-color: #CCFFCC
+ }
+a.nonprime {
+  font-family:"Arial", "Helvetica", "Geneva", "Swiss", "SunSans-Regular";
+  font-size:10px;
+  color: 006666;
+  text-decoration:none;
+ }
+a.nonprime:hover {
+  text-decoration: underline;
+  color: 006666;
+  background-color: #CCFFCC
+ }
+
+a.prime {
+  font-family:"Arial", "Helvetica", "Geneva", "Swiss", "SunSans-Regular";
+  font-size:10px;
+  color: 000066;
+  text-decoration:none;
+ }
+a.prime:hover {
+  text-decoration: underline;
+  color: 000066;
+  background-color: #CCFFCC
+ }
+
+a.available {
+  font-family:"Arial", "Helvetica", "Geneva", "Swiss", "SunSans-Regular";
+  font-size:10px;
+  color: ff0033;
+  text-decoration:none;
+ }
+a.available:hover {
+  text-decoration: underline;
+  color: ff0033;
+  background-color: #CCFFCC
+ }
+
+a.grab {
+  font-family:"Arial", "Helvetica", "Geneva", "Swiss", "SunSans-Regular";
+  font-size:10px;
+  color: black;
+background-color:yellow;
+}
+
+a.grab:hover {
+  font-family:"Arial", "Helvetica", "Geneva", "Swiss", "SunSans-Regular";
+  font-size:10px;
+  color: black;
+background-color:yellow;
+}
+
+
+
+ a.develop {
+  font-family:"Arial", "Helvetica", "Geneva", "Swiss", "SunSans-Regular";
+  font-size:10px;
+  color: 660066;
+  text-decoration:none;
+ }
+
+ a.block {
+  font-family:"Arial", "Helvetica", "Geneva", "Swiss", "SunSans-Regular";
+  font-size:10px;
+  color: 006633;
+  text-decoration:none;
+ }
+
+/*Class 'LeftNav'*/
+a.LeftNav:link{
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:10px;
+  font-style:normal;
+  color:white;
+  text-decoration:none;
+}
+a.LeftNav:visited{
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:10px;
+  font-style:normal;
+  color:white;
+  text-decoration:none;
+}
+a.LeftNav:link{
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:14px;
+  font-style:normal;
+  color:white;
+  text-decoration:none;
+}
+a.LeftNav:visited{
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:14px;
+  font-style:normal;
+  color:white;
+  text-decoration:none;
+}
+/*Class 'default'*/
+..default{
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:16px;
+  font-style:normal;
+  color:black;
+}
+/*Class 'header1'*/
+..header1{
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:18px;
+  font-weight:bold;
+}
+..small{
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:8px;
+}
+

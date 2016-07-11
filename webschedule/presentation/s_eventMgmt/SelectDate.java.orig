@@ -1,0 +1,421 @@
+package webschedule.presentation.s_eventMgmt;
+
+import webschedule.business.person.*;
+import webschedule.business.project.*;
+import webschedule.business.s_event.*;
+import webschedule.presentation.BasePO;
+import com.lutris.appserver.server.httpPresentation.*;
+import com.lutris.appserver.server.session.*;
+import com.lutris.util.*;
+import com.lutris.xml.xmlc.*;
+import com.lutris.xml.xmlc.html.*;
+import org.w3c.dom.*;
+import org.w3c.dom.html.*;
+import webschedule.business.webscheduleBusinessException;
+import webschedule.presentation.webschedulePresentationException;
+import java.util.Calendar;
+
+/**
+ * Login.java handles the login functionality of the webschedule app.
+ *
+ */
+public class SelectDate extends BasePO
+{    
+    /**
+     * Constants
+     */
+
+    private static String ERROR_NAME = "ERROR_NAME";
+
+     private static String PROJ_NAME = "proj_name";
+    private static String DISCRIB = "discrib";
+    private static String THOURS = "thours";
+    private static String DHOURS = "dhours";
+    private static String INDEXNUM = "indexnum";
+    private static String PROJ_ID = "projID";
+    private static String INVALID_ID = "invalidID";
+	
+    /**
+     * Superclass method override
+     */
+    public boolean loggedInUserRequired()
+    {
+        return true;
+    }
+    
+    /** 
+     *  Default event. Just show the page.
+     */
+    public String handleDefault() 
+        throws HttpPresentationException 
+    {
+
+	
+	    return showPage(null);
+    }
+        
+
+
+    
+    public String handleThrowException()
+        throws Exception
+    {
+        throw new Exception("This is a test exception thrown from Login.java handleThrowException()");    
+    }
+
+
+      public String buildhref1 (String event_id)
+    {
+       String temps = "ChangeEvent.po?event=ChangeEvent&Event_id="+event_id;
+       return temps;
+     }
+
+     public void replacehref1 (SelectDateHTML page, String id, String fontid, int date, int month, int year, String event_id, String mytext, String linkcolor)
+     {
+
+      Element link = page.getElementById(id);
+      Element fontelement = page.getElementById(fontid);
+      HTMLFontElement font = (HTMLFontElement) fontelement;
+        HTMLAnchorElement mylink = (HTMLAnchorElement) link;
+        if (date == 0)
+        mylink.setHref("");
+        else
+        {
+        mylink.setHref(buildhref1(event_id));
+        font.setColor(linkcolor);
+        }
+
+        Text t = XMLCUtil.getFirstText(link);
+        if (date == 0)
+	t.setData ("");
+        else t.setData (mytext);
+     	}
+
+
+     public void fillin_table (SelectDateHTML page, String id, String fontid, int year, int month, int day)
+       //throws HttpPresentationException, webschedulePresentationException
+     {
+     String cid = id+"templateRow";
+
+     String linkcolor = null;
+     System.out.println("templateRow " + cid);
+     Element templateRowElement = page.getElementById(cid);
+     HTMLTableRowElement templateRow = (HTMLTableRowElement) templateRowElement;
+        Node EventTable = templateRow.getParentNode();
+
+//        if (code == 1)
+         templateRow.removeAttribute("cid");
+
+
+         try {
+         	         		
+	        S_event[] EventList = S_eventFactory.findS_eventsForDate(year,month,day);
+	
+            // Get collection of Projs and loop through collection
+	        // to add each Proj as a row in the table.
+	        for(int numEvents = 0; numEvents < EventList.length; numEvents++) {	
+                	S_event currentS_event = EventList[numEvents];
+	        	// set text of new cells to values from string array
+	        	int starthi = currentS_event.getStarth();
+	        	
+	        	//determine link color blue for prime time green otherwise.
+	        	if ((starthi >= 8) && (starthi <20))
+	        	   linkcolor = "blue";
+	        	else
+	        	   linkcolor = "green";
+	        	
+	        	int startmi = currentS_event.getStartm();
+	        	String ampm = null;
+	        	
+	        	if (starthi < 12) ampm = "am";
+      			else if (starthi == 12) ampm = "Noon";
+		      	else if (starthi == 24) {
+      				starthi = starthi-12;
+		      		ampm = "Mid.";
+      				}
+		      	else {
+      				starthi = starthi -12;
+		      		ampm = "pm";
+		      	     }		
+	        	String starttime = Integer.toString(starthi)+":"+Integer.toString(startmi)+" "+ampm;
+	        		   	
+	        	int endhi = currentS_event.getEndh();
+	        	int endmi = currentS_event.getEndm();
+	        	
+	        	if (endhi < 12) ampm = "am";
+      			else if (endhi == 12) ampm = "Noon";
+		      	else if (endhi == 24) {
+      				endhi = endhi-12;
+		      		ampm = "Mid.";
+      				}
+		      	else {
+      				endhi = endhi -12;
+		      		ampm = "pm";
+		      	     }		
+	        	
+	        	String endtime =   Integer.toString(endhi)+":"+Integer.toString(endmi)+" "+ampm;
+	        	
+	        	String ownername = currentS_event.getOwnerFirstname()+" "+currentS_event.getOwnerLastname();
+	        	String projowner =  currentS_event.getProj_owner_name() ;
+	        	String mytext = starttime+"-"+endtime+":"+ownername+":"+projowner;
+	        	System.out.println("link text " + mytext);
+	        	String event_id = currentS_event.getHandle();
+	        	
+	        	
+	        	replacehref1 (page,  id,fontid, day,  month, year,event_id,mytext,linkcolor);
+			
+	        	//check for gaps and display the gaps	        	
+	        /*	if (numEvents < EventList.length)
+	        	  {
+	        	    S_event  nextS_event = EventList [numEvents+1];
+	        	    int nstarthi = nextS_event.getStarth();
+	        	    int nstartmi = nextS_event.getStartm();
+	        	  	        	
+	        	   if (nstarthi < 12) ampm = "am";
+      		      	   else if (nstarthi == 12) ampm = "Noon";
+		      	   else if (nstarthi == 24) {
+      				nstarthi = nstarthi-12;
+		      		ampm = "Mid.";
+      				}
+		      	   else {
+      				nstarthi = nstarthi -12;
+		      		ampm = "pm";
+		      	     }		
+	        	  String nstarttime = Integer.toString(nstarthi)+":"+Integer.toString(nstartmi)+" "+ampm;
+	        	  linkcolor = "#FF9900";
+	        	  String linktext = endtime+"-"+nstarttime+": Available";
+	        	  String event_idd = "null";
+	        	  replacehref1 (page,  id, fontid, day,  month, year,event_idd,linktext,linkcolor);
+	        	
+	        	  }*/
+	        	
+               	    // Add a deep clone of the row to the DOM
+              Node clonedNode = templateRow.cloneNode(true);
+                EventTable.appendChild(clonedNode);
+
+                 }
+	    } catch(Exception ex) {
+	        this.writeDebugMsg("Error populating Event table: " + ex);
+
+	    }
+	
+	   templateRow.getParentNode().removeChild(templateRow);	
+
+
+        }
+
+
+
+    public String buildhref (int date, int month, int year)
+    {
+       String temps = "EditEvent.po?event=EditEvent&Date="+Integer.toString(date)+"&month="+Integer.toString(month)+"&year="+Integer.toString(year);
+       return temps;
+     }
+
+     public void replacehref (SelectDateHTML page, String id, int date, int month, int year)
+     {
+
+      Element link = page.getElementById(id);
+        HTMLAnchorElement mylink = (HTMLAnchorElement) link;
+        if (date == 0)
+        mylink.setHref("");
+        else
+        mylink.setHref(buildhref(date,month,year));
+
+        Text t = XMLCUtil.getFirstText(link);
+        if (date == 0)
+	t.setData ("");
+        else t.setData (Integer.toString(date));
+     	}
+     	
+	
+	
+	public void build_month_view (SelectDateHTML page, int currentyear, int currentmonth)
+	//throws  webschedulePresentationException
+	
+	{
+	String monthnames[] = {"Jan","Feb","March","April","May","June","July","August","September","October ","November","December"};
+        int lastday;
+	String DaysofWeek[] = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
+	int daysPerMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	Calendar eventinfo = Calendar.getInstance();
+	
+	eventinfo.set(currentyear,currentmonth,1);
+	int dow = eventinfo.get(eventinfo.DAY_OF_WEEK);
+	System.out.println("first day day of the week= " + dow +"   "+ DaysofWeek[dow-1]);
+
+	// get the last day of the month check for leap year
+	if (currentmonth == 1 && (currentyear % 400 == 0 && currentyear % 100 != 0))
+		{
+			lastday =  29;
+		} else {
+			lastday = daysPerMonth [currentmonth];
+		}
+	
+	eventinfo.set(currentyear,currentmonth,lastday);
+	int ldow = eventinfo.get(eventinfo.DAY_OF_WEEK);
+	System.out.println("month last day day of the week= " + ldow +"  "+DaysofWeek[ldow-1] );
+	 //if the first day is not sunday, blank the first cloumns
+	if (dow>1) {
+	 	for (int i=1; i<dow;i++)
+	 	{
+	 		String daynumtext = "C"+i;
+	 		String daynumtabletext1 = "S"+i;
+	 		String daynumfontid = "F"+i;
+	 		replacehref(page,daynumtext,0,0,0);
+			fillin_table(page,daynumtabletext1,daynumfontid,0,0,0);
+	        }
+	        }
+	//fill-in main table
+	for (int daynum = 1; daynum < lastday+1; daynum++)
+		{
+			String daynumlinktext = "C"+(dow+daynum-1);
+			String daynumtabletext = "S"+(dow+daynum-1);
+			String daynumlinkfont = "F"+(dow+daynum-1);
+			replacehref(page,daynumlinktext,daynum,currentmonth,currentyear);
+			fillin_table(page,daynumtabletext,daynumlinkfont,currentyear,currentmonth,daynum);
+					
+		}	
+	int lastcell = dow+lastday;		
+	System.out.println("lastcel " + Integer.toString(lastcell)); 	
+		
+	if (lastcell < 38)
+	{	
+	//blank the rest of the table
+	for (int j = 0; j < (39-lastcell); j++)
+		{
+			int lastcellc = lastcell+j;
+		        String daynumlinktext2 = "C"+lastcellc;
+		         String daynumtabletext2 = "S"+lastcellc;
+		         String daynumlinkfont2 = "F" + lastcellc;
+		         replacehref(page,daynumlinktext2,0,0,0);
+			fillin_table(page,daynumtabletext2,daynumlinkfont2,0,0,0);	
+		}	
+	 }
+	
+		
+  }	
+	
+    
+    /**
+     * 
+     */
+    public String showPage(String errorMsg)
+    throws HttpPresentationException, webschedulePresentationException
+    {
+        SelectDateHTML page = new SelectDateHTML();
+        String projectname ;
+        Project project = null;
+        String monthnames[] = {"Jan","Feb","March","April","May","June","July","August","September","October ","November","December"};
+
+        //First priority: try to use the passed-in error message
+        // Second priority: try to use the session data's error message
+        // If there are no error messages then clear the prototype error text
+        if(null != errorMsg || 
+           null != (errorMsg = this.getSessionData().getAndClearUserMessage())) {       
+            page.setTextErrorText(errorMsg);
+        } else {
+            page.getElementErrorText().getParentNode().removeChild(page.getElementErrorText());
+        }
+        try
+        {
+        project = this.getProject();
+        projectname = project.getProj_name();
+	page.setTextProjectID ("Select Date for " + projectname);
+
+        } catch (webscheduleBusinessException ex) {
+         throw new webschedulePresentationException("Error getting project name", ex);
+         }
+
+          int viewyear = this.getYear();
+          int viewmonth = this.getMonth();
+          page.setTextMonth(monthnames[viewmonth]);
+              System.out.println("Current Month= " + viewmonth);
+	  page.setTextYear(Integer.toString(viewyear));
+              System.out.println("Current Year= " + viewyear);
+
+          build_month_view(page,viewyear,viewmonth);
+     		
+	    return page.toDocument();
+    }
+
+
+    public String handleNextMonth()
+     throws HttpPresentationException
+    {
+         int viewyear = this.getYear();
+         int viewmonth = this.getMonth();
+         if (viewmonth == 11)
+          {
+            viewmonth = 0;
+            viewyear = viewyear + 1;
+            this.setYear(viewyear);
+            this.setMonth(viewmonth);
+           } else {
+           viewmonth = viewmonth + 1;
+            this.setMonth(viewmonth);
+            }
+              throw new ClientPageRedirectException(SELECT_DATE_PAGE);
+        }
+
+
+
+    public String handlePrevMonth()
+     throws HttpPresentationException
+    {
+         int viewyear = this.getYear();
+         int viewmonth = this.getMonth();
+         if (viewmonth == 0)
+          {
+            viewmonth = 11;
+            viewyear = viewyear - 1;
+            this.setYear(viewyear);
+            this.setMonth(viewmonth);
+           } else {
+           viewmonth = viewmonth - 1;
+            this.setMonth(viewmonth);
+            }
+              throw new ClientPageRedirectException(SELECT_DATE_PAGE);
+        }
+
+     public String handleSelectdate()
+        throws HttpPresentationException
+    {
+
+        String proj_id = this.getComms().request.getParameter(PROJ_ID);
+	Project project = null;
+
+      try {
+            project = ProjectFactory.findProjectByID(proj_id);
+            if(null == project) {
+            	this.getSessionData().setUserMessage("Please choose a valid project ");
+                 throw new ClientPageRedirectException(PROJECT_CATALOG_PAGE);
+                 // Show error message that project not found
+            } else {
+            	this.setProject(project);
+            	String DaysofWeek[] = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
+		int daysPerMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+		Calendar rightnow = Calendar.getInstance();
+		int currentmonth = rightnow.get(rightnow.MONTH);
+		int currentyear = rightnow.get(rightnow.YEAR);
+	
+	
+           	this.setYear(currentyear);
+           	this.setMonth(currentmonth);
+                //String projectname = project.getProj_name();
+                /*this.getSessionData().setUserMessage("This project = " + proj_id+ "jkjk");
+                  throw new ClientPageRedirectException(PROJECT_CATALOG_PAGE);*/
+
+                throw new ClientPageRedirectException(SELECT_DATE_PAGE);
+            }
+        } catch(webscheduleBusinessException ex) {
+            this.writeDebugMsg("System error finding PROJECT: " + ex.getMessage());
+            throw new webschedulePresentationException("System error finding PROJECT", ex);
+        }
+    }
+
+
+
+}
+
+

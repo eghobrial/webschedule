@@ -1,0 +1,182 @@
+
+<html>
+<head>
+<title>Check and Route Proposal 3TW</title>
+ 
+<link rel="stylesheet" href="../media/StyleSheet.css">
+<link rel="stylesheet" type="text/css" href="../media/sitestyles.css">
+</head>
+
+<body>
+
+<center>
+<table style="margin: auto;" border="0" cellpadding="0" cellspacing="0" width="800">
+	<tr>
+		<td>
+		<img src="../media/head2.jpg" alt="Center for Functional MRI Webschedule"></td>
+	</tr>
+	<tr>
+		<td><img src="../media/foot.jpg" height="2" width="800"> </td>
+	</tr>
+</table>
+<table style="margin: auto;" border="0" cellpadding="0" cellspacing="0" width="800">
+	<tr>
+		<td align="center">
+		<h3>Check and Route Proposal 3TW</h3>
+		</td>
+	</tr>
+</table>
+
+
+<table style="margin: auto;" border="0" cellpadding="0" cellspacing="0" width="800">
+	<tr>
+		<td><img src="../media/foot.jpg" height="2" width="800"> </td>
+	</tr>
+	<tr>
+		<td align="center" height="23"><span class="nav1">
+		  <a href="proposaladminmenu.html"><img src="../media/proposaladmin.jpg" border="0"></a>
+		<a href="committeeinfo.html" target="_blank"><img src="../media/help.jpg" border="0"></a> 
+		<a href="../personMgmt/Exit.html"><img src="../media/logout.jpg" border="0"></a>
+		</span></td>
+	</tr>
+</table>
+<table style="margin: auto;" border="0" cellpadding="2" cellspacing="2" width="800">
+	<tr>
+		<td><span id="ErrorText"><font face="" size="4"><font color="#ff0000">Optional 
+		ErrorText Goes Here</font></font></span> <br>
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+				<br>
+			</table>
+			
+<form name="checkroute" action="checkroute.html" method="get">
+<input name="event" value="route" id="EventValue" type="hidden">
+	<table style="width: 100%" class="style1">
+					
+  <tr>
+            <td> Operator1 Last Name: <span id="o1lname">Last Name</span><br>
+Operator1 First Name: <span id="o1fname">First Name</span> </td>
+</tr>
+
+		<tr>
+			<td>Operator status</td>
+			<td>
+			<input name="checkop1" id="checkop1" unchecked="" type="checkbox"></td>
+		</tr>
+		
+		<tr>
+			<td>IRB/IACUC on file </td>
+			<td>
+			<input name="faxonfile" id="faxonfile" unchecked="" type="checkbox"></td>
+		</tr>
+		<tr><td>IRB/IACUC Expiration Date</td></tr>
+<tr>
+ <td valign="top" width="419" > 
+             
+            </td>
+	    <td valign="top"  > 
+              <select id = "Icmonth" name="icmonth">
+	      
+                <option selected  value="01">Jan</option>
+                <option value="02">Feb</option>
+                <option value="03">March</option>
+                <option value="04">April</option>
+                <option value="05">May</option>
+                <option value="06">June</option>
+                <option value="07">July</option>
+                <option value="08">August</option>
+                <option value="09">Sept</option>
+                <option value="10">Oct</option>
+                <option value="11">Nov</option>
+                <option value="12">Dec</option>
+              </select>
+            </td>
+	    <td valign="top" width="419" > 
+              <select id = "Icdate" name="icdate">
+	       
+		 <option selected value="01">1</option>
+                <option value="02">2</option>
+                <option value="03">3</option>
+                <option value="04">4</option>
+                <option value="05">5</option>
+                <option value="06">6</option>
+                <option value="07">7</option>
+                <option value="08">8</option>
+                <option value="09">9</option>
+                <option value="10">10</option>
+                <option value="12">12</option>
+		<option value="13">13</option>
+		<option value="14">14</option>
+		<option value="15">15</option>
+		<option value="16">16</option>
+		<option value="17">17</option>
+		<option value="18">18</option>
+		<option value="19">19</option>
+		<option value="20">20</option>
+		<option value="21">21</option>
+		<option value="22">22</option>
+		<option value="23">23</option>
+		<option value="24">24</option>
+		<option value="25">25</option>
+		<option value="26">26</option>
+		<option value="27">27</option>
+		<option value="28">28</option>
+		<option value="29">29</option>
+		<option value="30">30</option>
+		<option value="31">31</option>
+	    </select>
+            </td>
+	      <td valign="top" > 
+              <select id = "Icyear" name="icyear">
+	           <option selected value="1900">Year</option>
+                <option value="2008">2008</option>
+                <option value="2009">2009</option>
+		<option value="2010">2010</option>
+		<option value="2011">2011</option>
+		<option value="2012">2012</option>
+		<option value="2013">2013</option>
+		<option value="2014">2014</option>
+		<option value="2015">2015</option>
+		<option value="2016">2016</option>
+		<option value="2017">2017</option>
+		<option value="2018">2018</option>
+		<option value="2019">2019</option>
+              </select>
+            </td>
+</tr>
+
+
+		<tr>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+		</tr>
+	
+</table>
+<input name="submit" src="../media/route.jpg" alt="Route" border="0" type="image">
+
+</form>
+</td>
+</tr>
+<tr>
+<td><img src="../media/foot.jpg" height="2" width="800"> </td>
+</tr>
+<tr>
+<td><span class="footer">This program was developed by Eman Ghobrial, Center for 
+Functional MRI, Radiology Department, UCSD.<br>
+Address: Center for Functional MRI, 9500 Gilman Dr. / Osler Ln., La Jolla, CA 92093-0677.<br>
+Phone: (858)-822-0513, FAX: (858)-822-0605.<br>
+Send accounts requests, comments, suggestions and bug report to: eghobrial@ucsd.edu.<br>
+Copyright © 2007 Regents of the University of California. All rights reserved.
+<br>
+<img src="../media/footer_official.gif" height="41" width="412"> </span></td>
+</tr>
+</tbody>
+</table>
+</center>
+
+</body>
+
+</html>

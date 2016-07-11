@@ -1,0 +1,114 @@
+<HTML>
+<HEAD>
+<TITLE>Project List To Invoice</TITLE>
+
+<link rel="stylesheet" href="../media/StyleSheet.css">
+</HEAD>
+<BODY>
+<table width="799" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td width="19" valign="top" rowspan="5">&nbsp;</td>
+    <td valign="top" height ="43" width="223"><img src="../media/Hlogo.gif" width="213" height="43"></td>
+    <td valign="top">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td height="16" valign="top" colspan="2" bgcolor="#000066"><img src ="../media/Hucsd.gif" width="600" height="14"></td>
+  </tr>
+  <tr> 
+    <td height="29" valign = "center" colspan="2" bgcolor="#006699"> 
+      <h1 align="center">Project List for Billing for <span id="Month">May</span> <span id="Year">2004</span></h1>
+    </td>
+  </tr>
+  <tr> 
+    <td height="23"></td>
+    <td width="557"></td>
+  </tr>
+</table> 
+
+<table width="800" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td height="52" width="120"></td>
+    <td width="680" height="52"></td>
+  </tr>
+  <tr> 
+    <td height="545" valign="top">&nbsp;</td>
+    <td valign="top" height="545">
+<p><font color=red face="" size =4><span id="ErrorText">Optional Error Text Goes Here</span></font> </p>
+      <hr>
+      <table border="1" cellspacing="0" cellpadding="2">
+        <tr> 
+          <th>ProjectName</th>
+          <th>PI Name</th>
+          <th>Description</th>
+          <th>TotalHours</th>
+          <th>TotalCharges</th>
+        </tr>
+        <tr id="TemplateRow"> 
+          <td><span id="Proj_name">Navy</span></td>
+          <td><span id="First_name">Sean</span>  <span id="Last_name">Drummond</span></td>
+          <td><span id="Discrib">Developing New Sequences</span></td>
+          <td><span id="Thours">10</span></td>
+          <td><span id="Tcharges">4500</span></td>
+        </tr>
+        <tr class="discardMe"> 
+          <td>Training</td>
+          <td>Geoff Boynton</td>
+          <td>Training New Users</td>
+          <td>1</td>
+          <td>450</td>
+        </tr>
+        <tr class="discardMe"> 
+          <td>fMRIone</td>
+          <td>Richard Buxton</td>
+          <td>fMRI Study num one</td>
+          <td>10</td>
+          <td>450</td>
+        </tr>
+        <tr class="discardMe"> 
+          <td>fMRI2</td>
+          <td>Larry Frank</td>
+          <td>fMRI Study num two</td>
+          <td>10</td>
+          <td>4500</td>
+        </tr>
+      </table>
+      <table width="600" border="1">
+  <tr> 
+   <td valign="top"><b><font size="2">Total Charges for the month</font></b></td>
+    <td valign="top"><span id="sumcharges"><font size="2">9900</font></span></td> 
+  </tr>
+
+      <form name="SelectBillProjForm" action="proj_bill_list.html" method="GET">
+        <table border="0" cellspacing="0" cellpadding="0" width="484">
+          <tr> 
+            <td width="265" height="11"> </td>
+            <td width="218"></td>
+          </tr>
+          <tr> 
+            <td valign="top" height="25"> 
+              <input type="HIDDEN" name="event" value="SelectProj">
+              <select id="ProjList" name="projID">
+                <option selected value="invalidID">Select One below
+                <option id="templateOption">Training: Training New Users</option>
+                <option class="discardMe">fMRIone: fMRI Study num one</option>
+                <option class="discardMe">fMRI2: fMRI Study num two</option>
+              </select>
+            </td>
+            <td valign="top"> 
+              <input type="image" src = "../media/continue.jpg" value="Choose selected proj" name="SUBMIT" width="121" height="23">
+            </td>
+          </tr>
+        </table>
+      </form>
+      
+      <form name="LogoutForm" action="../personMgmt/Exit.html" method="GET">
+        <input type="HIDDEN" name="event2" value="logout">
+        <input type="image" src = "../media/Logout_button.jpg" value="Logout" name="submit">
+      </form>
+    </td>
+  </tr>
+</table>
+<H2 align=center>&nbsp;</H2>
+</BODY>
+</HTML>
+

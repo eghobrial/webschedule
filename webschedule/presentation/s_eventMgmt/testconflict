@@ -1,0 +1,73 @@
+public int check_for(int starthi,int startmi,int endhi,int endmi,int event_starthi,int event_startmi,int event_endhi,int event_endmi)
+        {
+        int conflict = 0;
+        //1. check if the event strat time is less than the booked event
+	        	//2. then check end time
+	        	if (event_starthi < starthi)
+	        		{
+	        		  if (event_endhi < endhi)
+	        		  	conflict = 0;
+	        		  else if (event_endhi == endhi)
+	        		  	{
+	        		  	  if (event_endmi <= endmi) conflict = 0;
+	        		  	  else {
+	        		  	
+	        		  	  conflict = 1;
+	        		  	   System.out.println("System conflict flag  "+Integer.toString(conflict));
+	        		  	
+	        		  	     }
+	        		  	}
+	        		  else {
+	        		 	 conflict = 1;
+	        		 	  System.out.println("System conflict flag  "+Integer.toString(conflict));
+	        		  	
+	        		  	}
+	        		 }
+	        		
+	        	// 1. if it is equal check min and end time	
+	        	else if (event_starthi == starthi)
+	        		{
+	        		 if (event_startmi >= startmi)
+	        		   {  	//if
+	        		   conflict = 1;
+	        		   System.out.println("System conflict flag  "+Integer.toString(conflict));
+	        		   }        //if
+	        		   else {  //else 1
+	        		   if (event_endhi < endhi) conflict = 0;
+	        		   else if (event_endhi == endhi)
+	        		  	{ //else if
+	        		  	  if (event_endmi <= endmi) conflict = 0;
+	        		  	   else {  //else
+	        		 	 	conflict = 1;
+	        		 	 	 System.out.println("System conflict flag  "+Integer.toString(conflict));
+	        		  		
+	        		  		}//else	
+	        		   	}//else if
+	        		   }  //else 1
+	        		 }
+	        		
+	        	
+                       //1.    if it is greater than the booked on make sure it is not in the middle
+                       else if (event_starthi > starthi)
+                       		{
+                       		if (event_starthi > endhi)
+                       		   conflict = 0;
+                       		else if (event_starthi == endhi)
+                       		    {
+                       		      if (event_startmi >= endmi)
+                       		        conflict = 0;
+                       		      else {
+                       		      	conflict = 1;
+                       		      	 System.out.println("System conflict flag  "+Integer.toString(conflict));
+                       		      	
+                       		      	  }
+                       		    }
+                       		else {
+                       			conflict = 1;
+                       			 System.out.println("System conflict flag  "+Integer.toString(conflict));
+                       			
+                       		      }		
+                       		}
+                       		
+               return conflict;        		
+        }               		

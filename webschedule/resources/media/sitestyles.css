@@ -1,0 +1,44 @@
+body {
+	margin: 0px;
+	color: #000000;
+	font: 12px/15px Verdana, Arial, Helvetica, sans-serif;
+}
+
+/*class menu */
+.nav1 A:link {
+	color: black;
+	font-weight: bold;
+	text-decoration: none;
+}
+.nav1 A:hover {
+	background-color: white;
+	border: 0;
+	color: black;
+	text-decoration: none;
+}
+.nav1 A:visited{
+	color: black;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+
+.left {
+	clear: left;
+}
+.right {
+	clear: right;
+}
+blockquote {
+	background: #d0dcdf;
+	border: solid 1px #aaa;
+	color: inherit;
+	margin: 5px 0;
+	padding: 20px;
+}
+.footer {
+font-size: 10px;
+font-family : Verdana, Arial, Helvetica, sans-serif;
+font-color: blue;
+}
+

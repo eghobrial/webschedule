@@ -1,0 +1,159 @@
+<html>
+<head>
+  <title>Proposal Form General Information</title>
+  <link rel="stylesheet" href="../media/StyleSheet.css">
+  <link rel="stylesheet" type="text/css" href="../media/sitestyles.css">
+
+
+<script>
+var workIsDone = false;
+
+window.onbeforeunload = confirmBrowseAway;
+
+function confirmBrowseAway()
+{
+  if (!workIsDone) {
+    return "If you leave this page " +
+    "now, your work will NOT be saved!";
+  }
+}
+
+function doneWithForm()
+{
+  // The user has finished their work, so we don't
+  // need a warning anymore!
+  workIsDone = true;
+}  
+  setTimeout("alert('You will lose your session in 5 minutes. Please save you work now by using the Save button to ensure no work is lost.');",25*60*1000);
+  setTimeout("alert('Your session has timed out.');",30*60*1000);
+</script>
+  
+  </head>
+<BODY><center>
+<table style="margin: auto;" border="0" cellpadding="0" cellspacing="0"
+ width="800">
+  <tbody>
+    <tr>
+      <td> <img src="../media/head2.jpg"
+ alt="Center for Functional MRI Webschedule"></td>
+    </tr>
+    <tr>
+      <td><img src="../media/foot.jpg" height="2" width="800"> </td>
+    </tr>
+  </tbody>
+</table>
+<table style="margin: auto;" border="0" cellpadding="0" cellspacing="0"
+ width="800">
+  <tbody>
+    <tr>
+      <td align="center">
+      <h3>Proposal Form-General Information</h3>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table style="margin: auto;" border="0" cellpadding="0" cellspacing="0"
+ width="800">
+  <tbody>
+    <tr>
+      <td><img src="../media/foot.jpg" height="2" width="800"> </td>
+    </tr>
+    <tr>
+      <td align="center" height="23"><span class="nav1"> 
+<a href="manageproposal.html"><img src="../media/myproposals.jpg" border="0"></a><a href="../s_eventMgmt/mainmenu.html"><img src="../media/main.jpg" border="0"></a><a href="information.html" target="_blank"><img src="../media/help.jpg" border="0"></a> <a href="../personMgmt/Exit.html"><img src="../media/logout.jpg" border="0"></a> </span></td>
+    </tr>
+  </tbody>
+</table>
+<table style="margin: auto;" border="0" cellpadding="2" cellspacing="2"
+ width="800">
+  <tbody>
+    <tr>
+      <td><span id="ErrorText"><font face="" size="4"><font
+ color="#ff0000">Optional ErrorText Goes Here</font></font></span> <br>
+<font color=red size=2px>* Required Fields</font>
+ <form action="" name="proposalp1Form"  method="get">
+ <input name="event" value="edit" id="EventValue" type="hidden">
+      <table border="0" cellpadding="0" cellspacing="0" width="100%">
+          <tbody>
+		<tr>
+<td width="40%"><font color=red size=2px>*</font>Proposal funding source:
+</td>
+<td><input name="funduc" id="funduc" UNCHECKED type="checkbox"  >UCSD
+</td>
+		</tr>
+		<tr>
+<td>
+</td>
+<td><input name="fundnonuc" id="fundnonuc" UNCHECKED type="checkbox"  >NonUCSD
+</td>
+		</tr>
+<tr><td>&nbsp;</td></tr>
+
+		<tr>
+<td><font color=red size=2px>*</font>Project Title
+</td>
+<td><input name="proj_name" id="proj_name" type="text" size=50 >
+</td>
+		</tr>
+		<tr>
+<td><font color=red size=2px>*</font>Abbreviated Project Title (6-8 char)
+</td>
+<td><input name="aproj_name" id="aproj_name" type="text" size=50 >
+</td>
+		</tr>
+<tr><td>&nbsp;</td><td></td></tr>
+<tr><td colspan=2>PI Information</td></tr>
+<tr><td>&nbsp;&nbsp; PI Name</td><td><span id="piname">Tom Liu</span></td></tr>
+<tr><td>&nbsp;&nbsp; Academic Title</td><td><span id="atitle">Associate Professor</span></td></tr>
+<tr><td>&nbsp;&nbsp; Address</td><td><span id="address">9500 Gilman Drive, La Jolla, CA 92093</span></td></tr>
+<tr><td>&nbsp;&nbsp; Phone</td><td><span id="phone">858-822-0542</span></td></tr>
+<tr><td>&nbsp;&nbsp; Email</td><td><span id="email">ttliu@ucsd.edu</span></td></tr>
+<tr><td colspan=2><font color=blue size=2px>**if information has changed please click the Edit PI Info button on the piprofile page</font></td></tr>
+<tr><td>&nbsp;</td><td></td></tr>
+<tr><td colspan=2>CO PI  <font color=blue size=2px>(Please list CO-PIs.)</font></td></tr>
+<tr><td>&nbsp;&nbsp; <font color=red size=2px>*</font>CO PIs</td><td><input name="copis" id="copis"type="text" size=30></td></tr>
+<tr><td colspan=2>Project Contact Person <font color=blue size=2px>(This is the person we will contact regarding scheduling and other issues related to the day-to-day running of the experiment.)</font></td></tr>
+<tr><td>&nbsp;&nbsp; <font color=red size=2px>*</font>Contact Name</td><td><input name="cname" id="cname"type="text" size=30></td></tr>
+<tr><td>&nbsp;&nbsp; <font color=red size=2px>*</font>Contact Phone</td><td><input name="cphone" id="cphone" type="text" size=30></td></tr>
+<tr><td>&nbsp;&nbsp; <font color=red size=2px>*</font>Contact Email</td><td><input name="cemail" id="cemail" type="text" size=30></td></tr>
+<tr><td>&nbsp;</td><td></td></tr>
+<tr><td colspan=2><font color=red size=2px>*</font>Scanner Operator <font color=blue size=2px>(Please choose the operator to run your scans)</font></td></tr>
+<tr><td>&nbsp;&nbsp; Center Technician*</td><td><input name="ctech" id="ctech" UNCHECKED type="checkbox"></td></tr>
+<tr><td>&nbsp;&nbsp; One Operator</td><td><input name="oneop" id="oneop" UNCHECKED type="checkbox"></td></tr>
+<tr><td>&nbsp;</td><td></td></tr>
+<tr><td></td><td></td></tr>
+<tr><td></td><td></td></tr>
+<tr><td></td><td></td></tr>
+<tr><td></td><td></td></tr>
+<tr><td></td><td></td></tr>
+
+          </tbody>
+      </table>
+
+
+
+<input type="image" border="0" onclick="doneWithForm();" name="submit" src="../media/savenext.jpg" alt="Save and go to the next page"></form>
+<font color=red size=2px>
+* Additional charges<br>
+Note: Please do not use the Back button on your browser.</font>
+      </td>
+    </tr>
+    <tr>
+      <td><img src="../media/foot.jpg" height="2" width="800"> </td>
+    </tr>
+    <tr>
+      <td><span class="footer">This program was developed by Eman Ghobrial,
+Center for Functional MRI, Radiology Department, UCSD.<br>
+Address: Center for Functional MRI, 9500 Gilman Dr. / Osler Ln., La
+Jolla, CA 92093-0677.<br>
+Phone: (858)-822-0513, FAX: (858)-822-0605.<br>
+Send accounts requests, comments, suggestions and bug report to:
+eghobrial@ucsd.edu.<br>
+Copyright &copy; 2007 Regents of the University of California.
+All rights reserved. <br>
+      <img src="../media/footer_official.gif" height="41" width="412"> </span></td>
+    </tr>
+  </tbody>
+</table>
+</center></body>
+</html>

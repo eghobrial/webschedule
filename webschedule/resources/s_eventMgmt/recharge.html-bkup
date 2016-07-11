@@ -1,0 +1,60 @@
+<html>
+<head>
+<title>Recharge Form</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+<p align="center"><b><font size="2">UCSD DEPARTMENT OF RADIOLOGY</font></b></p>
+<p align="center"><b>Center for Functional Magnetic Resonance Imaging</b></p>
+<p>Date prepared: <span id="today_month">8</span>-<span id="today_day">22</span>-<span id="today_year">2002</span> </p>
+<p align="left">&nbsp;</p>
+<p align="left">&nbsp;</p>
+<p align="left">&nbsp;</p>
+<table width="600" border="1">
+  <tr> 
+    <td height="23" width="601" colspan="8">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="175"></td>
+    <td colspan="7" valign="top"> 
+      <p><font size="2">UCSD Center for Functional Magnetic Resonance Imaging</font></p>
+      <p><font size="2">For Information regarding your bill please email Marianne Clark at mkclark@ucsd.edu</font></p>
+       <p>PI <span id="Firstname"> Martin </span> <span id="Lastname"> Paulus </span></p>
+      <p>Index Number <span id="Indexnum">RAD1234</span></p>
+       <p>Contact: <span id="Username"> Contact Person </span></p>
+       <p>&nbsp;</p>
+    </td>
+  </tr>
+  <tr> 
+    <th height="29"></th>
+    <th valign="top"><font size="2">Start time</font></th>
+    <th  valign="top"><font size="2">End time</font></th>
+    <th  valign="top"><font size="2">Event Date</font></th>
+    <th valign="top"><font size="2">Project</font></th>
+    <th valign="top"><font size="2">Description</font></th>
+    <th valign="top"><font size="2">Unit Cost</font></th>
+    <th valign="top"><font size="2">Extended Cost</font></th>
+  </tr>
+  <tr id = "TemplateRow"> 
+    <td height="42"></td>
+    <td valign="top"><span id="Start_time"><font size="2">10:30</font></span></td>
+    <td  valign="top"><span id="End_time"><font size="2">12:30</font></span></td>
+    <td><span id="event_month"><font size="2">8</font></span><font size="2">-<span id="event_day">22</span>-</font><span id="event_year"><font size="2">2002</font></span></td>
+    <td valign="top"><span id ="Proj_name"><font size="2">fMRI01</font></span></td>
+    <td valign="top"><span id="Descrip"><font size="2">Scanning for Proj01</font></span></td>
+    <td valign="top"><span id="Unitcost"><font size="2">450</font></span></td>
+    <td valign="top"><span id="Extendedcost2"><font size="2">900</font></span></td>
+  </tr>
+</table>
+
+<table width="600" border="1">
+  <tr> 
+   <td valign="top">&nbsp;</td>
+    <td valign="top"><b><font size="2">Total</font></b></td>
+    <td valign="top"><span id="Extendedcost3"><font size="2">900</font></span></td> 
+  </tr>
+</table>
+
+</body>
+</html>

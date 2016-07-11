@@ -1,0 +1,103 @@
+<html>
+<head>
+<title>Credit Pilot Hours Report</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="../media/StyleSheet.css">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+
+<table width="1011" border="0" cellpadding="0" cellspacing="0" mm:layoutgroup="true">
+  <tr> 
+    <td width="19" valign="top" rowspan="3">&nbsp;</td>
+    <td width="566" height="43" valign="top"><img src="../media/Hlogo.gif" width="213" height="43"></td>
+    <td width="214"></td>
+    <td width="212"></td>
+  </tr>
+  <tr> 
+    <td colspan="2" height="16" valign="top"><img src="../media/Hucsd.gif" width="600" height="14"></td>
+    <td></td>
+  </tr>
+  <tr> 
+    <td height="29" colspan="2" valign="top" bgcolor="#006699"> 
+      <h2 align="center">Credit Pilot Hours Report</h2>
+    </td>
+    <td></td>
+  </tr>
+  <tr> 
+    <td valign="top" rowspan="2">&nbsp;</td>
+    <td height="25" colspan="2" valign="top"> 
+      <p><font color=red face="" size = 4><span id="ErrorText">Optional Error Text Goes 
+        Here</span></font></p>
+    </td>
+    <td></td>
+  </tr>                                            
+  <tr> 
+    <td height="293" colspan="3" valign="top">
+      <form name="Credit" method="post" action="Credit_report.html">
+        <table width="600" border="0" cellspacing="0" cellpadding="0">
+          <tr> 
+            <td height="30" valign="top" width="3">&nbsp;</td>
+            <td valign="center" width="180" >Month</td>
+            <td valign="top" width="419" > 
+              <select id = "Month" name="month">
+                <option value="0">Jan</option>
+                <option value="1">Feb</option>
+                <option value="2">March</option>
+                <option value="3">April</option>
+                <option value="4">May</option>
+                <option value="5">June</option>
+                <option value="6">July</option>
+                <option value="7">August</option>
+                <option value="8">Sept</option>
+                <option value="9">Oct</option>
+                <option value="10">Nov</option>
+                <option value="11">Dec</option>
+              </select>
+            </td>
+          </tr>
+          <tr> 
+            <td valign="top" height="29" width="3">&nbsp;</td>
+            <td valign="center" width="180" >Year</td>
+            <td valign="top" > 
+              <select id = "year" name="year">
+                <option value="2001">2001</option>
+                <option value="2002">2002</option>
+                <option value="2003">2003</option>
+                <option  value="2004">2004</option>
+                <option selected value="2005">2005</option>
+		<option value="2006">2006</option>
+		<option value="2007">2007</option>
+		<option value="2008">2008</option>
+		
+              </select>
+            </td>
+          </tr>
+          <tr> 
+            <td height="40" width="3"></td>
+            <td valign="top" width="180" > Description: </td>
+            <td valign="top" > 
+              <input name="description" id="Description" >
+            </td>
+          </tr>
+          <tr> 
+            <td height="51" valign="top" width="3">&nbsp;</td>
+            <td valign="top" width="180" > 
+			<input type="hidden" name="event" value="Generate" id="EventValue">
+              <input type="submit" name="Submit" value="Credit Pilot Hours" >
+            </td>
+            <td valign="top">&nbsp;</td>
+            </tr>
+          <tr> 
+            <td height="40" width="3"></td>
+            <td width="180" ></td>
+            <td></td>
+          </tr>
+        </table>
+      </form>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

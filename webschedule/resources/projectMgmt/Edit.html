@@ -1,0 +1,206 @@
+<HTML>
+<HEAD>
+<TITLE>Edit a Project</TITLE>
+<link rel="stylesheet" href="../media/StyleSheet.css">
+</HEAD>
+<BODY>
+<table width="800" border="0" cellspacing="0" cellpadding="0">
+ 
+  <tr>
+    <td width="120">&nbsp;</td>
+    <td width="680">
+      <p><font color=red face="" size=4><span id="ErrorText">Optional Error Text Goes Here</span></font></p>
+      <p><b>Add or Edit a project</b></p>
+      <form action="Edit.html" name="EditForm" method="GET">
+        <input type="hidden" name="event" value="add" id="EventValue">
+        <input type="hidden" name="projID" value="invalidID" id="ProjID">
+        <table>
+          <tr>
+            <td> Project Name: </td>
+            <td>
+              <input name="proj_name" id="Proj_name" >
+            </td>
+          </tr>
+          <tr>
+            <td> Project Owner: </td>	
+            <td>
+                <select id="PersonList" name="personID">
+                <option selected value="invalidID">Select Project Owner
+                <option id="templateOption">Eman Ghobrial</option>
+                <option class="discardMe">Rick Buxton</option>
+                <option class="discardMe">Eric Wong</option>
+              </select>
+            </td>
+    </tr>
+          <tr>
+            <td> Project Password: </td>
+            <td>
+              <input name="password" id="Password" >
+            </td>
+          </tr>
+          <tr>
+            <td> Description: </td>
+            <td>
+              <input name="discrib" id="Discrib" >
+            </td>
+          </tr>
+          <tr>
+            <td> Total Hours: </td>
+            <td>
+              <input name="thours" id="Thours" >
+            </td>
+          </tr>
+          <tr>
+            <td> Done Hours: </td>
+            <td>
+              <input  name="dhours" id="Dhours">
+            </td>
+          </tr>
+           <tr>
+            <td> Index Number: </td>
+            <td>
+              <input  name="indexnum" id="Indexnum">
+            </td>
+          </tr>
+          <tr>
+            <td> Code of Pay: </td>
+            <td>
+              <input  name="codeofpay" id="Codeofpay">
+            </td>
+          </tr>
+	  
+	 <tr>
+            <td> Notify Contact: </td>
+            <td>
+              <input  name="notifycontact" id="notifycontact">
+            </td>
+          </tr> 
+
+	  <tr>
+            <td> Contact Name: </td>
+            <td>
+              <input  name="contactname" id="contactname">
+            </td>
+          </tr>
+
+
+
+	  <tr>
+            <td> Contact Phone: </td>
+            <td>
+              <input  name="contactphone" id="contactphone">
+            </td>
+          </tr>
+	  
+	  <tr>
+            <td> Bill Address line 1: </td>
+            <td>
+              <input  name="billaddr1" id="billaddr1">
+            </td>
+          </tr>
+	  
+	  <tr>
+            <td> Bill Address line 2: </td>
+            <td>
+              <input  name="billaddr2" id="billaddr2">
+            </td>
+          </tr>
+	  
+	  <tr>
+            <td> Bill Address line 3: </td>
+            <td>
+              <input  name="billaddr3" id="billaddr3">
+            </td>
+          </tr>
+          <tr>
+            <td> City: </td>
+            <td>
+              <input  name="city" id="city">
+            </td>
+          </tr>
+	  
+	  <tr>
+            <td> State: </td>
+            <td>
+              <input  name="state" id="state">
+            </td>
+          </tr>
+	  
+	  <tr>
+            <td> Zip: </td>
+            <td>
+              <input  name="zip" id="zip">
+            </td>
+          </tr>
+	  
+	  <tr>
+            <td> Account ID: </td>
+            <td>
+              <input  name="accountid" id="accountid">
+            </td>
+          </tr>
+	  
+	   <tr> 
+            <td height="20" valign="top"> Is the Project Expired? </td>
+            <td valign="top"> 
+              <input type="checkbox" name="exp" UNCHECKED id="ExpBox">
+            </td>
+            <td></td>
+          </tr>
+	  
+	  <tr> 
+            <td height="20" valign="top"> Is the Project outside? </td>
+            <td valign="top"> 
+              <input type="checkbox" name="outside" UNCHECKED id="OutsideBox">
+            </td>
+            <td></td>
+          </tr>
+	  
+	  <tr>
+            <td> Exper Date: </td>
+            <td>
+              <input  name="expday" id="expday">
+            </td>
+          </tr>
+	  
+          <tr>
+            <td> Exper Month: </td>
+            <td>
+              <input  name="expmonth" id="expmonth">
+            </td>
+          </tr>
+      <tr>
+            <td> Exper Year: </td>
+            <td>
+              <input  name="expyear" id="expyear">
+            </td>
+          </tr>
+
+	 <tr>
+            <td> Project Operator: </td>	
+            <td>
+                <select id="OperatorList" name="operatorID">
+                <option selected value="invalidID1">Select Project Operator
+                <option id="templateOption1">Eman Ghobrial</option>
+                <option class="discardMe">Rick Buxton</option>
+                <option class="discardMe">Eric Wong</option>
+              </select>
+            </td>
+          </tr>
+
+
+          <tr>
+            <td colspan="2">
+              <input type="submit" value="Save This Project Info" name="submit">
+            </td>
+          </tr>
+        </table>
+      </form>
+      <p> Back to the <a href="ProjCatalog.html">Project Catalog Page</a> </p>
+    </td>
+  </tr>
+</table>
+</BODY>
+</HTML>
+
+

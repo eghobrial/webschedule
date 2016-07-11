@@ -1,0 +1,103 @@
+<HTML>
+<HEAD>
+<TITLE>Project List To Invoice</TITLE>
+
+<link rel="stylesheet" href="../media/StyleSheet.css">
+</HEAD>
+<BODY>
+<table width="799" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td width="19" valign="top" rowspan="5">&nbsp;</td>
+    <td valign="top" height ="43" width="223"><img src="../media/Hlogo.gif" width="213" height="43"></td>
+    <td valign="top">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td height="16" valign="top" colspan="2" bgcolor="#000066"><img src ="../media/Hucsd.gif" width="600" height="14"></td>
+  </tr>
+  <tr> 
+    <td height="29" valign = "center" colspan="2" bgcolor="#006699"> 
+      <h1 align="center">Project List for External Billing</h1>
+    </td>
+  </tr>
+  <tr> 
+    <td height="23"></td>
+    <td width="557"></td>
+  </tr>
+</table> 
+
+<table width="800" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td height="52" width="120"></td>
+    <td width="680" height="52"></td>
+  </tr>
+  <tr> 
+    <td height="545" valign="top">&nbsp;</td>
+    <td valign="top" height="545">
+<p><font color=red face="" size =4><span id="ErrorText">Optional Error Text Goes Here</span></font> </p>
+      <hr>
+      <table border="1" cellspacing="0" cellpadding="2">
+        <tr> 
+          <th>ProjectName</th>
+          <th>Description</th>
+          <th>TotalHours</th>
+          <th>DoneHours</th>
+        </tr>
+        <tr id="TemplateRow"> 
+          <td><span id="Proj_name">Developing</span></td>
+          <td><span id="Discrib">Developing New Sequences</span></td>
+          <td><span id="Thours">400</span></td>
+          <td><span id="Dhours">10</span></td>
+        </tr>
+        <tr class="discardMe"> 
+          <td>Training</td>
+          <td>Training New Users</td>
+          <td>400</td>
+          <td>10</td>
+        </tr>
+        <tr class="discardMe"> 
+          <td>fMRIone</td>
+          <td>fMRI Study num one</td>
+          <td>100</td>
+          <td>10</td>
+        </tr>
+        <tr class="discardMe"> 
+          <td>fMRI2</td>
+          <td>fMRI Study num two</td>
+          <td>200</td>
+          <td>30</td>
+        </tr>
+      </table>
+      <form name="SelectBillProjForm" action="../s_eventMgmt/invoice.html" method="GET">
+        <table border="0" cellspacing="0" cellpadding="0" width="484">
+          <tr> 
+            <td width="265" height="11"> </td>
+            <td width="218"></td>
+          </tr>
+          <tr> 
+            <td valign="top" height="25"> 
+              <input type="HIDDEN" name="event" value="SelectProj">
+              <select id="ProjList" name="projID">
+                <option selected value="invalidID">Select One below
+                <option id="templateOption">Training: Training New Users</option>
+                <option class="discardMe">fMRIone: fMRI Study num one</option>
+                <option class="discardMe">fMRI2: fMRI Study num two</option>
+              </select>
+            </td>
+            <td valign="top"> 
+              <input type="image" src = "../media/continue.jpg" value="Choose selected proj" name="SUBMIT" width="121" height="23">
+            </td>
+          </tr>
+        </table>
+      </form>
+      
+      <form name="LogoutForm" action="../personMgmt/Exit.html" method="GET">
+        <input type="HIDDEN" name="event2" value="logout">
+        <input type="image" src = "../media/Logout_button.jpg" value="Logout" name="submit">
+      </form>
+    </td>
+  </tr>
+</table>
+<H2 align=center>&nbsp;</H2>
+</BODY>
+</HTML>
+
